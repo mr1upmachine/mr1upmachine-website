@@ -73,13 +73,14 @@
     canvas.confetti = confetti.create(canvas, {
       useWorker: true
     });
-    audio.setAttribute('loop', '')
-    audio.preload = 'auto'
-    body.appendChild(audio)
+    audio.setAttribute('loop', '');
+    audio.preload = 'auto';
+    audio.volume = 0.7;
+    body.appendChild(audio);
 
     button.onclick = () => {
       // create canvas
-      body.appendChild(canvas)
+      body.appendChild(canvas);
 
       // start confetti
       const DURATION = 15 * 1000000000000;
@@ -93,7 +94,7 @@
       (function frame() {
         const timeLeft = animationEnd - Date.now();
         const ticks = Math.max(200, 500 * (timeLeft / DURATION));
-        const randomColor = `#${Math.floor(Math.random()*16777215).toString(16)}`
+        const randomColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
         skew = Math.max(0.8, skew - 0.001);
 
         canvas.confetti({
