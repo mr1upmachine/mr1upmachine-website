@@ -75,8 +75,8 @@
   </div>
 
   <script>
-    // initial values
-    const INITIAL_VOLUME = 50; // 0 -> 100
+    // default values
+    const DEFAULT_VOLUME = 50; // 0 -> 100
 
     // create elements
     const body = document.body;
@@ -84,6 +84,9 @@
     const canvas = document.createElement('canvas');
     const volumeRange = document.createElement('input');
     const audio = new Audio('tostarena-town.mp3');
+
+    // get stored values
+    const initialVolume = localStorage.getItem('volume') ?? DEFAULT_VOLUME;
     
     // setup canvas element
     canvas.width = body.clientWidth;
@@ -95,16 +98,18 @@
     // setup audio element
     audio.setAttribute('loop', '');
     audio.preload = 'auto';
-    audio.volume = INITIAL_VOLUME / 100;
+    audio.volume = initialVolume / 100;
     body.appendChild(audio);
 
     // setup volume slider element
     volumeRange.setAttribute('type', 'range');
     volumeRange.setAttribute('orient', 'vertical');
     volumeRange.setAttribute('class', 'fixed-bottom-right');
-    volumeRange.value = INITIAL_VOLUME;
+    volumeRange.value = initialVolume;
+    localStorage.setItem('volume', initialVolume)
     volumeRange.oninput = () => {
       audio.volume = volumeRange.value / 100;
+      localStorage.setItem('volume', volumeRange.value)
     }
 
     button.onclick = () => {
