@@ -31,8 +31,7 @@
       animation-duration: 20s;
       animation-iteration-count: infinite;
       animation-direction: alternate;
-      animation-timing-function: linear; 
-      /* linear is enabled default, it’s not necessary to add it make it work but it can make your code more expressive */
+      animation-timing-function: linear;
     }
 
     @keyframes backgroundColorPalette {
@@ -52,6 +51,19 @@
         background: #ff9b85;
       }
     }
+
+    .fixed-bottom-right {
+      position: fixed;
+      bottom: 5px;
+      right: 5px;
+      height: 120px;
+      opacity: 0.3;
+      transition-duration: 0.4s;
+    }
+
+    .fixed-bottom-right:hover {
+      opacity: 1;
+    }
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
@@ -63,23 +75,40 @@
   </div>
 
   <script>
-    const body = document.body
-    const button = document.getElementById('button')
-    const canvas = document.createElement('canvas')
+    // initial values
+    const INITIAL_VOLUME = 50; // 0 -> 100
+
+    // create elements
+    const body = document.body;
+    const button = document.getElementById('button');
+    const canvas = document.createElement('canvas');
+    const volumeRange = document.createElement('input');
     const audio = new Audio('tostarena-town.mp3');
     
+    // setup canvas element
     canvas.width = body.clientWidth;
     canvas.height = body.clientHeight;
     canvas.confetti = confetti.create(canvas, {
       useWorker: true
     });
+
+    // setup audio element
     audio.setAttribute('loop', '');
     audio.preload = 'auto';
-    audio.volume = 0.7;
+    audio.volume = INITIAL_VOLUME / 100;
     body.appendChild(audio);
 
+    // setup volume slider element
+    volumeRange.setAttribute('type', 'range');
+    volumeRange.setAttribute('orient', 'vertical');
+    volumeRange.setAttribute('class', 'fixed-bottom-right');
+    volumeRange.value = INITIAL_VOLUME;
+    volumeRange.oninput = () => {
+      audio.volume = volumeRange.value / 100;
+    }
+
     button.onclick = () => {
-      // create canvas
+      // add canvas element to page
       body.appendChild(canvas);
 
       // start confetti
@@ -118,8 +147,11 @@
         }
       }());
 
-      // remove button
+      // remove button element from page
       button.remove()
+
+      // add volume slider element to page
+      body.appendChild(volumeRange);
 
       // start color cycle for body
       body.setAttribute('class', 'rainbow')
