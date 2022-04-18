@@ -1,0 +1,49 @@
+.party-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.party-button {
+  --party-button-color: #265026;
+  --party-button-text-color: white;
+  --party-button-border: #265026;
+
+  border: 3px solid var(--party-button-border);
+  border-radius: 8px;
+  margin: 0;
+  padding: 5px 9px;
+  width: auto;
+  overflow: visible;
+
+  background: var(--party-button-color);
+
+  /* inherit font & color from ancestor */
+  color: var(--party-button-text-color);
+  font: inherit;
+  font-weight: 500;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+}
+
+.party-button:focus {
+  --party-button-border: dodgerblue;
+  outline: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .party-button:focus {
+    --party-button-border: lightgreen;
+    outline: 0;
+  }
+}
