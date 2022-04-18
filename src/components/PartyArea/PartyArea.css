@@ -9,14 +9,15 @@
 .party-button {
   --party-button-color: #265026;
   --party-button-text-color: white;
-  --party-button-border: #265026;
 
-  border: 3px solid var(--party-button-border);
+  border-style: none;
   border-radius: 8px;
   margin: 0;
-  padding: 5px 9px;
+  padding: 8px 12px;
   width: auto;
   overflow: visible;
+  cursor: pointer;
+  outline: 0;
 
   background: var(--party-button-color);
 
@@ -36,14 +37,20 @@
   -webkit-appearance: none;
 }
 
+.party-button:hover {
+  outline: 1px dodgerblue solid;
+}
+
 .party-button:focus {
-  --party-button-border: dodgerblue;
-  outline: 0;
+  outline: 3px dodgerblue solid;
 }
 
 @media (prefers-color-scheme: dark) {
+  .party-button:hover {
+    outline: 1px lightgreen solid;
+  }
+
   .party-button:focus {
-    --party-button-border: lightgreen;
-    outline: 0;
+    outline: 3px lightgreen solid;
   }
 }
