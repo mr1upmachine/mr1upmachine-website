@@ -20,15 +20,30 @@ code {
 }
 
 :root {
-  --main-background-color: white;
-  --main-text-color: black;
-  --footer-border-color: transparent;
+  --main-background-color-light: white;
+  --main-background-color-dark: #212121;
+  --main-text-color-light: black;
+  --main-text-color-dark: white;
+
+  --party-button-color: #265026;
+  --party-button-text-color: white;
+  --party-button-hover-outline-color-light: dodgerblue;
+  --party-button-focus-outline-color-light: dodgerblue;
+  --party-button-hover-outline-color-dark: lightgreen;
+  --party-button-focus-outline-color-dark: lightgreen;
+  --party-background-1: #ee6055;
+  --party-background-2: #60d394;
+  --party-background-3: #aaf683;
+  --party-background-4: #ffd97d;
+  --party-background-5: #ff9b85;
+
+  --main-background-color: var(--main-background-color-light);
+  --main-text-color: var(--main-text-color-light);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --main-background-color: #212121;
-    --main-text-color: white;
-    --footer-border-color: white;
+    --main-background-color: var(--main-background-color-dark);
+    --main-text-color: var(--main-text-color-dark);
   }
 }

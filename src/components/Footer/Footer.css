@@ -2,8 +2,8 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
-  background-color: #212121;
-  color: white;
+  background-color: var(--main-background-color-dark);
+  color: var(--main-text-color-dark);
   font-size: 16px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -11,9 +11,6 @@
   padding-right: 8px;
   text-align: end;
   vertical-align: middle;
-  border-top-width: 1px;
-  border-top-style: solid;
-  border-top-color: var(--footer-border-color);
 
   list-style-type: none;
   margin-block-start: 0;
@@ -42,7 +39,7 @@
   align-items: center;
   gap: 4px;
   padding: 2px;
-  color: white;
+  color: var(--main-text-color-dark);
   text-decoration: none;
 }
 
@@ -51,12 +48,12 @@
 }
 
 .footer-link-anchor:focus {
-  outline: 1px white solid;
+  outline: 1px var(--main-text-color-dark) solid;
   border-radius: 3px;
 }
 
 .footer-link-divider {
-  border-right: 1px white solid;
+  border-right: 1px var(--main-text-color-dark) solid;
   user-select: none;
   padding-right: 8px;
   margin-right: 8px;
