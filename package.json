@@ -1,6 +1,6 @@
 {
   "name": "mr1upmachine-website",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "dependencies": {
     "@types/node": "^16.11.27",

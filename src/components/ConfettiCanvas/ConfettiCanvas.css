@@ -11,13 +11,13 @@
 }
 
 .party-volume-slider {
-  width: 30px;
+  width: 170px;
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 80px;
+  right: -65px;
   opacity: 0.3;
   transition-duration: 0.4s;
-  -webkit-appearance: slider-vertical;
+  transform: rotate(270deg);
 }
 
 .party-volume-slider:hover,
