@@ -1,10 +1,8 @@
 import { useRef, useEffect } from "react";
-import "./ConfettiCanvas.css";
 import confetti from "canvas-confetti";
-import TostarenaTownMusic from "../../assets/tostarena-town.mp3";
 
-// default values
-const DEFAULT_VOLUME = 50; // 0 -> 100
+import "./ConfettiCanvas.css";
+import VolumeSlider from "../VolumeSlider/VolumeSlider";
 
 function ConfettiCanvas() {
   // Confetti
@@ -78,33 +76,6 @@ function ConfettiCanvas() {
     resizeObserver.observe(canvasContainerElement);
   });
 
-  // Audio
-  const initialVolume = parseInt(
-    localStorage.getItem("volume") ?? DEFAULT_VOLUME.toString(),
-    10
-  );
-
-  const audioElementRef = useRef<HTMLAudioElement | null>(null);
-  const volumeRangeRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    const audioElement = audioElementRef.current!;
-    const volumeRangeElement = volumeRangeRef.current!;
-    const volumeSliderChange = (e: Event) => {
-      const parsedValue = parseInt((e.target as HTMLInputElement).value ?? "0");
-      audioElement.volume = parsedValue / 100;
-      localStorage.setItem("volume", parsedValue.toString());
-    };
-
-    // init audio element
-    audioElement.volume = initialVolume / 100;
-    localStorage.setItem("volume", initialVolume.toString());
-
-    // init volume slider element
-    volumeRangeElement.value = initialVolume.toString();
-    volumeRangeElement.oninput = volumeSliderChange;
-  });
-
   return (
     <div
       id="confetti-canvas-container"
@@ -112,21 +83,7 @@ function ConfettiCanvas() {
       ref={canvasContainerElementRef}
     >
       <canvas ref={canvasElementRef}></canvas>
-      <input
-        ref={volumeRangeRef}
-        type="range"
-        className="party-volume-slider"
-        min="0"
-        max="100"
-        step="1"
-      />
-      <audio
-        ref={audioElementRef}
-        preload="auto"
-        src={TostarenaTownMusic}
-        loop={false}
-        autoPlay={true}
-      ></audio>
+      <VolumeSlider />
     </div>
   );
 }

@@ -17,8 +17,6 @@
   outline: 0;
 
   background: var(--party-button-color);
-
-  /* inherit font & color from ancestor */
   color: var(--party-button-text-color);
   font: inherit;
   font-weight: 500;

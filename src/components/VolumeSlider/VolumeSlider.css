@@ -1,0 +1,61 @@
+.party-volume-slider {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  opacity: 0.3;
+  transition-duration: 0.4s;
+
+  padding-top: 185px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+  padding-right: 3px;
+
+  border-radius: 5px;
+  background: var(--volume-button-background);
+}
+
+.party-volume-slider:hover,
+.party-volume-slider:focus-within {
+  opacity: 1;
+}
+
+.party-volume-range {
+  cursor: pointer;
+  position: absolute;
+  right: -70px;
+  bottom: 108px;
+  width: 170px;
+  transform: rotate(270deg);
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 5px;
+}
+
+.party-mute-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  font-size: 20px;
+
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background: var(--volume-button-background);
+  color: var(--volume-button-text-color);
+}
+
+.party-volume-range:hover,
+.party-mute-button:hover {
+  background-color: var(--volume-button-hover-background);
+}
+
+.party-volume-range:focus,
+.party-mute-button:focus {
+  outline: 2px var(--volume-button-focus-outline) solid;
+}

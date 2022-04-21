@@ -10,21 +10,6 @@
   animation-timing-function: linear;
 }
 
-.party-volume-slider {
-  width: 170px;
-  position: absolute;
-  bottom: 80px;
-  right: -65px;
-  opacity: 0.3;
-  transition-duration: 0.4s;
-  transform: rotate(270deg);
-}
-
-.party-volume-slider:hover,
-.party-volume-slider:focus {
-  opacity: 1;
-}
-
 @keyframes backgroundColorPalette {
   0% {
     background: var(--party-background-1);

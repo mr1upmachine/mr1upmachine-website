@@ -1,6 +1,7 @@
 import { useState } from "react";
-import ConfettiCanvas from "../ConfettiCanvas/ConfettiCanvas";
+
 import "./PartyArea.css";
+import ConfettiCanvas from "../ConfettiCanvas/ConfettiCanvas";
 
 function PartyArea() {
   const [showPartyButton, setShowPartyButton] = useState(true);

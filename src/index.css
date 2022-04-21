@@ -37,6 +37,11 @@ code {
   --party-background-4: #ffd97d;
   --party-background-5: #ff9b85;
 
+  --volume-button-background: #212121;
+  --volume-button-text-color: white;
+  --volume-button-hover-background: #ffffff33;
+  --volume-button-focus-outline: dodgerblue;
+
   --main-background-color: var(--main-background-color-light);
   --main-text-color: var(--main-text-color-light);
 }
