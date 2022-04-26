@@ -1,36 +1,41 @@
 import { faVolume, faVolumeSlash } from "@fortawesome/pro-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef, useEffect, useState, ChangeEvent } from "react";
+import { useEffect, useState, ChangeEvent, useContext } from "react";
 
 import "./VolumeSlider.css";
-import TostarenaTownMusic from "../../assets/tostarena-town.mp3";
+import { AudioHandlerContext } from "../../audio/AudioHandlerContext";
 
-const DEFAULT_VOLUME = 50; // 0 -> 100
+interface VolumeSliderProps {
+  audioSourceKey: string;
+  defaultVolume: number;
+  initialVolume: number;
+  initialMute: boolean;
+}
 
-function VolumeSlider() {
-  // external values
-  const initialVolume = parseInt(
-    localStorage.getItem("volume") ?? DEFAULT_VOLUME.toString(),
-    10
-  );
-  const initialMute = localStorage.getItem("mute") === "true" ?? false;
+function VolumeSlider({
+  audioSourceKey,
+  defaultVolume,
+  initialMute,
+  initialVolume,
+}: VolumeSliderProps) {
+  // context
+  const audioHandler = useContext(AudioHandlerContext);
 
   // state variables
   const [volume, setVolume] = useState(initialVolume);
   const [mute, setMute] = useState(initialMute);
 
-  // set up audio element
-  const audioElementRef = useRef<HTMLAudioElement | null>(null);
+  // hook up slider to audio source
   useEffect(() => {
-    const audioElement = audioElementRef.current!;
-    audioElement.muted = mute;
+    const audioSource = audioHandler.getAudioSource(audioSourceKey);
+    audioSource.muted = mute;
     localStorage.setItem("mute", mute.toString());
-  }, [mute]);
+  }, [audioHandler, audioSourceKey, mute]);
   useEffect(() => {
-    const audioElement = audioElementRef.current!;
-    audioElement.volume = volume / 100;
+    const audioSource = audioHandler.getAudioSource(audioSourceKey);
+    audioSource.volume = volume / 100;
     localStorage.setItem("volume", volume.toString());
-  }, [volume]);
+  }, [audioHandler, audioSourceKey, volume]);
 
   const volumeRangeChange = (e: ChangeEvent<HTMLInputElement>) => {
     const parsedValue = parseInt((e.target as HTMLInputElement).value ?? "0");
@@ -40,7 +45,7 @@ function VolumeSlider() {
 
   const muteButtonClick = () => {
     if (!mute && volume === 0) {
-      setVolume(DEFAULT_VOLUME);
+      setVolume(defaultVolume);
     } else {
       setMute(!mute);
     }
@@ -62,13 +67,6 @@ function VolumeSlider() {
           icon={mute || volume === 0 ? faVolumeSlash : faVolume}
         />
       </button>
-      <audio
-        ref={audioElementRef}
-        preload="auto"
-        src={TostarenaTownMusic}
-        loop={false}
-        autoPlay={true}
-      ></audio>
     </div>
   );
 }

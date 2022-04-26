@@ -2,7 +2,6 @@ import { useRef, useEffect } from "react";
 import confetti from "canvas-confetti";
 
 import "./ConfettiCanvas.css";
-import VolumeSlider from "../VolumeSlider/VolumeSlider";
 
 function ConfettiCanvas() {
   // Confetti
@@ -83,7 +82,6 @@ function ConfettiCanvas() {
       ref={canvasContainerElementRef}
     >
       <canvas ref={canvasElementRef}></canvas>
-      <VolumeSlider />
     </div>
   );
 }
