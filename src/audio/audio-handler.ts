@@ -4,7 +4,7 @@ import { AudioSource, AudioSourceOptions } from "./audio-source";
 export class AudioHandler {
   static readonly LOCAL_STORAGE_PREFIX = "audio";
   readonly audioSourceChange = new Subject<void>();
-  private readonly audioElementMap = new Map<string, AudioSource>();
+  private readonly audioSourceMap = new Map<string, AudioSource>();
 
   createAudioSource(key: string, src: string): AudioSource {
     const localStorageMuteKey = `${AudioHandler.LOCAL_STORAGE_PREFIX}.${key}.mute`;
@@ -30,21 +30,27 @@ export class AudioHandler {
     };
     const audioSource = new AudioSource(audioElement, audioSourceOptions);
 
-    this.audioElementMap.set(key, audioSource);
+    this.audioSourceMap.set(key, audioSource);
     this.audioSourceChange.next();
 
     return audioSource;
   }
 
   hasAudioSource(key: string): boolean {
-    return this.audioElementMap.has(key);
+    return this.audioSourceMap.has(key);
   }
 
   getAudioSource(key: string): AudioSource | undefined {
-    return this.audioElementMap.get(key);
+    return this.audioSourceMap.get(key);
   }
 
   getAllAudioSources(): [string, AudioSource][] {
-    return Array.from(this.audioElementMap.entries());
+    return Array.from(this.audioSourceMap.entries());
+  }
+
+  pauseAll(): void {
+    this.audioSourceMap.forEach((audioSource) => {
+      audioSource.pause();
+    });
   }
 }
