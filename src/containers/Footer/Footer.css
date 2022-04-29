@@ -68,7 +68,7 @@
 }
 
 @media only screen and (max-width: 520px) {
-  .footer-root {
+  .footer-nav {
     justify-content: center;
     align-items: center;
     flex-flow: column nowrap;
