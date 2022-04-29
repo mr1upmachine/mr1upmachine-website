@@ -9,7 +9,3 @@
   flex: 1 1 auto;
   background-color: var(--main-background-color);
 }
-
-.app-footer {
-  flex: 0 0 auto;
-}

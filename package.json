@@ -1,6 +1,6 @@
 {
   "name": "mr1upmachine-website",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-pro": "^6.1.1",
@@ -13,6 +13,7 @@
     "canvas-confetti": "^1.5.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "rxjs": "^7.5.5",
     "typescript": "^4.6.3",

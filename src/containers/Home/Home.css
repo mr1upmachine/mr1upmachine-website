@@ -1,4 +1,4 @@
-.party-container {
+.home-container {
   height: 100%;
   width: 100%;
   display: flex;
@@ -8,6 +8,7 @@
 }
 
 .party-button {
+  text-decoration: none;
   border-style: none;
   border-radius: 8px;
   margin: 0;

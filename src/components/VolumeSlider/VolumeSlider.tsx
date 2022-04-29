@@ -1,41 +1,26 @@
 import { faVolume, faVolumeSlash } from "@fortawesome/pro-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState, ChangeEvent, useContext } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 
 import "./VolumeSlider.css";
-import { AudioHandlerContext } from "../../audio/AudioHandlerContext";
+import { AudioSource } from "../../audio/audio-source";
 
 interface VolumeSliderProps {
-  audioSourceKey: string;
-  defaultVolume: number;
-  initialVolume: number;
-  initialMute: boolean;
+  audioSource: AudioSource;
 }
 
-function VolumeSlider({
-  audioSourceKey,
-  defaultVolume,
-  initialMute,
-  initialVolume,
-}: VolumeSliderProps) {
-  // context
-  const audioHandler = useContext(AudioHandlerContext);
-
+function VolumeSlider({ audioSource }: VolumeSliderProps) {
   // state variables
-  const [volume, setVolume] = useState(initialVolume);
-  const [mute, setMute] = useState(initialMute);
+  const [volume, setVolume] = useState(audioSource.volume);
+  const [mute, setMute] = useState(audioSource.mute);
 
   // hook up slider to audio source
   useEffect(() => {
-    const audioSource = audioHandler.getAudioSource(audioSourceKey);
-    audioSource.muted = mute;
-    localStorage.setItem("mute", mute.toString());
-  }, [audioHandler, audioSourceKey, mute]);
+    audioSource.setMute(mute);
+  }, [audioSource, mute]);
   useEffect(() => {
-    const audioSource = audioHandler.getAudioSource(audioSourceKey);
-    audioSource.volume = volume / 100;
-    localStorage.setItem("volume", volume.toString());
-  }, [audioHandler, audioSourceKey, volume]);
+    audioSource.setVolume(volume);
+  }, [audioSource, volume]);
 
   const volumeRangeChange = (e: ChangeEvent<HTMLInputElement>) => {
     const parsedValue = parseInt((e.target as HTMLInputElement).value ?? "0");
@@ -45,7 +30,7 @@ function VolumeSlider({
 
   const muteButtonClick = () => {
     if (!mute && volume === 0) {
-      setVolume(defaultVolume);
+      setVolume(AudioSource.DEFAULT_VOLUME);
     } else {
       setMute(!mute);
     }

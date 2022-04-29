@@ -80,7 +80,11 @@ function Footer() {
       </span>
     ))
     .flat(1);
-  return <nav className="footer-root">{linkElements}</nav>;
+  return (
+    <footer className="footer-root">
+      <nav className="footer-nav">{linkElements}</nav>
+    </footer>
+  );
 }
 
 export default Footer;
