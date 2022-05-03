@@ -1,20 +1,19 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
 import confetti from "canvas-confetti";
 
 import "./ConfettiCanvas.css";
+import { SettingsManagerContext } from "../../settings/settings-manager-context";
 
 function ConfettiCanvas() {
+  const settingsManager = useContext(SettingsManagerContext);
+  const reducedMotion = settingsManager.currentReducedMotionValue;
+
   // Confetti
   const canvasElementRef = useRef<HTMLCanvasElement | null>(null);
   const canvasContainerElementRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    // Accessibility option for those who have this setting on
-    let disableForReducedMotion = false;
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      disableForReducedMotion = true;
+    if (reducedMotion) {
+      return;
     }
 
     const canvasElement = canvasElementRef.current!;
@@ -53,7 +52,6 @@ function ConfettiCanvas() {
         gravity: randomInRange(0.4, 0.6),
         scalar: randomInRange(0.4, 1),
         drift: randomInRange(-0.4, 0.4),
-        disableForReducedMotion,
       });
 
       if (timeLeft > 0) {

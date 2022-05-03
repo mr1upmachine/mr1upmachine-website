@@ -44,11 +44,21 @@ code {
 
   --main-background-color: var(--main-background-color-light);
   --main-text-color: var(--main-text-color-light);
+  --party-button-hover-outline-color: var(
+    --party-button-hover-outline-color-light
+  );
+  --party-button-focus-outline-color: var(
+    --party-button-focus-outline-color-light
+  );
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --main-background-color: var(--main-background-color-dark);
-    --main-text-color: var(--main-text-color-dark);
-  }
+[data-theme="dark"] {
+  --main-background-color: var(--main-background-color-dark);
+  --main-text-color: var(--main-text-color-dark);
+  --party-button-hover-outline-color: var(
+    --party-button-hover-outline-color-dark
+  );
+  --party-button-focus-outline-color: var(
+    --party-button-focus-outline-color-dark
+  );
 }

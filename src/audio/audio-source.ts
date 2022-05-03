@@ -61,6 +61,10 @@ export class AudioSource {
   }
 
   pause(): void {
+    if (this.element.currentTime === 0 || this.element.paused) {
+      return;
+    }
+
     this.element.pause();
   }
 }

@@ -1,18 +1,18 @@
-import { Subject } from "rxjs";
 import { AudioSource, AudioSourceOptions } from "./audio-source";
 
-export class AudioHandler {
-  static readonly LOCAL_STORAGE_PREFIX = "audio";
-  readonly audioSourceChange = new Subject<void>();
+export class AudioManager {
+  static readonly STORAGE_KEY_PREFIX = "audio";
   private readonly audioSourceMap = new Map<string, AudioSource>();
 
-  createAudioSource(key: string, src: string): AudioSource {
-    const localStorageMuteKey = `${AudioHandler.LOCAL_STORAGE_PREFIX}.${key}.mute`;
-    const localStorageVolumeKey = `${AudioHandler.LOCAL_STORAGE_PREFIX}.${key}.volume`;
+  constructor(protected readonly storage: Storage) {}
 
-    const initialMute = localStorage.getItem(localStorageMuteKey) === "true";
+  createAudioSource(key: string, src: string): AudioSource {
+    const localStorageMuteKey = `${AudioManager.STORAGE_KEY_PREFIX}.${key}.mute`;
+    const localStorageVolumeKey = `${AudioManager.STORAGE_KEY_PREFIX}.${key}.volume`;
+
+    const initialMute = this.storage.getItem(localStorageMuteKey) === "true";
     const initialVolume = parseInt(
-      localStorage.getItem(localStorageVolumeKey) ??
+      this.storage.getItem(localStorageVolumeKey) ??
         AudioSource.DEFAULT_VOLUME.toString(),
       10
     );
@@ -22,16 +22,15 @@ export class AudioHandler {
       initialMute,
       initialVolume,
       onMuteChange: (mute) => {
-        localStorage.setItem(localStorageMuteKey, mute.toString());
+        this.storage.setItem(localStorageMuteKey, mute.toString());
       },
       onVolumeChange: (volume) => {
-        localStorage.setItem(localStorageVolumeKey, volume.toString());
+        this.storage.setItem(localStorageVolumeKey, volume.toString());
       },
     };
     const audioSource = new AudioSource(audioElement, audioSourceOptions);
 
     this.audioSourceMap.set(key, audioSource);
-    this.audioSourceChange.next();
 
     return audioSource;
   }
