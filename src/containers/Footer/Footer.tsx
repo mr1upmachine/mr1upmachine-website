@@ -10,9 +10,9 @@ import {
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
 
 import "./Footer.css";
+import LinkAnchor from "../../components/LinkAnchor/LinkAnchor";
 
 interface LinkMeta {
   readonly key: string;
@@ -82,30 +82,21 @@ const LINK_ELEMENTS: readonly JSX.Element[] = LINK_GROUPS.map(
           }
         }
 
-        const linkContentJSX = (
-          <>
-            <FontAwesomeIcon
-              className="footer-link-img"
-              icon={link.icon}
-              aria-hidden="true"
-            />
-            {link.display}
-          </>
-        );
-
-        const linkJSX = link.external ? (
-          <a className="footer-link-anchor" href={link.to}>
-            {linkContentJSX}
-          </a>
-        ) : (
-          <Link className="footer-link-anchor" to={link.to}>
-            {linkContentJSX}
-          </Link>
-        );
-
         return (
           <span className="footer-link" key={link.key}>
-            {linkJSX}
+            <LinkAnchor
+              className="footer-link-anchor"
+              color="light"
+              external={link.external}
+              to={link.to}
+            >
+              <FontAwesomeIcon
+                className="footer-link-img"
+                icon={link.icon}
+                aria-hidden="true"
+              />
+              {link.display}
+            </LinkAnchor>
             <span className={dividerElementClass} aria-hidden="true"></span>
           </span>
         );

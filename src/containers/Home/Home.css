@@ -1,3 +1,8 @@
+:root,
+[data-theme] {
+  --home-container-background-color: var(--main-background-color);
+}
+
 .home-container {
   height: 100%;
   width: 100%;
@@ -5,45 +10,5 @@
   justify-content: center;
   align-items: center;
   position: relative;
-}
-
-.party-button {
-  text-decoration: none;
-  border-style: none;
-  border-radius: 8px;
-  margin: 0;
-  padding: 8px 12px;
-  width: auto;
-  overflow: visible;
-  cursor: pointer;
-  outline: 0;
-
-  background: var(--party-button-color);
-  color: var(--party-button-text-color);
-  font: inherit;
-  font-weight: 500;
-
-  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-  line-height: normal;
-
-  /* Corrects font smoothing for webkit */
-  -webkit-font-smoothing: inherit;
-  -moz-osx-font-smoothing: inherit;
-
-  /* Corrects inability to style clickable `input` types in iOS */
-  -webkit-appearance: none;
-}
-
-.party-button {
-  outline-style: solid;
-}
-
-.party-button:hover {
-  outline-color: var(--party-button-hover-outline-color);
-  outline-width: 1px;
-}
-
-.party-button:focus {
-  outline-color: var(--party-button-focus-outline-color);
-  outline-width: 3px;
+  background-color: var(--home-container-background-color);
 }

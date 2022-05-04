@@ -1,3 +1,10 @@
+:root,
+[data-theme] {
+  --volume-slider-background-color: #212121;
+  --volume-slider-text-color: white;
+  --volume-slider-focus-outline: dodgerblue;
+}
+
 .party-volume-slider {
   display: flex;
   flex-flow: column nowrap;
@@ -15,7 +22,7 @@
   padding-right: 3px;
 
   border-radius: 5px;
-  background: var(--volume-button-background);
+  background: var(--volume-slider-background-color);
 }
 
 .party-volume-slider:hover,
@@ -42,20 +49,9 @@
   width: 28px;
   height: 28px;
   font-size: 20px;
-
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  background: var(--volume-button-background);
-  color: var(--volume-button-text-color);
+  color: var(--volume-slider-text-color);
 }
 
-.party-volume-range:hover,
-.party-mute-button:hover {
-  background-color: var(--volume-button-hover-background);
-}
-
-.party-volume-range:focus,
-.party-mute-button:focus {
-  outline: 2px var(--volume-button-focus-outline) solid;
+.party-volume-range:focus {
+  outline: 2px var(--volume-slider-focus-outline) solid;
 }

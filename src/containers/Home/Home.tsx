@@ -1,13 +1,12 @@
-import { Link } from "react-router-dom";
-
 import "./Home.css";
+import LinkButton from "../../components/LinkButton/LinkButton";
 
 function Home() {
   return (
     <div className="home-container">
-      <Link className="party-button" to="party">
+      <LinkButton color="primary" to="party">
         Party?
-      </Link>
+      </LinkButton>
     </div>
   );
 }

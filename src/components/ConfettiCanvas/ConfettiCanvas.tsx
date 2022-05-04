@@ -2,7 +2,7 @@ import { useRef, useEffect, useContext } from "react";
 import confetti from "canvas-confetti";
 
 import "./ConfettiCanvas.css";
-import { SettingsManagerContext } from "../../settings/settings-manager-context";
+import { SettingsManagerContext } from "../../services/settings/settings-manager-context";
 
 function ConfettiCanvas() {
   const settingsManager = useContext(SettingsManagerContext);

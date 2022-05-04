@@ -1,0 +1,26 @@
+:root,
+[data-theme] {
+  --link-anchor-color: var(--main-text-color);
+}
+
+.link-anchor {
+  color: var(--link-anchor-color);
+  text-decoration: none;
+}
+
+.link-anchor:hover {
+  text-decoration: underline;
+}
+
+.link-anchor:focus {
+  outline: 1px var(--main-text-color-dark) solid;
+  border-radius: 3px;
+}
+
+.link-anchor-light {
+  --link-anchor-color: var(--main-text-color-dark);
+}
+
+.link-anchor-dark {
+  --link-anchor-color: var(--main-text-color-light);
+}

@@ -43,17 +43,6 @@
   align-items: center;
   gap: 4px;
   padding: 2px;
-  color: var(--main-text-color-dark);
-  text-decoration: none;
-}
-
-.footer-link-anchor:hover {
-  text-decoration: underline;
-}
-
-.footer-link-anchor:focus {
-  outline: 1px var(--main-text-color-dark) solid;
-  border-radius: 3px;
 }
 
 .footer-link-divider {

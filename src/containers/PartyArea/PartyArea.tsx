@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 
 import "./PartyArea.css";
 import TostarenaTownMusic from "../../assets/tostarena-town.mp3";
-import { AudioManagerContext } from "../../audio/audio-manager-context";
+import { AudioManagerContext } from "../../services/audio/audio-manager-context";
 import ConfettiCanvas from "../../components/ConfettiCanvas/ConfettiCanvas";
 import VolumeSlider from "../../components/VolumeSlider/VolumeSlider";
 

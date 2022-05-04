@@ -47,17 +47,3 @@
   display: flex;
   justify-content: center;
 }
-
-.settings-homepage-link-anchor {
-  color: var(--main-text-color);
-  text-decoration: none;
-}
-
-.settings-homepage-link-anchor:hover {
-  text-decoration: underline;
-}
-
-.settings-homepage-link-anchor:focus {
-  outline: 1px var(--main-text-color) solid;
-  border-radius: 3px;
-}

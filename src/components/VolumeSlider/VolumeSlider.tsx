@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState, ChangeEvent } from "react";
 
 import "./VolumeSlider.css";
-import { AudioSource } from "../../audio/audio-source";
+import { AudioSource } from "../../services/audio/audio-source";
+import Button from "../Button/Button";
 
 interface VolumeSliderProps {
   audioSource: AudioSource;
@@ -47,11 +48,15 @@ function VolumeSlider({ audioSource }: VolumeSliderProps) {
         value={volume}
         onInput={volumeRangeChange}
       />
-      <button className="party-mute-button" onClick={muteButtonClick}>
+      <Button
+        className="party-mute-button"
+        compact={true}
+        onClick={muteButtonClick}
+      >
         <FontAwesomeIcon
           icon={mute || volume === 0 ? faVolumeSlash : faVolume}
         />
-      </button>
+      </Button>
     </div>
   );
 }

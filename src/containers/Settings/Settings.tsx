@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 
 import "./Settings.css";
-import { SettingsManagerContext } from "../../settings/settings-manager-context";
+import LinkAnchor from "../../components/LinkAnchor/LinkAnchor";
+import { SettingsManagerContext } from "../../services/settings/settings-manager-context";
 import {
   ColorThemeSetting,
   ReducedMotionSetting,
-} from "../../settings/settings-manager";
-import { Link } from "react-router-dom";
+} from "../../services/settings/settings-manager";
 
 function Settings() {
   const settingsManager = useContext(SettingsManagerContext);
@@ -93,9 +93,7 @@ function Settings() {
         </fieldset>
       </form>
       <div className="settings-homepage-link-container">
-        <Link className="settings-homepage-link-anchor" to="/">
-          Back to homepage
-        </Link>
+        <LinkAnchor to="/">Back to homepage</LinkAnchor>
       </div>
     </div>
   );
