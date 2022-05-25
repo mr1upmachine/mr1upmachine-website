@@ -38,10 +38,10 @@ function VolumeSlider({ audioSource }: VolumeSliderProps) {
   };
 
   return (
-    <div className="party-volume-slider">
+    <div className="volume-slider">
       <input
         type="range"
-        className="party-volume-range"
+        className="volume-slider-range"
         min="0"
         max="100"
         step="1"
@@ -49,7 +49,7 @@ function VolumeSlider({ audioSource }: VolumeSliderProps) {
         onInput={volumeRangeChange}
       />
       <Button
-        className="party-mute-button"
+        className="volume-slider-mute-button"
         compact={true}
         onClick={muteButtonClick}
       >

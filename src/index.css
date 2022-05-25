@@ -27,6 +27,9 @@ code {
 
   --main-background-color: var(--main-background-color-light);
   --main-text-color: var(--main-text-color-light);
+
+  --main-border-radius: 5px;
+  --main-focus-outline-width: 2px;
 }
 
 [data-theme="dark"] {

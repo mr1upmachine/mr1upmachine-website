@@ -55,16 +55,22 @@ function Settings() {
               Color Theme
             </label>
             <select
-              className="settings-form-control"
+              className="settings-form-control settings-select"
               id="color-theme-select"
               value={colorTheme}
               onChange={(e) =>
                 colorThemeChange(e.target.value as ColorThemeSetting)
               }
             >
-              <option value="inherit">Inherit</option>
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
+              <option className="settings-select-option" value="inherit">
+                Inherit
+              </option>
+              <option className="settings-select-option" value="light">
+                Light
+              </option>
+              <option className="settings-select-option" value="dark">
+                Dark
+              </option>
             </select>
           </div>
 
@@ -76,7 +82,7 @@ function Settings() {
               Reduced Motion
             </label>
             <select
-              className="settings-form-control"
+              className="settings-form-control settings-select"
               id="reduced-motion-select"
               value={reducedMotion.toString()}
               onChange={(e) =>
@@ -85,9 +91,15 @@ function Settings() {
                 )
               }
             >
-              <option value="inherit">Inherit</option>
-              <option value="true">True</option>
-              <option value="false">False</option>
+              <option className="settings-select-option" value="inherit">
+                Inherit
+              </option>
+              <option className="settings-select-option" value="true">
+                True
+              </option>
+              <option className="settings-select-option" value="false">
+                False
+              </option>
             </select>
           </div>
         </fieldset>

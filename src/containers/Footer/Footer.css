@@ -1,4 +1,7 @@
 .footer-root {
+  --footer-background-color: var(--main-background-color-dark);
+  --footer-text-color: var(--main-text-color-dark);
+
   flex: 0 0 auto;
 }
 
@@ -6,8 +9,8 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
-  background-color: var(--main-background-color-dark);
-  color: var(--main-text-color-dark);
+  background-color: var(--footer-background-color);
+  color: var(--footer-text-color);
   font-size: 16px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -42,30 +45,28 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 2px;
+
+  --link-anchor-color: var(--footer-text-color);
+  --link-anchor-focus-outline-color: var(--footer-text-color);
 }
 
 .footer-link-divider {
-  border-right: 1px var(--main-text-color-dark) solid;
-  user-select: none;
-  padding-right: 8px;
-  margin-right: 8px;
+  --divider-color: var(--footer-text-color);
 }
 
 .footer-link-last-divider {
   display: none;
 }
 
-@media only screen and (max-width: 520px) {
+@media only screen and (max-width: 680px) {
   .footer-nav {
     justify-content: center;
     align-items: center;
     flex-flow: column nowrap;
+    gap: 4px;
   }
 
   .footer-link-group-divider {
     display: none;
-    padding-right: 0;
-    margin-right: 0;
   }
 }

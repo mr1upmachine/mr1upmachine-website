@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./Footer.css";
 import LinkAnchor from "../../components/LinkAnchor/LinkAnchor";
+import Divider from "../../components/Divider/Divider";
 
 interface LinkMeta {
   readonly key: string;
@@ -97,7 +98,7 @@ const LINK_ELEMENTS: readonly JSX.Element[] = LINK_GROUPS.map(
               />
               {link.display}
             </LinkAnchor>
-            <span className={dividerElementClass} aria-hidden="true"></span>
+            <Divider className={dividerElementClass} />
           </span>
         );
       })}

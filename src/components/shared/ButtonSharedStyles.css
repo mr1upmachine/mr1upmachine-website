@@ -1,15 +1,17 @@
 :root,
 [data-theme] {
   --button-background-color: transparent;
-  --button-text-color: var(--main-text-color);
-  --button-hover-background-color: #ffffff33;
+  --button-border-radius: var(--main-border-radius);
   --button-focus-outline-color: dodgerblue;
+  --button-focus-outline-width: var(--main-focus-outline-width);
+  --button-hover-background-color: #ffffff33;
+  --button-text-color: var(--main-text-color);
 }
 
 .button {
   text-decoration: none;
   border-style: none;
-  border-radius: 5px;
+  border-radius: var(--button-border-radius);
   margin: 0;
   padding: 8px 12px;
   width: auto;
@@ -40,7 +42,7 @@
 
 .button:focus {
   outline-color: var(--button-focus-outline-color);
-  outline-width: 2px;
+  outline-width: var(--button-focus-outline-width);
 }
 
 .button-primary {

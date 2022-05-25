@@ -1,0 +1,11 @@
+:root,
+[data-theme] {
+  --divider-color: var(--main-text-color);
+}
+
+.divider {
+  border-right: 1px var(--divider-color) solid;
+  user-select: none;
+  padding-right: 8px;
+  margin-right: 8px;
+}

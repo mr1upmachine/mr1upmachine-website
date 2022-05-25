@@ -42,6 +42,23 @@
   font-size: 16px;
 }
 
+.settings-select {
+  background-color: inherit;
+  border-color: var(--main-text-color);
+  border-radius: var(--main-border-radius);
+  color: var(--main-text-color);
+  cursor: pointer;
+  padding: 5px;
+}
+
+.settings-select:focus {
+  outline: var(--main-focus-outline-width) var(--main-text-color) solid;
+}
+
+.settings-select-option {
+  color: var(--main-background-color-dark);
+}
+
 .settings-homepage-link-container {
   flex: 1 1 auto;
   display: flex;
