@@ -1,10 +1,11 @@
 import {
-  faCupTogo,
   faGear,
+  faMug,
   IconDefinition,
 } from "@fortawesome/pro-regular-svg-icons";
 import {
   faGithub,
+  faLinkedin,
   faTwitch,
   faTwitter,
   faYoutube,
@@ -40,11 +41,11 @@ const LINK_GROUPS: readonly LinkMeta[][] = [
       icon: faGithub,
     },
     {
-      key: "youtube",
-      display: "YouTube",
-      to: "https://www.youtube.com/channel/UCFWnb9VKCyNwXICmn1tlk6A",
+      key: "linkedin",
+      display: "LinkedIn",
+      to: "https://www.linkedin.com/in/sean--hale/",
       external: true,
-      icon: faYoutube,
+      icon: faLinkedin,
     },
   ],
   [
@@ -56,11 +57,18 @@ const LINK_GROUPS: readonly LinkMeta[][] = [
       icon: faTwitch,
     },
     {
-      key: "bmc",
-      display: "Buy me a coffee",
-      to: "https://www.buymeacoffee.com/mr1upmachine",
+      key: "youtube",
+      display: "YouTube",
+      to: "https://www.youtube.com/channel/UCFWnb9VKCyNwXICmn1tlk6A",
       external: true,
-      icon: faCupTogo,
+      icon: faYoutube,
+    },
+    {
+      key: "kofi",
+      display: "Kofi",
+      to: "https://ko-fi.com/mr1upmachine",
+      external: true,
+      icon: faMug,
     },
     {
       key: "settings",

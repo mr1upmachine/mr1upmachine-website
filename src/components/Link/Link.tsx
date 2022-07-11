@@ -17,7 +17,12 @@ function Link({
   to,
 }: LinkProps) {
   return external ? (
-    <a className={className} href={(to as string) ?? ""}>
+    <a
+      className={className}
+      href={(to as string) ?? ""}
+      target="_blank"
+      rel="noreferrer"
+    >
       {children}
     </a>
   ) : (
