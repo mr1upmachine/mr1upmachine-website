@@ -1,16 +1,16 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 import "./PartyArea.css";
 import TostarenaTownMusic from "../../assets/tostarena-town.mp3";
-import { AudioManagerContext } from "../../services/audio/audio-manager-context";
 import ConfettiCanvas from "../../components/ConfettiCanvas/ConfettiCanvas";
 import VolumeSlider from "../../components/VolumeSlider/VolumeSlider";
+import { useAudio } from "../../services/audio/use-audio";
 
 const PARTY_AUDIO_SOURCE_KEY = "party";
 
 function PartyArea() {
   // get context
-  const audioManager = useContext(AudioManagerContext);
+  const audioManager = useAudio();
 
   // setup party audio
   const audioSource =

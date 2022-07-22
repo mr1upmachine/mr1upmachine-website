@@ -1,15 +1,15 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./Settings.css";
 import LinkAnchor from "../../components/LinkAnchor/LinkAnchor";
-import { SettingsManagerContext } from "../../services/settings/settings-manager-context";
 import {
   ColorThemeSetting,
   ReducedMotionSetting,
 } from "../../services/settings/settings-manager";
+import { useSettings } from "../../services/settings/use-settings";
 
 function Settings() {
-  const settingsManager = useContext(SettingsManagerContext);
+  const settingsManager = useSettings();
 
   const [colorTheme, setColorTheme] = useState(
     settingsManager.currentColorTheme

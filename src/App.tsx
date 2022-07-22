@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import "./App.css";
 import Footer from "./containers/Footer/Footer";
-import { SettingsManagerContext } from "./services/settings/settings-manager-context";
+import { useSettings } from "./services/settings/use-settings";
 
 function App() {
-  const settingsManager = useContext(SettingsManagerContext);
+  const settingsManager = useSettings();
 
   const [theme, setTheme] = useState(settingsManager.currentColorThemeValue);
 
