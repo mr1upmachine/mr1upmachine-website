@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState, ChangeEvent } from "react";
 
 import "./VolumeSlider.css";
-import { AudioSource } from "../../services/audio/audio-source";
+import { AudioSource } from "../../structures/audio-source";
 import Button from "../Button/Button";
 
 interface VolumeSliderProps {

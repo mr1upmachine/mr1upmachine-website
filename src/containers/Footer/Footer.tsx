@@ -15,6 +15,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Footer.css";
 import LinkAnchor from "../../components/LinkAnchor/LinkAnchor";
 import Divider from "../../components/Divider/Divider";
+import { useTime } from "../../services/time/use-time";
+import { useEffect, useMemo, useState } from "react";
 
 interface LinkMeta {
   readonly key: string;
@@ -114,9 +116,31 @@ const LINK_ELEMENTS: readonly JSX.Element[] = LINK_GROUPS.map(
   )
 );
 
+let currentIntervalTimer: NodeJS.Timer;
+
 function Footer() {
+  const timeManager = useTime();
+
+  const [currentTime, setCurrentTime] = useState(timeManager.getCurrent());
+
+  useMemo(() => {
+    console.log("start");
+    if (currentIntervalTimer) {
+      clearInterval(currentIntervalTimer);
+    }
+
+    currentIntervalTimer = setInterval(() => {
+      setCurrentTime(timeManager.getCurrent());
+    }, 1000);
+  }, [timeManager]);
+
+  useEffect(() => {
+    console.log(currentTime);
+  }, [currentTime]);
+
   return (
     <footer className="footer-root">
+      <div className="footer-time">{currentTime}</div>
       <nav className="footer-nav">{LINK_ELEMENTS}</nav>
     </footer>
   );

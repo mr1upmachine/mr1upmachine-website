@@ -1,4 +1,4 @@
-import { AudioSource, AudioSourceOptions } from "./audio-source";
+import { AudioSource, AudioSourceOptions } from "../../structures/audio-source";
 
 export class AudioManager {
   static readonly STORAGE_KEY_PREFIX = "audio";
