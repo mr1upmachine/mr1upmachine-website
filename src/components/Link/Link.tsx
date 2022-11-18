@@ -14,6 +14,7 @@ function Link({
   reloadDocument,
   replace,
   state,
+  title,
   to,
 }: LinkProps) {
   return external ? (
@@ -21,6 +22,7 @@ function Link({
       className={className}
       href={(to as string) ?? ""}
       target="_blank"
+      title={title}
       rel="noreferrer"
     >
       {children}
@@ -32,6 +34,7 @@ function Link({
       reloadDocument={reloadDocument}
       replace={replace}
       state={state}
+      title={title}
     >
       {children}
     </ReactRouterLink>

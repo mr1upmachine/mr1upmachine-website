@@ -19,6 +19,7 @@ function LinkAnchor({
   reloadDocument,
   replace,
   state,
+  title,
   to,
 }: LinkAnchorProps) {
   const classList = ["link-anchor"];
@@ -43,6 +44,7 @@ function LinkAnchor({
       reloadDocument={reloadDocument}
       replace={replace}
       state={state}
+      title={title}
       to={to}
     >
       {children}

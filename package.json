@@ -1,6 +1,6 @@
 {
   "name": "mr1upmachine-website",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-pro": "^6.1.1",
@@ -20,7 +20,7 @@
     "@types/react": "^18.0.5",
     "@types/react-dom": "^18.0.1",
     "react-scripts": "^5.0.1",
-    "typescript": "^4.6.3"
+    "typescript": "~4.6.3"
   },
   "scripts": {
     "start": "react-scripts start",
