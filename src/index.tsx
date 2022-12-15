@@ -8,12 +8,18 @@ import {
   Routes,
 } from "react-router-dom";
 
+import packageJSON from "../package.json";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Home from "./containers/Home/Home";
 import PartyArea from "./containers/PartyArea/PartyArea";
-// import Settings from "./containers/Settings/Settings";
+
+declare global {
+  interface Window {
+    VERSION: string;
+  }
+}
 
 const root = createRoot(document.getElementById("root") as HTMLElement);
 root.render(
@@ -31,6 +37,8 @@ root.render(
     <Outlet />
   </StrictMode>
 );
+
+window.VERSION = packageJSON.version;
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
