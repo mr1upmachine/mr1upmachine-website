@@ -4,7 +4,6 @@ import {
   faGithub,
   faInstagram,
   faLinkedin,
-  faMastodon,
   faTwitch,
   faTwitter,
   faYoutube,
@@ -26,16 +25,9 @@ const LINK_GROUPS: readonly LinkMeta[] = [
   {
     key: "discord",
     display: "Discord",
-    to: "https://twitter.com/Mr1upMachine",
+    to: "https://discord.com/users/251015921596891137",
     external: true,
     icon: faDiscord,
-  },
-  {
-    key: "mastodon",
-    display: "Mastodon",
-    to: "https://github.com/Mr1upMachine",
-    external: true,
-    icon: faMastodon,
   },
   {
     key: "twitter",
