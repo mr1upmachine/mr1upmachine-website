@@ -1,12 +1,11 @@
-import { useRef, useEffect, useContext } from "react";
+import { useRef, useEffect } from "react";
 import confetti from "canvas-confetti";
 
 import "./ConfettiCanvas.css";
-import { SettingsManagerContext } from "../../services/settings/settings-manager-context";
+import { useReducedMotion } from "../../hooks/useReducedMotion";
 
 function ConfettiCanvas() {
-  const settingsManager = useContext(SettingsManagerContext);
-  const reducedMotion = settingsManager.currentReducedMotionValue;
+  const reducedMotion = useReducedMotion();
 
   // Confetti
   const canvasElementRef = useRef<HTMLCanvasElement | null>(null);

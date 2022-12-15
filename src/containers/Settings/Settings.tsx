@@ -1,50 +1,14 @@
-import { useContext, useEffect, useState } from "react";
-
-import "./Settings.css";
 import LinkAnchor from "../../components/LinkAnchor/LinkAnchor";
-import { SettingsManagerContext } from "../../services/settings/settings-manager-context";
-import {
-  ColorThemeSetting,
-  ReducedMotionSetting,
-} from "../../services/settings/settings-manager";
+import { ColorThemeSetting } from "../../constants/color-theme-setting";
+import { ReducedMotionSetting } from "../../constants/reduced-motion-setting";
+import { useColorThemeSetting } from "../../hooks/useColorThemeSetting";
+import { useReducedMotionSetting } from "../../hooks/useReducedMotionSetting";
+import "./Settings.css";
 
 function Settings() {
-  const settingsManager = useContext(SettingsManagerContext);
-
-  const [colorTheme, setColorTheme] = useState(
-    settingsManager.currentColorTheme
-  );
-  const [reducedMotion, setReducedMotion] = useState(
-    settingsManager.currentReducedMotion
-  );
-
-  useEffect(() => {
-    settingsManager.setColorTheme(colorTheme);
-  }, [settingsManager, colorTheme]);
-  useEffect(() => {
-    settingsManager.setReducedMotion(reducedMotion);
-  }, [settingsManager, reducedMotion]);
-
-  const colorThemeChange = (value: ColorThemeSetting) => {
-    setColorTheme(value);
-  };
-
-  const reducedMotionChange = (value: "inherit" | "true" | "false") => {
-    let parsedValue: ReducedMotionSetting;
-    switch (value) {
-      case "true":
-        parsedValue = true;
-        break;
-      case "false":
-        parsedValue = false;
-        break;
-      default:
-        parsedValue = value;
-        break;
-    }
-
-    setReducedMotion(parsedValue);
-  };
+  const [colorThemeSetting, setColorThemeSetting] = useColorThemeSetting();
+  const [reducedMotionSetting, setReducedMotionSetting] =
+    useReducedMotionSetting();
 
   return (
     <div className="settings-container">
@@ -57,18 +21,27 @@ function Settings() {
             <select
               className="settings-form-control settings-select"
               id="color-theme-select"
-              value={colorTheme}
+              value={colorThemeSetting}
               onChange={(e) =>
-                colorThemeChange(e.target.value as ColorThemeSetting)
+                setColorThemeSetting(e.target.value as ColorThemeSetting)
               }
             >
-              <option className="settings-select-option" value="inherit">
+              <option
+                className="settings-select-option"
+                value={ColorThemeSetting.inherit}
+              >
                 Inherit
               </option>
-              <option className="settings-select-option" value="light">
+              <option
+                className="settings-select-option"
+                value={ColorThemeSetting.light}
+              >
                 Light
               </option>
-              <option className="settings-select-option" value="dark">
+              <option
+                className="settings-select-option"
+                value={ColorThemeSetting.dark}
+              >
                 Dark
               </option>
             </select>
@@ -84,20 +57,27 @@ function Settings() {
             <select
               className="settings-form-control settings-select"
               id="reduced-motion-select"
-              value={reducedMotion.toString()}
+              value={reducedMotionSetting.toString()}
               onChange={(e) =>
-                reducedMotionChange(
-                  e.target.value as "inherit" | "true" | "false"
-                )
+                setReducedMotionSetting(e.target.value as ReducedMotionSetting)
               }
             >
-              <option className="settings-select-option" value="inherit">
+              <option
+                className="settings-select-option"
+                value={ReducedMotionSetting.inherit}
+              >
                 Inherit
               </option>
-              <option className="settings-select-option" value="true">
+              <option
+                className="settings-select-option"
+                value={ReducedMotionSetting.true}
+              >
                 True
               </option>
-              <option className="settings-select-option" value="false">
+              <option
+                className="settings-select-option"
+                value={ReducedMotionSetting.false}
+              >
                 False
               </option>
             </select>

@@ -1,18 +1,11 @@
-import { useContext, useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import "./App.css";
 import Footer from "./containers/Footer/Footer";
-import { SettingsManagerContext } from "./services/settings/settings-manager-context";
+import { useColorTheme } from "./hooks/useColorTheme";
 
 function App() {
-  const settingsManager = useContext(SettingsManagerContext);
-
-  const [theme, setTheme] = useState(settingsManager.currentColorThemeValue);
-
-  settingsManager.addColorThemeListener((colorTheme) => {
-    setTheme(colorTheme);
-  });
+  const theme = useColorTheme();
 
   return (
     <div className="app-container" data-theme={theme}>

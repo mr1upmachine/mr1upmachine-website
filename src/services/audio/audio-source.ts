@@ -21,8 +21,8 @@ export class AudioSource {
 
   private _mute: boolean;
   private _volume: number;
-  private onMuteChange?: (mute: typeof this._mute) => void;
-  private onVolumeChange?: (volume: typeof this._volume) => void;
+  private onMuteChange?: (mute: InstanceType<typeof AudioSource>["_mute"]) => void;
+  private onVolumeChange?: (volume: InstanceType<typeof AudioSource>["_volume"]) => void;
 
   constructor(
     public readonly element: HTMLAudioElement,
