@@ -72,6 +72,10 @@ function ConfettiCanvas() {
     resizeObserver.observe(canvasContainerElement);
   });
 
+  if (reducedMotion) {
+    return null;
+  }
+
   return (
     <div
       id="confetti-canvas-container"
