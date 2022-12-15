@@ -1,6 +1,6 @@
 {
   "name": "mr1upmachine-website",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-pro": "^6.2.1",
