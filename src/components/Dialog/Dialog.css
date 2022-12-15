@@ -1,0 +1,19 @@
+:root,
+[data-theme] {
+  --dialog-background-color: var(--main-background-color);
+  --dialog-border-radius: 10px;
+  --dialog-border-color: transparent;
+}
+
+.dialog {
+  background-color: var(--dialog-background-color);
+  border-radius: var(--dialog-border-radius);
+  border-color: var(--dialog-border-color);
+  box-shadow: 0 5px 12px rgb(0 0 0 / 0.8);
+  color: var(--main-text-color);
+  padding: 8px;
+}
+
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}

@@ -1,4 +1,4 @@
-import { faGear, IconDefinition } from "@fortawesome/pro-regular-svg-icons";
+import { IconDefinition } from "@fortawesome/pro-regular-svg-icons";
 import {
   faDiscord,
   faGithub,
@@ -53,7 +53,7 @@ const LINK_GROUPS: readonly LinkMeta[] = [
   {
     key: "youtube",
     display: "YouTube",
-    to: "https://www.youtube.com/channel/UCFWnb9VKCyNwXICmn1tlk6A",
+    to: "https://www.youtube.com/@Mr1upMachine",
     external: true,
     icon: faYoutube,
   },
@@ -70,12 +70,6 @@ const LINK_GROUPS: readonly LinkMeta[] = [
     to: "https://www.linkedin.com/in/sean--hale/",
     external: true,
     icon: faLinkedin,
-  },
-  {
-    key: "settings",
-    display: "Settings",
-    to: "/settings",
-    icon: faGear,
   },
 ];
 

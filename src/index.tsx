@@ -13,7 +13,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Home from "./containers/Home/Home";
 import PartyArea from "./containers/PartyArea/PartyArea";
-import Settings from "./containers/Settings/Settings";
+// import Settings from "./containers/Settings/Settings";
 
 const root = createRoot(document.getElementById("root") as HTMLElement);
 root.render(
@@ -23,7 +23,7 @@ root.render(
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="party" element={<PartyArea />} />
-          <Route path="settings" element={<Settings />} />
+          {/* <Route path="settings" element={<Settings />} /> */}
           <Route path="*" element={<Navigate to="" replace />} />
         </Route>
       </Routes>

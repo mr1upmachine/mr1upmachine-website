@@ -1,4 +1,3 @@
-import LinkAnchor from "../../components/LinkAnchor/LinkAnchor";
 import { ColorThemeSetting } from "../../constants/color-theme-setting";
 import { ReducedMotionSetting } from "../../constants/reduced-motion-setting";
 import { useColorThemeSetting } from "../../hooks/useColorThemeSetting";
@@ -84,9 +83,6 @@ function Settings() {
           </div>
         </fieldset>
       </form>
-      <div className="settings-homepage-link-container">
-        <LinkAnchor to="/">Back to homepage</LinkAnchor>
-      </div>
     </div>
   );
 }

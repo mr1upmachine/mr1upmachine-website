@@ -1,0 +1,37 @@
+:root,
+[data-theme] {
+  --settings-dialog-trigger-text-color: var(--main-text-color-dark);
+}
+
+.settings-dialog-trigger {
+  --button-text-color: var(--settings-dialog-trigger-text-color);
+  position: absolute;
+  bottom: 3px;
+  right: 8px;
+}
+
+.settings-dialog-trigger-icon {
+  height: 24px;
+  width: 24px;
+  padding: 3px;
+  vertical-align: middle;
+}
+
+.settings-dialog-header {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settings-dialog-title {
+  margin-left: 12px;
+  font-size: 20px;
+}
+
+.settings-dialog-close {
+  height: 20px;
+  width: 20px;
+  padding: 8px;
+  vertical-align: middle;
+}
