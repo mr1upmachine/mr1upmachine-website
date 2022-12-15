@@ -12,6 +12,10 @@ export function Dialog({
 
   useEffect(() => {
     dialogRef.current?.addEventListener("click", (event) => {
+      if ((event.target as any)?.tagName !== "DIALOG") {
+        return;
+      }
+
       const rect = (event.target as any)?.getBoundingClientRect();
 
       if (
