@@ -1,5 +1,5 @@
-import { faVolume, faVolumeSlash } from "@fortawesome/pro-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import { useEffect, useState, ChangeEvent } from "react";
 
 import "./VolumeSlider.css";
@@ -53,9 +53,7 @@ function VolumeSlider({ audioSource }: VolumeSliderProps) {
         compact={true}
         onClick={muteButtonClick}
       >
-        <FontAwesomeIcon
-          icon={mute || volume === 0 ? faVolumeSlash : faVolume}
-        />
+        {mute || volume === 0 ? <VolumeOffIcon /> : <VolumeUpIcon />}
       </Button>
     </div>
   );

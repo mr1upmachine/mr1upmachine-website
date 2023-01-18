@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear, faXmark } from "@fortawesome/pro-regular-svg-icons";
+import ClearIcon from "@mui/icons-material/Clear";
+import SettingsIcon from "@mui/icons-material/Settings";
 import { useState } from "react";
 
 import Button from "../../components/Button/Button";
@@ -17,9 +17,8 @@ export function SettingsDialog() {
         onClick={() => setShowSettings((prev) => !prev)}
         compact={true}
       >
-        <FontAwesomeIcon
+        <SettingsIcon
           className="settings-dialog-trigger-icon"
-          icon={faGear}
           aria-hidden="true"
         />
       </Button>
@@ -27,11 +26,7 @@ export function SettingsDialog() {
         <div className="settings-dialog-header">
           <div className="settings-dialog-title">Settings</div>
           <Button compact={true} onClick={() => setShowSettings(false)}>
-            <FontAwesomeIcon
-              className="settings-dialog-close"
-              icon={faXmark}
-              aria-hidden="true"
-            />
+            <ClearIcon className="settings-dialog-close" aria-hidden="true" />
           </Button>
         </div>
         <Settings />
