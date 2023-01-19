@@ -1,6 +1,6 @@
 {
   "name": "mr1upmachine-website",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
