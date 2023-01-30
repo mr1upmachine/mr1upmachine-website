@@ -1,16 +1,16 @@
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import VolumeOffIcon from "@mui/icons-material/VolumeOff";
-import { useEffect, useState, ChangeEvent } from "react";
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import VolumeOffIcon from '@mui/icons-material/VolumeOff';
+import { useEffect, useState, ChangeEvent, FC } from 'react';
 
-import "./VolumeSlider.css";
-import { AudioSource } from "../../services/audio/audio-source";
-import Button from "../Button/Button";
+import './VolumeSlider.css';
+import { AudioSource } from '../../services/audio/audio-source';
+import Button from '../Button/Button';
 
 interface VolumeSliderProps {
   audioSource: AudioSource;
 }
 
-function VolumeSlider({ audioSource }: VolumeSliderProps) {
+const VolumeSlider: FC<VolumeSliderProps> = ({ audioSource }) => {
   // state variables
   const [volume, setVolume] = useState(audioSource.volume);
   const [mute, setMute] = useState(audioSource.mute);
@@ -24,7 +24,7 @@ function VolumeSlider({ audioSource }: VolumeSliderProps) {
   }, [audioSource, volume]);
 
   const volumeRangeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const parsedValue = parseInt((e.target as HTMLInputElement).value ?? "0");
+    const parsedValue = parseInt(e.target.value);
     setMute(false);
     setVolume(parsedValue);
   };
@@ -48,15 +48,11 @@ function VolumeSlider({ audioSource }: VolumeSliderProps) {
         value={volume}
         onInput={volumeRangeChange}
       />
-      <Button
-        className="volume-slider-mute-button"
-        compact={true}
-        onClick={muteButtonClick}
-      >
+      <Button className="volume-slider-mute-button" compact={true} onClick={muteButtonClick}>
         {mute || volume === 0 ? <VolumeOffIcon /> : <VolumeUpIcon />}
       </Button>
     </div>
   );
-}
+};
 
 export default VolumeSlider;

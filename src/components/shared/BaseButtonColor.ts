@@ -1,1 +1,1 @@
-export type BaseButtonColor = "primary" | undefined;
+export type BaseButtonColor = 'primary' | undefined;

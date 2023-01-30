@@ -1,12 +1,12 @@
-import { useEffect } from "react";
+import { FC, useEffect } from 'react';
 
-import "./PartyArea.css";
-import ConfettiCanvas from "../../components/ConfettiCanvas/ConfettiCanvas";
-import VolumeSlider from "../../components/VolumeSlider/VolumeSlider";
-import { useAudio } from "../../hooks/useAudio";
-import { AudioKeys } from "../../constants/audio-keys";
+import './PartyArea.css';
+import ConfettiCanvas from '../../components/ConfettiCanvas/ConfettiCanvas';
+import VolumeSlider from '../../components/VolumeSlider/VolumeSlider';
+import { useAudio } from '../../hooks/useAudio';
+import { AudioKeys } from '../../constants/audio-keys';
 
-function PartyArea() {
+const PartyArea: FC = () => {
   const audioSource = useAudio(AudioKeys.party);
 
   // componentWillMount
@@ -27,6 +27,6 @@ function PartyArea() {
       <VolumeSlider audioSource={audioSource} />
     </div>
   );
-}
+};
 
 export default PartyArea;

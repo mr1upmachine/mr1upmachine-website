@@ -1,13 +1,13 @@
-import ClearIcon from "@mui/icons-material/Clear";
-import SettingsIcon from "@mui/icons-material/Settings";
-import { useState } from "react";
+import ClearIcon from '@mui/icons-material/Clear';
+import SettingsIcon from '@mui/icons-material/Settings';
+import { FC, useState } from 'react';
 
-import Button from "../../components/Button/Button";
-import { Dialog } from "../../components/Dialog/Dialog";
-import Settings from "../Settings/Settings";
-import "./SettingsDialog.css";
+import Button from '../../components/Button/Button';
+import { Dialog } from '../../components/Dialog/Dialog';
+import Settings from '../Settings/Settings';
+import './SettingsDialog.css';
 
-export function SettingsDialog() {
+export const SettingsDialog: FC = () => {
   const [showSettings, setShowSettings] = useState(false);
 
   return (
@@ -17,10 +17,7 @@ export function SettingsDialog() {
         onClick={() => setShowSettings((prev) => !prev)}
         compact={true}
       >
-        <SettingsIcon
-          className="settings-dialog-trigger-icon"
-          aria-hidden="true"
-        />
+        <SettingsIcon className="settings-dialog-trigger-icon" aria-hidden="true" />
       </Button>
       <Dialog open={showSettings} onClose={() => setShowSettings(false)}>
         <div className="settings-dialog-header">
@@ -33,4 +30,4 @@ export function SettingsDialog() {
       </Dialog>
     </>
   );
-}
+};

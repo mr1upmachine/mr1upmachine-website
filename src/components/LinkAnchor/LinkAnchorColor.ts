@@ -1,1 +1,1 @@
-export type LinkAnchorColor = "light" | "dark" | "inherit" | undefined;
+export type LinkAnchorColor = 'light' | 'dark' | 'inherit' | undefined;

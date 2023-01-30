@@ -1,3 +1,3 @@
 export enum AudioKeys {
-  party = "party",
+  party = 'party',
 }

@@ -1,6 +1,1 @@
-export type StorageValueType =
-  | "string"
-  | "boolean"
-  | "number"
-  | "array"
-  | "object";
+export type StorageValueType = 'string' | 'boolean' | 'number' | 'array' | 'object';

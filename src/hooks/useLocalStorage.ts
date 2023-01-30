@@ -1,29 +1,20 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
-import { useEventListener } from "./useEventListener";
+import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
+import { useEventListener } from './useEventListener';
 
 declare global {
   interface WindowEventMap {
-    "local-storage": CustomEvent;
+    'local-storage': CustomEvent;
   }
 }
 
 type SetValue<T> = Dispatch<SetStateAction<T>>;
 
-export function useLocalStorage<T>(
-  key: string,
-  initialValue: T
-): [T, SetValue<T>] {
+export function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
   // Get from local storage then
   // parse stored json or return initialValue
   const readValue = useCallback((): T => {
     // Prevent build error "window is undefined" but keeps working
-    if (typeof window === "undefined") {
+    if (typeof window === 'undefined') {
       return initialValue;
     }
 
@@ -45,7 +36,7 @@ export function useLocalStorage<T>(
   const setValue: SetValue<T> = useCallback(
     (value) => {
       // Prevent build error "window is undefined" but keeps working
-      if (typeof window === "undefined") {
+      if (typeof window === 'undefined') {
         console.warn(
           `Tried setting localStorage key “${key}” even though environment is not a client`
         );
@@ -62,7 +53,7 @@ export function useLocalStorage<T>(
         setStoredValue(newValue);
 
         // We dispatch a custom event so every useLocalStorage hook are notified
-        window.dispatchEvent(new Event("local-storage"));
+        window.dispatchEvent(new Event('local-storage'));
       } catch (error) {
         console.warn(`Error setting localStorage key “${key}”:`, error);
       }
@@ -75,8 +66,9 @@ export function useLocalStorage<T>(
   }, [readValue]);
 
   const handleStorageChange = useCallback(
-    (event: StorageEvent | CustomEvent) => {
-      if ((event as StorageEvent)?.key && (event as StorageEvent).key !== key) {
+    (event: StorageEvent | CustomEvent | null) => {
+      const storageEvent = event as StorageEvent | null;
+      if (storageEvent?.key && storageEvent.key !== key) {
         return;
       }
       setStoredValue(readValue());
@@ -85,20 +77,20 @@ export function useLocalStorage<T>(
   );
 
   // this only works for other documents, not the current one
-  useEventListener("storage", handleStorageChange);
+  useEventListener('storage', handleStorageChange);
 
   // this is a custom event, triggered in writeValueToLocalStorage
   // See: useLocalStorage()
-  useEventListener("local-storage", handleStorageChange);
+  useEventListener('local-storage', handleStorageChange);
 
   return [storedValue, setValue];
 }
 
-function parseJSON<T>(value: string | null): T | undefined {
+function parseJSON<T extends object>(value: string | null): T | undefined {
   try {
-    return value === "undefined" ? undefined : JSON.parse(value ?? "");
+    return value === 'undefined' ? undefined : (JSON.parse(value ?? '') as T);
   } catch {
-    console.log("parsing error on", { value });
+    console.log('parsing error on', { value });
     return undefined;
   }
 }

@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { BaseButtonColor } from "./BaseButtonColor";
+import { ReactNode } from 'react';
+import { BaseButtonColor } from './BaseButtonColor';
 
 export interface BaseButtonProps {
   className?: string;

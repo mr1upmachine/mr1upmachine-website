@@ -1,27 +1,25 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import {
-  BrowserRouter,
-  Navigate,
-  Outlet,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
-import packageJSON from "../package.json";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import Home from "./containers/Home/Home";
-import PartyArea from "./containers/PartyArea/PartyArea";
+import packageJSON from '../package.json';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import Home from './containers/Home/Home';
+import PartyArea from './containers/PartyArea/PartyArea';
 
 declare global {
   interface Window {
     VERSION: string;
   }
 }
+const rootEl = document.getElementById('root');
+if (!rootEl) {
+  throw new Error('Something went VERY wrong. Root element is not defined.');
+}
 
-const root = createRoot(document.getElementById("root") as HTMLElement);
+const root = createRoot(rootEl);
 root.render(
   <StrictMode>
     <BrowserRouter>

@@ -1,26 +1,16 @@
-import {
-  Link as ReactRouterLink,
-  LinkProps as ReactRouterLinkProps,
-} from "react-router-dom";
+import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router-dom';
 
-import { BaseLinkProps } from "../shared/BaseLinkProps";
+import { BaseLinkProps } from '../shared/BaseLinkProps';
 
 type LinkProps = BaseLinkProps & ReactRouterLinkProps;
 
-function Link({
-  children,
-  className,
-  external,
-  reloadDocument,
-  replace,
-  state,
-  title,
-  to,
-}: LinkProps) {
+function Link(props: LinkProps) {
+  const { children, className, external, reloadDocument, replace, title, to } = props;
+
   return external ? (
     <a
       className={className}
-      href={(to as string) ?? ""}
+      href={(to as string | null | undefined) ?? ''}
       target="_blank"
       title={title}
       rel="noreferrer"
@@ -29,11 +19,11 @@ function Link({
     </a>
   ) : (
     <ReactRouterLink
+      {...props}
       className={className}
       to={to}
       reloadDocument={reloadDocument}
       replace={replace}
-      state={state}
       title={title}
     >
       {children}

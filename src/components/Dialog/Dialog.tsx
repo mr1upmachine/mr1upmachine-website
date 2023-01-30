@@ -1,22 +1,23 @@
-import { DialogHTMLAttributes, useEffect, useRef } from "react";
+import { DialogHTMLAttributes, FC, useEffect, useRef } from 'react';
 
-import "./Dialog.css";
+import './Dialog.css';
 
-export function Dialog({
+export const Dialog: FC<DialogHTMLAttributes<HTMLDialogElement>> = ({
   children,
   onCancel,
   onClose,
   open,
-}: DialogHTMLAttributes<HTMLDialogElement>) {
+}) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    dialogRef.current?.addEventListener("click", (event) => {
-      if ((event.target as any)?.tagName !== "DIALOG") {
+    dialogRef.current?.addEventListener('click', (event) => {
+      const el = event.target as HTMLElement | null;
+      if (el?.tagName !== 'DIALOG') {
         return;
       }
 
-      const rect = (event.target as any)?.getBoundingClientRect();
+      const rect = el.getBoundingClientRect();
 
       if (
         rect.left > event.clientX ||
@@ -38,13 +39,8 @@ export function Dialog({
   }, [open]);
 
   return (
-    <dialog
-      className="dialog"
-      onCancel={onCancel}
-      onClose={onClose}
-      ref={dialogRef}
-    >
+    <dialog className="dialog" onCancel={onCancel} onClose={onClose} ref={dialogRef}>
       {children}
     </dialog>
   );
-}
+};

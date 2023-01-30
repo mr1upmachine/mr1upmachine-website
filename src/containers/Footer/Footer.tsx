@@ -1,15 +1,16 @@
-import { SvgIconComponent } from "@mui/icons-material";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import YouTubeIcon from "@mui/icons-material/YouTube";
+import { SvgIconComponent } from '@mui/icons-material';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import { FC } from 'react';
 
-import "./Footer.css";
-import LinkAnchor from "../../components/LinkAnchor/LinkAnchor";
+import './Footer.css';
+import LinkAnchor from '../../components/LinkAnchor/LinkAnchor';
 
 interface IconProps {
-  "aria-hidden": boolean | "true" | "false";
+  'aria-hidden': boolean | 'true' | 'false';
   className: string;
 }
 
@@ -21,13 +22,10 @@ interface LinkMeta {
   readonly icon: ((props: IconProps) => JSX.Element) | SvgIconComponent;
 }
 
-const DiscordIcon = (props: {
-  "aria-hidden": boolean | "true" | "false";
-  className: string;
-}) => {
+const DiscordIcon = (props: { 'aria-hidden': boolean | 'true' | 'false'; className: string }) => {
   return (
     <svg
-      aria-hidden={props["aria-hidden"]}
+      aria-hidden={props['aria-hidden']}
       className={props.className}
       role="img"
       xmlns="http://www.w3.org/2000/svg"
@@ -44,13 +42,10 @@ const DiscordIcon = (props: {
   );
 };
 
-const TwitchIcon = (props: {
-  "aria-hidden": boolean | "true" | "false";
-  className: string;
-}) => {
+const TwitchIcon = (props: { 'aria-hidden': boolean | 'true' | 'false'; className: string }) => {
   return (
     <svg
-      aria-hidden={props["aria-hidden"]}
+      aria-hidden={props['aria-hidden']}
       className={props.className}
       role="img"
       xmlns="http://www.w3.org/2000/svg"
@@ -69,76 +64,74 @@ const TwitchIcon = (props: {
 
 const LINK_GROUPS: readonly LinkMeta[] = [
   {
-    key: "discord",
-    display: "Discord",
-    to: "https://discord.com/users/251015921596891137",
+    key: 'discord',
+    display: 'Discord',
+    to: 'https://discord.com/users/251015921596891137',
     external: true,
     icon: DiscordIcon,
   },
   {
-    key: "twitter",
-    display: "Twitter",
-    to: "https://twitter.com/Mr1upMachine",
+    key: 'twitter',
+    display: 'Twitter',
+    to: 'https://twitter.com/Mr1upMachine',
     external: true,
     icon: TwitterIcon,
   },
   {
-    key: "instagram",
-    display: "Instagram",
-    to: "https://www.instagram.com/mr1upmachine/",
+    key: 'instagram',
+    display: 'Instagram',
+    to: 'https://www.instagram.com/mr1upmachine/',
     external: true,
     icon: InstagramIcon,
   },
   {
-    key: "twitch",
-    display: "Twitch",
-    to: "https://www.twitch.tv/mr1upmachine",
+    key: 'twitch',
+    display: 'Twitch',
+    to: 'https://www.twitch.tv/mr1upmachine',
     external: true,
     icon: TwitchIcon,
   },
   {
-    key: "youtube",
-    display: "YouTube",
-    to: "https://www.youtube.com/@Mr1upMachine",
+    key: 'youtube',
+    display: 'YouTube',
+    to: 'https://www.youtube.com/@Mr1upMachine',
     external: true,
     icon: YouTubeIcon,
   },
   {
-    key: "github",
-    display: "GitHub",
-    to: "https://github.com/Mr1upMachine",
+    key: 'github',
+    display: 'GitHub',
+    to: 'https://github.com/Mr1upMachine',
     external: true,
     icon: GitHubIcon,
   },
   {
-    key: "linkedin",
-    display: "LinkedIn",
-    to: "https://www.linkedin.com/in/sean--hale/",
+    key: 'linkedin',
+    display: 'LinkedIn',
+    to: 'https://www.linkedin.com/in/sean--hale/',
     external: true,
     icon: LinkedInIcon,
   },
 ];
 
-function Footer() {
-  const parsedLinkGroups = LINK_GROUPS.map(
-    ({ external, key, display, to, icon: IconTag }) => (
-      <LinkAnchor
-        className="footer-link-anchor"
-        color="light"
-        external={external}
-        key={key}
-        title={display}
-        to={to}
-      >
-        <IconTag aria-hidden="true" className="footer-link-img" />
-      </LinkAnchor>
-    )
-  );
+const Footer: FC = () => {
+  const parsedLinkGroups = LINK_GROUPS.map(({ external, key, display, to, icon: IconTag }) => (
+    <LinkAnchor
+      className="footer-link-anchor"
+      color="light"
+      external={external}
+      key={key}
+      title={display}
+      to={to}
+    >
+      <IconTag aria-hidden="true" className="footer-link-img" />
+    </LinkAnchor>
+  ));
   return (
     <footer className="footer-root">
       <nav className="footer-nav">{parsedLinkGroups}</nav>
     </footer>
   );
-}
+};
 
 export default Footer;

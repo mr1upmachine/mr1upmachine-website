@@ -1,5 +1,5 @@
-import { ColorTheme } from "../constants/color-theme";
-import { ColorThemeSetting } from "../constants/color-theme-setting";
+import { ColorTheme } from '../constants/color-theme';
+import { ColorThemeSetting } from '../constants/color-theme-setting';
 
 export function toColorTheme(
   colorThemeSetting: ColorThemeSetting,

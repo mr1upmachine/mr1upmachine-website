@@ -1,5 +1,5 @@
 export enum ColorThemeSetting {
-  light = "light",
-  dark = "dark",
-  inherit = "inherit",
+  light = 'light',
+  dark = 'dark',
+  inherit = 'inherit',
 }

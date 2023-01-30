@@ -1,8 +1,8 @@
 export interface AudioSourceOptions {
-  initialMute?: InstanceType<typeof AudioSource>["_mute"];
-  initialVolume?: InstanceType<typeof AudioSource>["_volume"];
-  onMuteChange?: InstanceType<typeof AudioSource>["onMuteChange"];
-  onVolumeChange?: InstanceType<typeof AudioSource>["onVolumeChange"];
+  initialMute?: InstanceType<typeof AudioSource>['_mute'];
+  initialVolume?: InstanceType<typeof AudioSource>['_volume'];
+  onMuteChange?: InstanceType<typeof AudioSource>['onMuteChange'];
+  onVolumeChange?: InstanceType<typeof AudioSource>['onVolumeChange'];
 }
 
 export class AudioSource {
@@ -11,34 +11,27 @@ export class AudioSource {
   static readonly MAX_VOLUME = 100;
   static readonly MIN_VOLUME = 0;
 
-  get mute(): InstanceType<typeof AudioSource>["_mute"] {
+  get mute(): InstanceType<typeof AudioSource>['_mute'] {
     return this._mute;
   }
 
-  get volume(): InstanceType<typeof AudioSource>["_volume"] {
+  get volume(): InstanceType<typeof AudioSource>['_volume'] {
     return this._volume;
   }
 
   private _mute: boolean;
   private _volume: number;
-  private onMuteChange?: (
-    mute: InstanceType<typeof AudioSource>["_mute"]
-  ) => void;
-  private onVolumeChange?: (
-    volume: InstanceType<typeof AudioSource>["_volume"]
-  ) => void;
+  private onMuteChange?: (mute: InstanceType<typeof AudioSource>['_mute']) => void;
+  private onVolumeChange?: (volume: InstanceType<typeof AudioSource>['_volume']) => void;
 
-  constructor(
-    public readonly element: HTMLAudioElement,
-    options?: AudioSourceOptions
-  ) {
+  constructor(public readonly element: HTMLAudioElement, options?: AudioSourceOptions) {
     this._mute = options?.initialMute ?? AudioSource.DEFAULT_MUTE;
     this._volume = options?.initialVolume ?? AudioSource.DEFAULT_VOLUME;
     this.onMuteChange = options?.onMuteChange;
     this.onVolumeChange = options?.onVolumeChange;
   }
 
-  setMute(mute: InstanceType<typeof AudioSource>["_mute"]): void {
+  setMute(mute: InstanceType<typeof AudioSource>['_mute']): void {
     this.element.muted = mute;
 
     if (this.onMuteChange) {
@@ -46,7 +39,7 @@ export class AudioSource {
     }
   }
 
-  setVolume(volume: InstanceType<typeof AudioSource>["_volume"]): void {
+  setVolume(volume: InstanceType<typeof AudioSource>['_volume']): void {
     if (volume < AudioSource.MIN_VOLUME || volume > AudioSource.MAX_VOLUME) {
       throw new Error(
         `Volume cannot be outside range ${AudioSource.MIN_VOLUME} -> ${AudioSource.MAX_VOLUME}`
@@ -61,7 +54,7 @@ export class AudioSource {
   }
 
   play(): void {
-    this.element.play();
+    void this.element.play();
   }
 
   pause(): void {

@@ -1,20 +1,20 @@
-import { BaseButtonProps } from "./BaseButtonProps";
+import { BaseButtonProps } from './BaseButtonProps';
 
 export function buildButtonClassList({
   className,
   color,
   compact,
-}: Omit<BaseButtonProps, "children">): string[] {
-  const classList = ["button"];
+}: Omit<BaseButtonProps, 'children'>): string[] {
+  const classList = ['button'];
 
   switch (color) {
-    case "primary":
-      classList.push("button-primary");
+    case 'primary':
+      classList.push('button-primary');
       break;
   }
 
   if (compact) {
-    classList.push("button-compact");
+    classList.push('button-compact');
   }
 
   if (className) {

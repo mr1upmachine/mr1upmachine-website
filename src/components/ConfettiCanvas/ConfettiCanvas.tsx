@@ -1,10 +1,10 @@
-import { useRef, useEffect } from "react";
-import confetti from "canvas-confetti";
+import { useRef, useEffect, FC } from 'react';
+import confetti from 'canvas-confetti';
 
-import "./ConfettiCanvas.css";
-import { useReducedMotion } from "../../hooks/useReducedMotion";
+import './ConfettiCanvas.css';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
-function ConfettiCanvas() {
+const ConfettiCanvas: FC = () => {
   const reducedMotion = useReducedMotion();
 
   // Confetti
@@ -15,7 +15,13 @@ function ConfettiCanvas() {
       return;
     }
 
-    const canvasElement = canvasElementRef.current!;
+    if (!canvasElementRef.current || !canvasContainerElementRef.current) {
+      throw new Error(
+        'Something went VERY wrong. canvasElementRef.current or canvasContainerElementRef.current is undefined.'
+      );
+    }
+
+    const canvasElement = canvasElementRef.current;
     const myConfetti = confetti.create(canvasElement, {
       resize: true,
     });
@@ -32,12 +38,10 @@ function ConfettiCanvas() {
     (function frame() {
       const timeLeft = animationEnd - Date.now();
       const ticks = Math.max(200, 500 * (timeLeft / DURATION));
-      const randomColor = `#${Math.floor(Math.random() * 16777215).toString(
-        16
-      )}`;
+      const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
       skew = Math.max(0.8, skew - 0.001);
 
-      myConfetti({
+      void myConfetti({
         particleCount: 1,
         startVelocity: 0,
         ticks: ticks,
@@ -47,7 +51,7 @@ function ConfettiCanvas() {
           y: Math.random() * skew - 0.2,
         },
         colors: [randomColor],
-        shapes: ["square"],
+        shapes: ['square'],
         gravity: randomInRange(0.4, 0.6),
         scalar: randomInRange(0.4, 1),
         drift: randomInRange(-0.4, 0.4),
@@ -63,10 +67,10 @@ function ConfettiCanvas() {
       canvasElement.width = canvasContainerChanges.contentRect.width;
       canvasElement.height = canvasContainerChanges.contentRect.height - 5;
     });
-    const canvasContainerElement = canvasContainerElementRef.current!;
+    const canvasContainerElement = canvasContainerElementRef.current;
 
     setTimeout(() => {
-      window.dispatchEvent(new Event("resize"));
+      window.dispatchEvent(new Event('resize'));
     }, 0);
 
     resizeObserver.observe(canvasContainerElement);
@@ -85,6 +89,6 @@ function ConfettiCanvas() {
       <canvas ref={canvasElementRef}></canvas>
     </div>
   );
-}
+};
 
 export default ConfettiCanvas;

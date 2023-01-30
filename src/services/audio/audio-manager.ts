@@ -1,7 +1,7 @@
-import { AudioSource, AudioSourceOptions } from "./audio-source";
+import { AudioSource, AudioSourceOptions } from './audio-source';
 
 export class AudioManager {
-  static readonly STORAGE_KEY_PREFIX = "audio";
+  static readonly STORAGE_KEY_PREFIX = 'audio';
   private readonly audioSourceMap = new Map<string, AudioSource>();
 
   constructor(protected readonly storage: Storage) {}
@@ -10,10 +10,9 @@ export class AudioManager {
     const localStorageMuteKey = `${AudioManager.STORAGE_KEY_PREFIX}.${key}.mute`;
     const localStorageVolumeKey = `${AudioManager.STORAGE_KEY_PREFIX}.${key}.volume`;
 
-    const initialMute = this.storage.getItem(localStorageMuteKey) === "true";
+    const initialMute = this.storage.getItem(localStorageMuteKey) === 'true';
     const initialVolume = parseInt(
-      this.storage.getItem(localStorageVolumeKey) ??
-        AudioSource.DEFAULT_VOLUME.toString(),
+      this.storage.getItem(localStorageVolumeKey) ?? AudioSource.DEFAULT_VOLUME.toString(),
       10
     );
 

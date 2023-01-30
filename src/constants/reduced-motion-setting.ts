@@ -1,5 +1,5 @@
 export enum ReducedMotionSetting {
-  inherit = "inherit",
-  true = "true",
-  false = "false",
+  inherit = 'inherit',
+  true = 'true',
+  false = 'false',
 }

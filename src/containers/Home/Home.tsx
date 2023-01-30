@@ -1,7 +1,9 @@
-import "./Home.css";
-import LinkButton from "../../components/LinkButton/LinkButton";
+import { FC } from 'react';
 
-function Home() {
+import './Home.css';
+import LinkButton from '../../components/LinkButton/LinkButton';
+
+const Home: FC = () => {
   return (
     <div className="home-container">
       <LinkButton color="primary" to="party">
@@ -9,6 +11,6 @@ function Home() {
       </LinkButton>
     </div>
   );
-}
+};
 
 export default Home;

@@ -1,4 +1,4 @@
-import { ReducedMotionSetting } from "../constants/reduced-motion-setting";
+import { ReducedMotionSetting } from '../constants/reduced-motion-setting';
 
 export function toReducedMotion(
   reducedMotionSetting: ReducedMotionSetting,

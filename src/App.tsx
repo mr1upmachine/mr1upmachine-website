@@ -1,9 +1,9 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
-import "./App.css";
-import Footer from "./containers/Footer/Footer";
-import { SettingsDialog } from "./containers/SettingsDialog/SettingsDialog";
-import { useColorTheme } from "./hooks/useColorTheme";
+import './App.css';
+import Footer from './containers/Footer/Footer';
+import { SettingsDialog } from './containers/SettingsDialog/SettingsDialog';
+import { useColorTheme } from './hooks/useColorTheme';
 
 function App() {
   const theme = useColorTheme();
