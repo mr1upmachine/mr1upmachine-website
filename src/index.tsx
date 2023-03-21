@@ -27,7 +27,6 @@ root.render(
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="party" element={<PartyArea />} />
-          {/* <Route path="settings" element={<Settings />} /> */}
           <Route path="*" element={<Navigate to="" replace />} />
         </Route>
       </Routes>
