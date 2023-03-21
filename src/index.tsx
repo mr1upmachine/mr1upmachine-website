@@ -12,6 +12,7 @@ import PartyArea from './containers/PartyArea/PartyArea';
 declare global {
   interface Window {
     VERSION: string;
+    DEPENDENCIES: { [name: string]: string };
   }
 }
 const rootEl = document.getElementById('root');
@@ -36,6 +37,7 @@ root.render(
 );
 
 window.VERSION = packageJSON.version;
+window.DEPENDENCIES = packageJSON.dependencies;
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
