@@ -8,7 +8,10 @@ export function useReducedMotionSetting(): [
 ] {
   const [storageThemeSetting, setStorageThemeSetting] = useLocalStorage<ReducedMotionSetting>(
     STORAGE_KEYS.reducedMotion,
-    ReducedMotionSetting.inherit
+    ReducedMotionSetting.inherit,
+    'string',
+    (rawValue) =>
+      Object.values(ReducedMotionSetting).some((settingValue) => settingValue === rawValue)
   );
 
   return [storageThemeSetting, setStorageThemeSetting];

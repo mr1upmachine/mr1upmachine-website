@@ -9,7 +9,14 @@ declare global {
 
 type SetValue<T> = Dispatch<SetStateAction<T>>;
 
-export function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
+type PrimitiveString = 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'null' | 'undefined';
+
+export function useLocalStorage<T>(
+  key: string,
+  initialValue: T,
+  type: PrimitiveString,
+  validatorFn: (rawValue: T) => boolean = () => false
+): [T, SetValue<T>] {
   // Get from local storage then
   // parse stored json or return initialValue
   const readValue = useCallback((): T => {
@@ -20,7 +27,19 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T
 
     try {
       const item = window.localStorage.getItem(key);
-      return item ? (parseJSON(item) as T) : initialValue;
+
+      if (!item) {
+        return initialValue;
+      }
+
+      const parsedItem = parseJSON(item) as T;
+
+      if (typeof parsedItem !== type || !validatorFn(parsedItem)) {
+        setValue(initialValue);
+        return initialValue;
+      }
+
+      return parsedItem;
     } catch (error) {
       console.warn(`Error reading localStorage key “${key}”:`, error);
       return initialValue;
