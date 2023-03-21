@@ -1,13 +1,18 @@
 import { SvgIconComponent } from '@mui/icons-material';
+import HomeIcon from '@mui/icons-material/Home';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import SettingsIcon from '@mui/icons-material/Settings';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import { FC } from 'react';
+import classnames from 'classnames';
+import { FC, useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-import './Footer.css';
-import LinkAnchor from '../../components/LinkAnchor/LinkAnchor';
+import { IconButton } from '../../components/IconButton/IconButton';
+import { LinkIconButton } from '../../components/LinkIconButton/LinkIconButton';
+import { SettingsDialog } from '../SettingsDialog/SettingsDialog';
 
 interface IconProps {
   'aria-hidden': boolean | 'true' | 'false';
@@ -115,21 +120,40 @@ const LINK_GROUPS: readonly LinkMeta[] = [
 ];
 
 const Footer: FC = () => {
-  const parsedLinkGroups = LINK_GROUPS.map(({ external, key, display, to, icon: IconTag }) => (
-    <LinkAnchor
-      className="footer-link-anchor"
-      color="light"
-      external={external}
-      key={key}
-      title={display}
-      to={to}
-    >
-      <IconTag aria-hidden="true" className="footer-link-img" />
-    </LinkAnchor>
-  ));
+  const [showSettings, setShowSettings] = useState(false);
+  const { pathname } = useLocation();
+
+  const parsedLinkGroups = useMemo(
+    () =>
+      LINK_GROUPS.map(({ external, key, display, to, icon: IconTag }) => (
+        <LinkIconButton external={external} key={key} title={display} to={to}>
+          <IconTag aria-hidden="true" className="tw-h-6 tw-w-6" />
+        </LinkIconButton>
+      )),
+    []
+  );
+
+  const homeButtonClassNames = classnames({
+    'tw-invisible': pathname === '/',
+  });
+
   return (
-    <footer className="footer-root">
-      <nav className="footer-nav">{parsedLinkGroups}</nav>
+    <footer className="tw-shrink-0 tw-grow-0">
+      <nav className="tw-flex tw-justify-between tw-gap-2 tw-bg-2 tw-px-2 tw-py-1 tw-text-white">
+        <LinkIconButton aria-label="Home page" className={homeButtonClassNames} to="/">
+          <HomeIcon aria-hidden="true" className="tw-h-6 tw-w-6" />
+        </LinkIconButton>
+        <div className="tw-flex tw-gap-2 sm:tw-gap-3">{parsedLinkGroups}</div>
+        <IconButton aria-label="Open settings dialog" onClick={() => setShowSettings(true)}>
+          <SettingsIcon aria-hidden="true" className="tw-h-6 tw-w-6" />
+        </IconButton>
+      </nav>
+      <SettingsDialog
+        open={showSettings}
+        onClose={() => {
+          setShowSettings(false);
+        }}
+      />
     </footer>
   );
 };

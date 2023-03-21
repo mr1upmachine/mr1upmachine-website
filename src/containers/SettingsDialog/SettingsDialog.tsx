@@ -1,33 +1,22 @@
-import ClearIcon from '@mui/icons-material/Clear';
-import SettingsIcon from '@mui/icons-material/Settings';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
-import Button from '../../components/Button/Button';
 import { Dialog } from '../../components/Dialog/Dialog';
+import { DialogBody } from '../../components/DialogBody/DialogBody';
+import { DialogHeader } from '../../components/DialogHeader/DialogHeader';
 import Settings from '../Settings/Settings';
-import './SettingsDialog.css';
 
-export const SettingsDialog: FC = () => {
-  const [showSettings, setShowSettings] = useState(false);
+export interface SettingsDialogProps {
+  open: boolean;
+  onClose: () => void;
+}
 
+export const SettingsDialog: FC<SettingsDialogProps> = ({ open, onClose }) => {
   return (
-    <>
-      <Button
-        className="settings-dialog-trigger"
-        onClick={() => setShowSettings((prev) => !prev)}
-        compact={true}
-      >
-        <SettingsIcon className="settings-dialog-trigger-icon" aria-hidden="true" />
-      </Button>
-      <Dialog open={showSettings} onClose={() => setShowSettings(false)}>
-        <div className="settings-dialog-header">
-          <div className="settings-dialog-title">Settings</div>
-          <Button compact={true} onClick={() => setShowSettings(false)}>
-            <ClearIcon className="settings-dialog-close" aria-hidden="true" />
-          </Button>
-        </div>
+    <Dialog open={open} onClose={onClose}>
+      <DialogHeader onClose={onClose}>Settings</DialogHeader>
+      <DialogBody>
         <Settings />
-      </Dialog>
-    </>
+      </DialogBody>
+    </Dialog>
   );
 };

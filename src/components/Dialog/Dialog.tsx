@@ -1,10 +1,7 @@
 import { DialogHTMLAttributes, FC, useEffect, useRef } from 'react';
 
-import './Dialog.css';
-
 export const Dialog: FC<DialogHTMLAttributes<HTMLDialogElement>> = ({
   children,
-  onCancel,
   onClose,
   open,
 }) => {
@@ -39,8 +36,12 @@ export const Dialog: FC<DialogHTMLAttributes<HTMLDialogElement>> = ({
   }, [open]);
 
   return (
-    <dialog className="dialog" onCancel={onCancel} onClose={onClose} ref={dialogRef}>
-      {children}
+    <dialog
+      className="tw-rounded-lg tw-p-4 tw-drop-shadow-xl backdrop:tw-bg-black backdrop:tw-bg-opacity-50 dark:tw-bg-2 dark:tw-text-white"
+      onClose={onClose}
+      ref={dialogRef}
+    >
+      <div className="tw-flex tw-flex-col tw-gap-2">{children}</div>
     </dialog>
   );
 };

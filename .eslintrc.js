@@ -20,7 +20,7 @@ module.exports = {
     project: ['./tsconfig.json'],
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
-  ignorePatterns: ['build', '.eslintrc.js'],
+  ignorePatterns: ['build', '.eslintrc.js', 'prettier.config.js', 'tailwind.config.js'],
   rules: {
     'prettier/prettier': 'error',
     'react/react-in-jsx-scope': 'off',

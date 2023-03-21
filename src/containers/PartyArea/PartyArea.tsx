@@ -1,8 +1,8 @@
 import { FC, useEffect } from 'react';
 
 import './PartyArea.css';
-import ConfettiCanvas from '../../components/ConfettiCanvas/ConfettiCanvas';
-import VolumeSlider from '../../components/VolumeSlider/VolumeSlider';
+import { ConfettiCanvas } from '../../components/ConfettiCanvas/ConfettiCanvas';
+import { VolumeSlider } from '../../components/VolumeSlider/VolumeSlider';
 import { useAudio } from '../../hooks/useAudio';
 import { AudioKeys } from '../../constants/audio-keys';
 
@@ -22,7 +22,7 @@ const PartyArea: FC = () => {
   }, [audioSource]);
 
   return (
-    <div className="party-container">
+    <div className="party-container tw-relative tw-h-full tw-w-full">
       <ConfettiCanvas></ConfettiCanvas>
       <VolumeSlider audioSource={audioSource} />
     </div>

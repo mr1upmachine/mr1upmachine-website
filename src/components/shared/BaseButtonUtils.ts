@@ -1,25 +1,25 @@
-import { BaseButtonProps } from './BaseButtonProps';
+import classnames from 'classnames';
+import { BaseButtonColor } from './BaseButtonColor';
 
-export function buildButtonClassList({
+interface ButtonClassBuilderOptions {
+  className?: string;
+  color: BaseButtonColor;
+  compact?: boolean;
+  icon?: boolean;
+}
+
+export const buildButtonClassNames: (props: ButtonClassBuilderOptions) => string = ({
   className,
   color,
   compact,
-}: Omit<BaseButtonProps, 'children'>): string[] {
-  const classList = ['button'];
-
-  switch (color) {
-    case 'primary':
-      classList.push('button-primary');
-      break;
-  }
-
-  if (compact) {
-    classList.push('button-compact');
-  }
-
-  if (className) {
-    classList.push(className);
-  }
-
-  return classList;
-}
+  icon,
+}) =>
+  classnames(
+    'tw-rounded-md tw-text-base tw-font-medium focus:tw-outline focus:tw-outline-4 tw-outline-focus dark:tw-text-white',
+    {
+      'tw-px-3 tw-py-2': !compact && !icon,
+      'tw-p-1 tw-flex tw-justify-center tw-items-center': !compact && icon,
+      'tw-text-white tw-bg-primary hover:tw-bg-primary-hover': color === 'primary',
+    },
+    className
+  );

@@ -1,11 +1,10 @@
 import { FC } from 'react';
 
-import './Home.css';
-import LinkButton from '../../components/LinkButton/LinkButton';
+import { LinkButton } from '../../components/LinkButton/LinkButton';
 
 const Home: FC = () => {
   return (
-    <div className="home-container">
+    <div className="tw-relative tw-flex tw-h-full tw-w-full tw-items-center tw-justify-center">
       <LinkButton color="primary" to="party">
         Party?
       </LinkButton>

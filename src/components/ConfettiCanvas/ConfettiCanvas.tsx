@@ -1,10 +1,9 @@
 import { useRef, useEffect, FC } from 'react';
 import confetti from 'canvas-confetti';
 
-import './ConfettiCanvas.css';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
-const ConfettiCanvas: FC = () => {
+export const ConfettiCanvas: FC = () => {
   const reducedMotion = useReducedMotion();
 
   // Confetti
@@ -83,12 +82,10 @@ const ConfettiCanvas: FC = () => {
   return (
     <div
       id="confetti-canvas-container"
-      className="confetti-canvas-container"
+      className="tw-h-full tw-w-full tw-overflow-hidden"
       ref={canvasContainerElementRef}
     >
       <canvas ref={canvasElementRef}></canvas>
     </div>
   );
 };
-
-export default ConfettiCanvas;
