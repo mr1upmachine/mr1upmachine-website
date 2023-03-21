@@ -12,7 +12,7 @@ import PartyArea from './containers/PartyArea/PartyArea';
 declare global {
   interface Window {
     VERSION: string;
-    DEPENDENCIES: { [name: string]: string };
+    DEPENDENCIES: Record<string, string>;
   }
 }
 const rootEl = document.getElementById('root');

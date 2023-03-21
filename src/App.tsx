@@ -7,11 +7,13 @@ function App() {
   const theme = useColorTheme();
 
   return (
-    <div className="tw-flex tw-h-full tw-w-full tw-flex-col" data-theme={theme}>
-      <div className="tw-grow tw-bg-1 dark:tw-bg-2">
-        <Outlet />
+    <div className="tw-h-full tw-w-full" data-theme={theme}>
+      <div className="tw-flex tw-h-full tw-w-full tw-flex-col dark:tw-bg-2">
+        <div className="tw-grow">
+          <Outlet />
+        </div>
+        <Footer></Footer>
       </div>
-      <Footer></Footer>
     </div>
   );
 }
