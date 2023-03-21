@@ -1,9 +1,10 @@
-import { useRef, useEffect, FC } from 'react';
+import { FC, memo, useRef, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
-export const ConfettiCanvas: FC = () => {
+// eslint-disable-next-line react/display-name
+export const ConfettiCanvas: FC = memo(() => {
   const reducedMotion = useReducedMotion();
 
   // Confetti
@@ -88,4 +89,4 @@ export const ConfettiCanvas: FC = () => {
       <canvas ref={canvasElementRef}></canvas>
     </div>
   );
-};
+});

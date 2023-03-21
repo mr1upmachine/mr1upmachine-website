@@ -15,7 +15,7 @@ export function useLocalStorage<T>(
   key: string,
   initialValue: T,
   type: PrimitiveString,
-  validatorFn: (rawValue: T) => boolean = () => false
+  validatorFn: (rawValue: T) => boolean = () => true
 ): [T, SetValue<T>] {
   // Get from local storage then
   // parse stored json or return initialValue
@@ -35,7 +35,6 @@ export function useLocalStorage<T>(
       const parsedItem = parseJSON(item) as T;
 
       if (typeof parsedItem !== type || !validatorFn(parsedItem)) {
-        setValue(initialValue);
         return initialValue;
       }
 
@@ -65,6 +64,10 @@ export function useLocalStorage<T>(
         // Allow value to be a function so we have the same API as useState
         const newValue = value instanceof Function ? value(storedValue) : value;
 
+        if (newValue === storedValue) {
+          return;
+        }
+
         // Save to local storage
         window.localStorage.setItem(key, JSON.stringify(newValue));
 
@@ -82,7 +85,7 @@ export function useLocalStorage<T>(
 
   useEffect(() => {
     setStoredValue(readValue());
-  }, [readValue]);
+  }, []);
 
   const handleStorageChange = useCallback(
     (event: StorageEvent | CustomEvent | null) => {
@@ -92,7 +95,7 @@ export function useLocalStorage<T>(
       }
       setStoredValue(readValue());
     },
-    [key, readValue]
+    [key]
   );
 
   // this only works for other documents, not the current one

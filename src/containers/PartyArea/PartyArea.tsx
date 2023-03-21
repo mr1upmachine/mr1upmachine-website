@@ -7,24 +7,19 @@ import { useAudio } from '../../hooks/useAudio';
 import { AudioKeys } from '../../constants/audio-keys';
 
 const PartyArea: FC = () => {
-  const audioSource = useAudio(AudioKeys.party);
+  const { play, pause, mute, setMute, volume, setVolume } = useAudio(AudioKeys.party);
 
-  // componentWillMount
   useEffect(() => {
-    audioSource.play();
-  }, [audioSource]);
-
-  // componentWillUnmount
-  useEffect(() => {
+    play();
     return () => {
-      audioSource.pause();
+      pause();
     };
-  }, [audioSource]);
+  }, [play, pause]);
 
   return (
     <div className="party-container tw-relative tw-h-full tw-w-full">
       <ConfettiCanvas></ConfettiCanvas>
-      <VolumeSlider audioSource={audioSource} />
+      <VolumeSlider mute={mute} onMuteChange={setMute} volume={volume} onVolumeChange={setVolume} />
     </div>
   );
 };
