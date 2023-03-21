@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
 
 import { AudioKeys } from '../constants/audio-keys';
 import { AUDIO_KEY_VALUE_MAP } from '../constants/audio-key-value-map';
@@ -17,7 +17,7 @@ import { isWithinVolumeRange } from '../utils/is-within-volume-range';
 export function useAudio(key: AudioKeys) {
   const audioMap = useContext(AudioMapContext);
 
-  const [audioElement] = useState(() => {
+  const audioElement = useMemo(() => {
     const audioValue = AUDIO_KEY_VALUE_MAP.get(key);
     if (!audioValue) {
       throw new Error(`Audio key ${key} does not exist`);
@@ -31,7 +31,7 @@ export function useAudio(key: AudioKeys) {
     const newAudioElement = new Audio(audioValue);
     audioMap.set(key, newAudioElement);
     return newAudioElement;
-  });
+  }, [key]);
 
   const [mute, setMuteState] = useLocalStorage<boolean>(
     STORAGE_KEYS.audioMute(key),
@@ -62,7 +62,7 @@ export function useAudio(key: AudioKeys) {
       audioElement.muted = value;
       setMuteState(value);
     },
-    [audioElement, mute]
+    [audioElement]
   );
 
   const setVolume = useCallback<(value: number) => void>(
@@ -71,10 +71,10 @@ export function useAudio(key: AudioKeys) {
         throw new Error(`Volume cannot be outside range ${MIN_VOLUME} -> ${MAX_VOLUME}`);
       }
 
-      audioElement.volume = volume / VOLUME_RANGE;
+      audioElement.volume = value / VOLUME_RANGE;
       setVolumeState(value);
     },
-    [audioElement, volume]
+    [audioElement]
   );
 
   return { audioElement, play, pause, mute, setMute, volume, setVolume };
