@@ -6,5 +6,5 @@ handlers:
     secure: always
   - url: /(.*)
     static_files: \1
-    upload: /index.html/(.*)
+    upload: (.*)
     secure: always
