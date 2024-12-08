@@ -13,14 +13,14 @@ const NightBackground: FC<{ className?: string }> = ({ className = '' }) => {
   const [stars, setStars] = useState<Star[]>([]);
 
   useEffect(() => {
-    const numStars = 100; // Number of stars
+    const numStars = 450; // Number of stars
 
     const starArray = Array.from({ length: numStars }).map((v, i) => ({
       id: i,
       top: `${Math.random() * 100}vh`, // Random vertical position
       left: `${Math.random() * 100}vw`, // Random horizontal position
-      size: `${Math.random() * 3 + 1}px`, // Random star size
-      twinkleDelay: `${Math.random() * -5}s`, // Random delay for twinkling effect
+      size: `${Math.random() * 3 + 0.1}px`, // Random star size
+      twinkleDelay: `${Math.random() * -15}s`, // Random delay for twinkling effect
     }));
 
     setStars(starArray);
