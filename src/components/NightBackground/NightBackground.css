@@ -1,0 +1,16 @@
+.star {
+  box-shadow: 0 0 10px 2px white;
+  animation: twinkle 1.5s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
