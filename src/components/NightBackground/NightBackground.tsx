@@ -6,7 +6,6 @@ interface Star {
   top: string; // Position as a percentage (e.g., "50vh")
   left: string; // Position as a percentage (e.g., "50vw")
   size: string; // Size in pixels (e.g., "3px")
-  brightness: number; // Brightness (opacity, e.g., 0.2 to 1)
   twinkleDelay: string; // Delay for animation (e.g., "2s")
 }
 
@@ -21,7 +20,6 @@ const NightBackground: FC<{ className?: string }> = ({ className = '' }) => {
       top: `${Math.random() * 100}vh`, // Random vertical position
       left: `${Math.random() * 100}vw`, // Random horizontal position
       size: `${Math.random() * 3 + 1}px`, // Random star size
-      brightness: Math.random() * 0.8 + 0.2, // Random brightness between 0.2 and 1
       twinkleDelay: `${Math.random() * -5}s`, // Random delay for twinkling effect
     }));
 
@@ -43,7 +41,6 @@ const NightBackground: FC<{ className?: string }> = ({ className = '' }) => {
               left: star.left,
               width: star.size,
               height: star.size,
-              opacity: star.brightness,
               animationDelay: star.twinkleDelay,
             } as CSSProperties
           }

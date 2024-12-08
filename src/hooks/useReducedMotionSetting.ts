@@ -4,7 +4,7 @@ import { useLocalStorage } from './useLocalStorage';
 
 export function useReducedMotionSetting(): [
   ReducedMotionSetting,
-  (newTheme: ReducedMotionSetting) => void
+  (newTheme: ReducedMotionSetting) => void,
 ] {
   const [storageThemeSetting, setStorageThemeSetting] = useLocalStorage<ReducedMotionSetting>(
     STORAGE_KEYS.reducedMotion,

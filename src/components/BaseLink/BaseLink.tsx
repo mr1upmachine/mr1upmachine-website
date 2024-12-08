@@ -1,5 +1,5 @@
 import { AnchorHTMLAttributes, FC } from 'react';
-import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router-dom';
+import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router';
 
 export type BaseLinkProps =
   | ({ external?: false } & ReactRouterLinkProps)

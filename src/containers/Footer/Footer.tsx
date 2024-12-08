@@ -8,7 +8,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import classnames from 'classnames';
 import { FC, useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 import { IconButton } from '../../components/IconButton/IconButton';
 import { LinkIconButton } from '../../components/LinkIconButton/LinkIconButton';
