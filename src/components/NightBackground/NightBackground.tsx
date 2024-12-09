@@ -1,5 +1,7 @@
 import { FC, useEffect, useState, CSSProperties } from 'react';
 import './NightBackground.css';
+import { useEventListener } from '../../hooks/useEventListener';
+import { throttle } from '../../utils/throttle';
 
 interface Star {
   id: number;
@@ -9,12 +11,28 @@ interface Star {
   twinkleDelay: string; // Delay for animation (e.g., "2s")
 }
 
-const NightBackground: FC<{ className?: string }> = ({ className = '' }) => {
+function numStarsFromWidth(num: number): number {
+  if (num < 768) {
+    return 500;
+  } else if (num < 1024) {
+    return 800;
+  } else {
+    return 1200;
+  }
+}
+
+const NightBackground: FC = () => {
+  const [numStars, setNumStars] = useState(numStarsFromWidth(window.innerWidth));
   const [stars, setStars] = useState<Star[]>([]);
 
-  useEffect(() => {
-    const numStars = 450; // Number of stars
+  useEventListener(
+    'resize',
+    throttle(() => {
+      setNumStars(numStarsFromWidth(window.innerWidth));
+    }, 250)
+  );
 
+  useEffect(() => {
     const starArray = Array.from({ length: numStars }).map((v, i) => ({
       id: i,
       top: `${Math.random() * 100}vh`, // Random vertical position
@@ -24,17 +42,17 @@ const NightBackground: FC<{ className?: string }> = ({ className = '' }) => {
     }));
 
     setStars(starArray);
-  }, []);
+  }, [numStars]);
 
   return (
     <div
       aria-hidden="true"
-      className={`tw-fixed tw-h-full tw-w-full tw-z-[-1] tw-overflow-hidden ${className}`}
+      className={`tw-fixed tw-h-full tw-w-full tw-z-[-1] tw-overflow-hidden dark:tw-bg-[black]`}
     >
       {stars.map((star) => (
         <div
           key={star.id}
-          className="star tw-absolute tw-bg-[white] tw-rounded-full"
+          className="star tw-absolute tw-bg-[black] dark:tw-bg-[white] tw-rounded-full"
           style={
             {
               top: star.top,

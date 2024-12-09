@@ -138,7 +138,7 @@ const Footer: FC = () => {
   });
 
   return (
-    <footer className="dark:tw-bg-2 tw-shrink-0 tw-grow-0">
+    <footer className="tw-bg-1 dark:tw-bg-2 tw-shrink-0 tw-grow-0">
       <nav className="tw-flex tw-justify-between tw-gap-2 tw-px-2 tw-py-1">
         <LinkIconButton aria-label="Home page" className={homeButtonClassNames} to="/">
           <HomeIcon aria-hidden="true" className="tw-h-6 tw-w-6" />

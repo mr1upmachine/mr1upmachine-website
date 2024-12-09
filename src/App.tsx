@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <div className="tw-h-full tw-w-full" data-theme={theme}>
-        <NightBackground className="dark:tw-bg-2" />
+        <NightBackground />
         <div className="tw-flex tw-h-full tw-w-full tw-flex-col">
           <div className="tw-grow">
             <Outlet />
