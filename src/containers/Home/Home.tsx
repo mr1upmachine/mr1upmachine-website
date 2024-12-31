@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 
 import { Button } from '../../components/Button/Button';
-import PartyArea from '../PartyArea/PartyArea';
+import PartyArea from '../../components/PartyArea/PartyArea';
 
 const Home: FC = () => {
   const [partyMode, setPartyMode] = useState(false);
