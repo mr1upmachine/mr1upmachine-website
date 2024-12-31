@@ -1,0 +1,9 @@
+.volume-slider-input {
+  @apply tw-h-0 tw-absolute tw-invisible tw-opacity-0;
+  transition: opacity 0.3s ease;
+}
+
+.volume-slider-container:hover .volume-slider-input,
+.volume-slider-container:focus-within .volume-slider-input {
+  @apply tw-h-fit tw-static tw-visible tw-opacity-100;
+}
