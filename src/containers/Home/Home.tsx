@@ -1,14 +1,22 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
-import { LinkButton } from '../../components/LinkButton/LinkButton';
+import { Button } from '../../components/Button/Button';
+import PartyArea from '../PartyArea/PartyArea';
 
 const Home: FC = () => {
+  const [partyMode, setPartyMode] = useState(false);
   return (
-    <div className="tw-relative tw-flex tw-h-full tw-w-full tw-items-center tw-justify-center">
-      <LinkButton color="primary" to="party" state={{ from: 'home' }}>
-        Party?
-      </LinkButton>
-    </div>
+    <>
+      {partyMode ? (
+        <PartyArea />
+      ) : (
+        <div className="tw-relative tw-flex tw-h-full tw-w-full tw-items-center tw-justify-center">
+          <Button color="primary" onClick={() => setPartyMode(true)}>
+            Party?
+          </Button>
+        </div>
+      )}
+    </>
   );
 };
 

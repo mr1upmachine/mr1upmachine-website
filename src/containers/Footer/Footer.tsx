@@ -6,9 +6,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import SettingsIcon from '@mui/icons-material/Settings';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import classnames from 'classnames';
 import { FC, useMemo, useState } from 'react';
-import { useLocation } from 'react-router';
 
 import { IconButton } from '../../components/IconButton/IconButton';
 import { LinkIconButton } from '../../components/LinkIconButton/LinkIconButton';
@@ -121,7 +119,6 @@ const LINK_GROUPS: readonly LinkMeta[] = [
 
 const Footer: FC = () => {
   const [showSettings, setShowSettings] = useState(false);
-  const { pathname } = useLocation();
 
   const parsedLinkGroups = useMemo(
     () =>
@@ -133,14 +130,10 @@ const Footer: FC = () => {
     []
   );
 
-  const homeButtonClassNames = classnames({
-    'tw-invisible': pathname === '/',
-  });
-
   return (
     <footer className="tw-bg-1 dark:tw-bg-2 tw-shrink-0 tw-grow-0">
       <nav className="tw-flex tw-justify-between tw-gap-2 tw-px-2 tw-py-1">
-        <LinkIconButton aria-label="Home page" className={homeButtonClassNames} to="/">
+        <LinkIconButton aria-label="Home page" reloadDocument to="/">
           <HomeIcon aria-hidden="true" className="tw-h-6 tw-w-6" />
         </LinkIconButton>
         <div className="tw-flex tw-gap-2 sm:tw-gap-3">{parsedLinkGroups}</div>

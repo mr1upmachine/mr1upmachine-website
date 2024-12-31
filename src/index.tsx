@@ -7,7 +7,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Home from './containers/Home/Home';
-import PartyArea from './containers/PartyArea/PartyArea';
 
 declare global {
   interface Window {
@@ -27,7 +26,6 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="party" element={<PartyArea />} />
           <Route path="*" element={<Navigate to="" replace />} />
         </Route>
       </Routes>
