@@ -1,12 +1,14 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router';
+import { marked } from 'marked';
 
 import packageJSON from '../package.json';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Home from './containers/Home/Home';
+import Recipes from './containers/Recipes/Recipes';
 
 declare global {
   interface Window {
@@ -26,6 +28,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
+          <Route path="recipes/:recipeName" element={<Recipes />} />
           <Route path="*" element={<Navigate to="" replace />} />
         </Route>
       </Routes>
@@ -33,6 +36,18 @@ root.render(
     <Outlet />
   </StrictMode>
 );
+
+const renderer = new marked.Renderer();
+// renderer.link = ({ href, text }) => {
+//   return `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+// };
+renderer.list = ({ items, ordered }) => {
+  const tag = ordered ? 'ol' : 'ul';
+  const tagClass = ordered ? 'tw-list-decimal' : 'tw-list-disc';
+  const itemsHTML = items.map((item) => `<li>${item.text}</li>`).join('');
+  return `<${tag} class="tw-ml-3 tw-list-inside ${tagClass}">${itemsHTML}</${tag}>`;
+};
+marked.use({ renderer, gfm: true });
 
 window.VERSION = packageJSON.version;
 window.DEPENDENCIES = packageJSON.dependencies;
