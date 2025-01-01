@@ -1,8 +1,10 @@
 import { readdir, writeFileSync } from 'fs';
-import { join } from 'path';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
-const recipesDir = join(import.meta.dirname, '../public/assets/recipes');
-const outputFilePath = join(import.meta.dirname, '../public/assets/recipe-list.json');
+const current_dirname = dirname(fileURLToPath(import.meta.url));
+const recipesDir = join(current_dirname, '../public/assets/recipes');
+const outputFilePath = join(current_dirname, '../public/assets/recipe-list.json');
 
 readdir(recipesDir, (err, files) => {
   if (err) {
