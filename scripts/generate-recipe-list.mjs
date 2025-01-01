@@ -1,4 +1,4 @@
-import { mkdirSync, readdir, writeFileSync } from 'fs';
+import { readdir, writeFileSync } from 'fs';
 import { join } from 'path';
 
 const recipesDir = join(import.meta.dirname, '../public/assets/recipes');

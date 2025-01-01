@@ -27,4 +27,4 @@ node_modules
 .vite
 .swc
 
-public\assets\recipe-list.json
+/public/assets/recipe-list.json

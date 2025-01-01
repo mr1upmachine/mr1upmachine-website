@@ -47,7 +47,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc",
-    "generate-recipe-list": "node scripts/generate-recipe-list.js"
+    "generate-recipe-list": "node scripts/generate-recipe-list.mjs"
   },
   "browserslist": {
     "production": [
