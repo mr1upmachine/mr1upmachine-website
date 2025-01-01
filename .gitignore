@@ -26,3 +26,5 @@ node_modules
 # Vite related dependencies
 .vite
 .swc
+
+public\assets\recipe-list.json
