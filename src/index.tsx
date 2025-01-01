@@ -8,7 +8,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Home from './containers/Home/Home';
-import Recipes from './containers/Recipes/Recipes';
+import Recipe from './containers/Recipe/Recipe';
+import RecipeList from './containers/RecipeList/RecipeList';
 
 declare global {
   interface Window {
@@ -28,7 +29,8 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="recipes/:recipeName" element={<Recipes />} />
+          <Route path="recipes" element={<RecipeList />} />
+          <Route path="recipes/:recipeName" element={<Recipe />} />
           <Route path="*" element={<Navigate to="" replace />} />
         </Route>
       </Routes>

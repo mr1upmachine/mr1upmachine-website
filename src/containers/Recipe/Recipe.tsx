@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { marked } from 'marked';
 
-const Recipes: FC = () => {
+const Recipe: FC = () => {
   const { recipeName } = useParams<{ recipeName: string }>();
   const [markdown, setMarkdown] = useState('');
 
@@ -19,4 +19,4 @@ const Recipes: FC = () => {
   return <div dangerouslySetInnerHTML={{ __html: markdown }}></div>;
 };
 
-export default Recipes;
+export default Recipe;

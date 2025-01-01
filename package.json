@@ -42,11 +42,12 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "scripts": {
-    "start": "vite --host",
-    "build": "vite build",
+    "start": "npm run generate-recipe-list && vite --host",
+    "build": "npm run generate-recipe-list && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
-    "format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc"
+    "format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc",
+    "generate-recipe-list": "node scripts/generate-recipe-list.js"
   },
   "browserslist": {
     "production": [

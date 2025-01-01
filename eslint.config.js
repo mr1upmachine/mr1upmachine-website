@@ -18,7 +18,13 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ['**/build', '**/.eslint.config.js', '**/prettier.config.js', '**/tailwind.config.js'],
+    ignores: [
+      '**/build',
+      '**/scripts',
+      '**/.eslint.config.js',
+      '**/prettier.config.js',
+      '**/tailwind.config.js',
+    ],
   },
   ...compat.extends(
     'eslint:recommended',
