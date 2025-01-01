@@ -17,7 +17,7 @@
 - 1½ tbsp honey
 - 1 quart vegetable broth
 - ¼ cup soy sauce
-- 1.5 tsp sesame oil
+- 1 tbsp sesame oil
 - white rice
 - water
 
@@ -27,7 +27,7 @@ If you have a rice cooker, start it before cooking the curry. If you are making 
 
 1. Saute onions, bell pepper, apples, and ginger in the sesame oil in a stock pot. Cook them until onions are translucent & apples are soft.
 2. Add vegetable broth to the pot and scrape up any parts that have stuck to the pan.
-3. Add potatoes, carrots, honey, and soy sauce to the pot. Liquid should sit about a centimeter above ingredients.
+3. Add potatoes, carrots, honey, and soy sauce to the pot. Liquid should sit at least 1 centimeter above ingredients.
 4. Turn heat up to medium high and boil everything together until potatoes & carrots are soft enough to eat. Stir frequently.
 5. Reduce heat to low and add curry mix. Stir until fully melted into the broth.
 6. Cook all ingredients together for at least 15 minutes on low, stirring occasionally. It can be cooked longer but don't let sit too long or the bottom will burn.
