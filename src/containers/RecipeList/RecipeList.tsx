@@ -19,7 +19,9 @@ const RecipeList: FC = () => {
     <ul className="tw-ml-3 tw-list-inside tw-list-disc">
       {recipes.map((recipe) => (
         <li key={recipe}>
-          <Link to={`/recipes/${recipe}`}>{toTitleCase(recipe)}</Link>
+          <Link className="tw-text-blue-500 tw-underline" to={`/recipes/${recipe}`}>
+            {toTitleCase(recipe)}
+          </Link>
         </li>
       ))}
     </ul>

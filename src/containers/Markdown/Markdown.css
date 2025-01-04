@@ -1,3 +1,9 @@
+.markdown {
+  a {
+    @apply tw-text-blue-500 tw-underline;
+  }
+}
+
 .recipe-markdown {
   h1,
   h2,
@@ -28,9 +34,5 @@
 
   ul {
     @apply tw-list-disc;
-  }
-
-  a {
-    @apply tw-text-blue-700 tw-underline;
   }
 }

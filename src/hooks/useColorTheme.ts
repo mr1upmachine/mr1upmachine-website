@@ -23,7 +23,7 @@ export function useColorTheme(
   useEffect(() => {
     setTheme(toColorTheme(colorThemeSetting, isSystemDarkTheme));
     target.dataset.theme = theme;
-  }, [colorThemeSetting, isSystemDarkTheme]);
+  }, [colorThemeSetting, isSystemDarkTheme, target, theme]);
 
   return theme;
 }

@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { marked } from 'marked';
 import './Markdown.css';
+import classNames from 'classnames';
 
 const Markdown: FC<{ assetPath: string; className: string }> = ({ assetPath, className }) => {
   const params = useParams<Record<string, string>>();
@@ -24,7 +25,12 @@ const Markdown: FC<{ assetPath: string; className: string }> = ({ assetPath, cla
     void fetchMarkdown();
   }, [assetPath, params]);
 
-  return <div className={className} dangerouslySetInnerHTML={{ __html: markdown }}></div>;
+  return (
+    <div
+      className={classNames('markdown', className)}
+      dangerouslySetInnerHTML={{ __html: markdown }}
+    ></div>
+  );
 };
 
 export default Markdown;
