@@ -131,7 +131,7 @@ const Footer: FC = () => {
   );
 
   return (
-    <footer className="tw-sticky tw-bottom-0 tw-left-0 tw-right-0 tw-bg-1 dark:tw-bg-2">
+    <footer className="tw-sticky tw-bottom-0 tw-left-0 tw-right-0 tw-border-t tw-border-white tw-bg-1 dark:tw-bg-2">
       <nav className="tw-flex tw-justify-between tw-gap-2 tw-px-2 tw-py-1">
         <LinkIconButton aria-label="Home page" reloadDocument to="/">
           <HomeIcon aria-hidden="true" className="tw-h-6 tw-w-6" />
