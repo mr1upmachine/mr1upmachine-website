@@ -8,8 +8,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Home from './containers/Home/Home';
-import Recipe from './containers/Recipe/Recipe';
+import Markdown from './containers/Markdown/Markdown';
 import RecipeList from './containers/RecipeList/RecipeList';
+import Recipe from './containers/Recipe/Recipe';
 
 declare global {
   interface Window {
@@ -30,7 +31,14 @@ root.render(
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="recipes" element={<RecipeList />} />
-          <Route path="recipes/:recipeName" element={<Recipe />} />
+          <Route
+            path="recipes/:recipeName"
+            element={
+              <Recipe>
+                <Markdown assetPath="/assets/recipes/:recipeName" className="recipe-markdown" />
+              </Recipe>
+            }
+          />
           <Route path="*" element={<Navigate to="" replace />} />
         </Route>
       </Routes>
@@ -40,15 +48,8 @@ root.render(
 );
 
 const renderer = new marked.Renderer();
-// renderer.link = ({ href, text }) => {
-//   return `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
-// };
-renderer.list = ({ items, ordered }) => {
-  const tag = ordered ? 'ol' : 'ul';
-  const tagClass = ordered ? 'tw-list-decimal' : 'tw-list-disc';
-  const itemsHTML = items.map((item) => `<li>${item.text}</li>`).join('');
-  return `<${tag} class="tw-ml-3 tw-list-inside ${tagClass}">${itemsHTML}</${tag}>`;
-};
+renderer.link = ({ href, title, text }) =>
+  `<a target="_blank" href="${href}" ${title ? 'title="' + title + '"' : ''}>${text}</a>`;
 marked.use({ renderer, gfm: true });
 
 window.VERSION = packageJSON.version;

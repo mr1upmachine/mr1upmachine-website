@@ -1,22 +1,7 @@
-import { FC, useState, useEffect } from 'react';
-import { useParams } from 'react-router';
-import { marked } from 'marked';
+import { ReactElement, FC } from 'react';
 
-const Recipe: FC = () => {
-  const { recipeName } = useParams<{ recipeName: string }>();
-  const [markdown, setMarkdown] = useState('');
-
-  useEffect(() => {
-    const fetchMarkdown = async () => {
-      const response = await fetch(`/assets/recipes/${recipeName}.md`);
-      const text = await response.text();
-      setMarkdown(await marked(text));
-    };
-
-    void fetchMarkdown();
-  }, [recipeName]);
-
-  return <div dangerouslySetInnerHTML={{ __html: markdown }}></div>;
+const Recipe: FC<{ children: ReactElement }> = ({ children }) => {
+  return <div className="tw-mx-auto tw-px-2 tw-pb-2 tw-max-w-2xl">{children}</div>;
 };
 
 export default Recipe;

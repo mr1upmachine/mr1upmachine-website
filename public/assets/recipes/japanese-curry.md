@@ -6,13 +6,13 @@
 
 ## Ingredients
 
-- 2 curry mix packets (I prefer 1 Vermont Curry & 1 Java Curry)
+- 2 curry mix packets (I prefer 1 [Vermont Curry](https://amzn.com/dp/B071RLJP2S) & 1 [Java Curry](https://amzn.com/dp/B081G7V3P7))
 - 1-1½ large onion, diced
 - 3-4 large potatoes, cubed, skin optional
-- 2 red apples, cubed (Honeycrisp ideally) 
+- 2 red apples, cubed (Honeycrisp ideally)
 - 2-3 carrots, peeled & cubed
 - 2 bell peppers, sliced into strips
-- 1 jalapeno, diced (seeds optional)
+- 1 jalapeno, diced (seeds optional)
 - 1 tbsp ginger
 - 1½ tbsp honey
 - 1 quart vegetable broth
@@ -23,7 +23,7 @@
 
 ## Steps
 
-If you have a rice cooker, start it before cooking the curry. If you are making rice on the stove, then prepare it during step 7.
+If you have a rice cooker, start it before cooking the curry. If you are making rice on the stove, then prepare it during step 5.
 
 1. Saute onions, bell pepper, apples, and ginger in the sesame oil in a stock pot. Cook them until onions are translucent & apples are soft.
 2. Add vegetable broth to the pot and scrape up any parts that have stuck to the pan.
@@ -37,5 +37,3 @@ If you have a rice cooker, start it before cooking the curry. If you are making 
 
 - Makes way too much. Have several food storage containers for leftovers ready. I recommend portioning 1:1 curry & rice
 - This recipe can be put in the fridge / freezer and reheats wonderfully in the microwave. When reheating add a splash of water over the rice before microwaving if rice is stored with the curry.
-- [Amazon link to Vermont Curry](https://www.amazon.com/dp/B071RLJP2S/ref=cm_sw_r_apan_glt_fabc_RB8Z0S18HABMA6ETC2J2?_encoding=UTF8&psc=1)
-  - "Hot" is not spicy at all I promise
