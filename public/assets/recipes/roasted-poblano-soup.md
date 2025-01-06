@@ -2,9 +2,9 @@
 
 ## Tools
 
-Large blender
-Stock pot
-Sheet pan
+- Large blender
+- Stock pot
+- Sheet pan
 
 ## Ingredients
 
