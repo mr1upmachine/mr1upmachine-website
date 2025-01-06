@@ -2,8 +2,8 @@
 
 ## Tools
 
-- large bowl
-- casserole baking dish
+- Large bowl
+- 9x13" baking dish
 
 ## Ingredients
 
