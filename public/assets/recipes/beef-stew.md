@@ -1,4 +1,4 @@
-# Zee's Beef Stew
+# Beef Stew
 
 ## Tools
 
@@ -12,14 +12,14 @@
 - 3-5 (~600g) yellow onions
 - 7 garlic cloves, minced
 - 2 cups beef stock
-- 2 cups red wine (2nd from bottom shelf aka 2nd from worst) - 1/2 bottle.  Hierarchy of best to worst is Pinot Noir > Merlot > Cabernet Sauvignon
+- 3 cups red wine (2nd from bottom shelf aka 2nd from worst) - 1/2 bottle.  Hierarchy of best to worst is Pinot Noir > Merlot > Cabernet Sauvignon
 - 2 cups water
 - 1 6oz can tomato paste
 - ½ ketchup
-- ¼ cup balsamic vinegar
+- ½ cup balsamic vinegar
 - 2 tbsp rosemary
 - flour (Enough to coat the beef chunks in flour and pan sear them before proceeding with the recipe.)
-- salt to taste
+- 2 tbsp salt
 - pepper to taste
 - sugar to taste
 - 2 tbsp parsley
