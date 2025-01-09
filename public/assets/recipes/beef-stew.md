@@ -1,5 +1,7 @@
 # Beef Stew
 
+Original recipe by Zee
+
 ## Tools
 
 - Large pot
