@@ -1,0 +1,57 @@
+---
+// function numStarsFromWidth(num: number): number {
+//   if (num < 768) {
+//     return 500;
+//   } else if (num < 1024) {
+//     return 800;
+//   } else {
+//     return 1200;
+//   }
+// }
+
+const stars = Array.from({ length: 500 }).map((v, i) => ({
+  id: i,
+  top: `${Math.pow(Math.random(), 5) * 100}vh`, // Random vertical position
+  left: `${Math.random() * 100}vw`, // Random horizontal position
+  size: `${Math.random() * 3 + 0.1}px`, // Random star size
+  twinkleDelay: `${Math.random() * -15}s`, // Random delay for twinkling effect
+}));
+---
+
+<div
+  aria-hidden="true"
+  class="fixed h-full w-full z-[-1] overflow-hidden bg-linear-0 from-3% to-35% from-sky-950 to-slate-950"
+>
+  {
+    stars.map((star) => (
+      <div
+        class="star absolute bg-white rounded-full"
+        style={{
+          top: star.top,
+          left: star.left,
+          width: star.size,
+          height: star.size,
+          animationDelay: star.twinkleDelay,
+        }}
+      />
+    ))
+  }
+</div>
+<style>
+  .star {
+    box-shadow: 0 0 10px 2px white;
+    animation: twinkle 5s infinite ease-in-out;
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(0.4);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(0.8);
+    }
+  }
+</style>

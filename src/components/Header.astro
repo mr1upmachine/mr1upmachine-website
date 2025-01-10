@@ -1,0 +1,23 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<header class="sticky top-0 z-10 px-4 bg-gray-800/30 backdrop-blur-lg text-gray-200 shadow-md">
+  <nav class="relative flex items-center justify-center h-16">
+    <h2 class="absolute top-0 bottom-0 left-0 h-full py-2">
+      <a class="hover:opacity-85" href="/">
+        <img
+          alt={SITE_TITLE}
+          class="h-full aspect-square object-contain"
+          src="/favicon.svg"
+          title={SITE_TITLE}
+        />
+      </a>
+    </h2>
+    <div class="flex gap-4">
+      <HeaderLink href="/">Home</HeaderLink>
+      <HeaderLink href="/recipes">Recipes</HeaderLink>
+    </div>
+  </nav>
+</header>

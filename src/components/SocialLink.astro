@@ -1,0 +1,26 @@
+---
+import { type IconDefinition } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+type Props = {
+  brandColor?: string;
+  icon: IconDefinition;
+  size?: string;
+  srText: string;
+  url: string;
+};
+
+const { brandColor = 'black', icon, size = '32px', srText, url } = Astro.props;
+---
+
+<a class="transition-colors cursor-pointer" href={url} target="_blank">
+  <span class="sr-only">{srText}</span>
+  <FontAwesomeIcon className="text-current" height={size} width={size} icon={icon} />
+</a>
+<style define:vars={{ brandColor }}>
+  a:hover,
+  a:focus,
+  a:focus-within {
+    color: var(--brandColor);
+  }
+</style>
