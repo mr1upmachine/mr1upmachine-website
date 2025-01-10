@@ -1,0 +1,53 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { SITE_TITLE } from '../consts';
+import NightBackground from '../components/NightBackground.astro';
+
+type Props = CollectionEntry<'recipe'>['data'];
+
+const { title, pubDate, updatedDate } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={[title, SITE_TITLE].join(' | ')} />
+    <style>
+      .date {
+        margin-bottom: 0.5em;
+        color: rgb(var(--gray));
+      }
+      .last-updated-on {
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body>
+    <NightBackground />
+    <Header />
+    <main class="px-2 sm:px-8 py-6 flex justify-center">
+      <article class="prose bg-white shadow-md rounded-lg p-6">
+        <div class="text-center">
+          <div class="date">
+            <FormattedDate date={pubDate} />
+            {
+              updatedDate && (
+                <div class="last-updated-on">
+                  Last updated on <FormattedDate date={updatedDate} />
+                </div>
+              )
+            }
+          </div>
+          <h1 class="text-4xl font-bold m-0">{title}</h1>
+        </div>
+        <hr class="my-6!" />
+        <slot />
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>

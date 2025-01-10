@@ -1,0 +1,23 @@
+---
+import SocialLink from './SocialLink.astro';
+import { SOCIALS } from '../consts';
+
+type Props = {
+  className?: string;
+};
+
+const { className } = Astro.props;
+
+const today = new Date();
+---
+
+<footer class:list={['p-4 flex flex-col items-center gap-2', className]}>
+  &copy; {today.getFullYear()} mr1upmachine. All rights reserved.
+  <div class="flex justify-center gap-4">
+    {
+      SOCIALS.map(({ icon, brandColor, srText, url }) => (
+        <SocialLink icon={icon} brandColor={brandColor} srText={srText} url={url} />
+      ))
+    }
+  </div>
+</footer>
