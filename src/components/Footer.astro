@@ -1,0 +1,37 @@
+---
+import SocialLink from './SocialLink.astro';
+import { SOCIALS } from '../consts';
+
+const today = new Date();
+---
+
+<footer class="flex flex-col items-center gap-2 text-current">
+  &copy; {today.getFullYear()} mr1upmachine. All rights reserved.
+  <div class="flex justify-center gap-4">
+    {
+      SOCIALS.map(({ icon, brandColor, srText }) => (
+        <SocialLink icon={icon} brandColor={brandColor} srText={srText} />
+      ))
+    }
+  </div>
+</footer>
+<style>
+  footer {
+    padding: 2em 1em 6em 1em;
+    background: linear-gradient(var(--gray-gradient)) no-repeat;
+    color: rgb(var(--gray));
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1em;
+  }
+  .social-links a {
+    text-decoration: none;
+    color: rgb(var(--gray));
+  }
+  .social-links a:hover {
+    color: rgb(var(--gray-dark));
+  }
+</style>
