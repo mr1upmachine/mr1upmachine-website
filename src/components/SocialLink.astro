@@ -15,7 +15,7 @@ const { brandColor = 'black', icon, size = '32px', srText, url } = Astro.props;
 
 <a class="transition-colors cursor-pointer" href={url} target="_blank">
   <span class="sr-only">{srText}</span>
-  <FontAwesomeIcon className="text-current" height={size} width={size} icon={icon} />
+  <FontAwesomeIcon className="text-current" height={size} icon={icon} title={srText} width={size} />
 </a>
 <style define:vars={{ brandColor }}>
   a:hover,

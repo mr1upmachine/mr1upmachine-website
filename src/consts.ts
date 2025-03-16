@@ -1,4 +1,12 @@
-import { faTwitch, faYoutube, faBluesky, faGithub } from '@fortawesome/free-brands-svg-icons';
+import {
+  faTwitch,
+  faYoutube,
+  faBluesky,
+  faGithub,
+  faLinkedin,
+  faDiscord,
+} from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 export const SITE_TITLE = "mr1upmachine's website";
 export const SITE_DESCRIPTION = 'A simple website used by mr1upmachine to do some dumb stuff';
@@ -26,5 +34,23 @@ export const SOCIALS = [
     brandColor: '#777777',
     srText: "See what I've built on Github",
     url: 'https://github.com/Mr1upMachine',
+  },
+  {
+    icon: faLinkedin,
+    brandColor: '#0a66c2',
+    srText: 'Check out my professional profile on LinkedIn',
+    url: 'https://www.linkedin.com/in/sean--hale/',
+  },
+  {
+    icon: faDiscord,
+    brandColor: '#5865F2',
+    srText: 'Shoot me a message on Discord',
+    url: 'https://discord.com/users/251015921596891137',
+  },
+  {
+    icon: faEnvelope,
+    brandColor: '#00FF00',
+    srText: 'Shoot me an email',
+    url: 'mailto:sean@mr1upmachine.com',
   },
 ];
