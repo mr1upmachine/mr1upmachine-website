@@ -1,7 +1,7 @@
 {
   "name": "mr1upmachine-website",
   "type": "module",
-  "version": "3.5.1",
+  "version": "4.0.0",
   "scripts": {
     "start": "astro dev",
     "build": "astro build",
