@@ -5,6 +5,7 @@
 @layer base {
   html {
     @apply text-gray-300;
+    background-color: #052f4a;
   }
 }
 
