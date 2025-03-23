@@ -5,7 +5,7 @@ pubDate: 'Mar 16 2025'
 heroImage: '/blog-placeholder-2.jpg'
 ---
 
-## Tools
+## Equipment
 
 - large stock pot (4-6qt)
 - casserole pan / pyrex oblong baking dish
