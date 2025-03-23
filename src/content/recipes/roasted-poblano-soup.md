@@ -5,7 +5,7 @@ pubDate: 'Mar 16 2025'
 heroImage: '/blog-placeholder-5.jpg'
 ---
 
-## Tools
+## Equipment
 
 - Large blender
 - Stock pot
