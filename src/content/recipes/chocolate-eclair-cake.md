@@ -5,7 +5,7 @@ pubDate: 'Mar 16 2025'
 heroImage: '/blog-placeholder-4.jpg'
 ---
 
-## Tools
+## Equipment
 
 - Medium-sized saucepan
 - 9x13" dish
