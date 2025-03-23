@@ -36,7 +36,7 @@ The following is for a 2lb loaf. For other sizes, simply adjust the ratio of ing
 ## Steps
 
 1. Add all "Bread" ingredients to the bread machine ***in the order specified***
-2. Set the bread machine to the "cake" setting or whatever equivalent
+2. Set the bread machine to the "sweet"/"cake" setting or whatever equivalent
 3. When your bread machine prompts you to add mixins (usually beeping), use a silicone spatula to scrape any excess flour off the sides.
 4. Add all of the mixins
 
