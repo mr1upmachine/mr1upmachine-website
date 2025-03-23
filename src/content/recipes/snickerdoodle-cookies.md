@@ -1,5 +1,5 @@
 ---
-title: Snickerdoodle cookies
+title: Snickerdoodle Cookies
 description: Snickerdoodles from scratch!
 pubDate: Mar 23 2025
 author: Slade
