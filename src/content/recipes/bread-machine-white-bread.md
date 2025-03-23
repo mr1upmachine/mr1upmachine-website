@@ -25,7 +25,7 @@ The following is for a 2lb loaf. For other sizes, simply adjust the ratio of ing
 ## Steps
 
 1. Add all ingredients to the bread machine ***in the order specified***
-2. Set the bread machine to the "white" setting
+2. Set the bread machine to the "white" setting and press start
 
 
 ## Notes
