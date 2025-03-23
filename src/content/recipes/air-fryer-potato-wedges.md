@@ -5,7 +5,7 @@ pubDate: 'Mar 16 2025'
 heroImage: '/blog-placeholder-2.jpg'
 ---
 
-## Tools
+## Equipment
 
 - Air Fryer
 
