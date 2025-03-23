@@ -5,7 +5,7 @@ pubDate: 'Mar 16 2025'
 heroImage: '/blog-placeholder-5.jpg'
 ---
 
-## Tools
+## Equipment
 
 - Medium / large stock pot (6 quart)
 - Sauce pan for tofu (Optional)
