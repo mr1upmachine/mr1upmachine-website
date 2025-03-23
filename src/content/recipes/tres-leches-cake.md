@@ -5,7 +5,7 @@ pubDate: 'Mar 16 2025'
 heroImage: '/blog-placeholder-2.jpg'
 ---
 
-## Tools
+## Equipment
 
 - Electric mixer with whisk attachment
 - 9×13" cake pan
