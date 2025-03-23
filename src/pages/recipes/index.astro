@@ -8,7 +8,7 @@ import { SITE_TITLE } from '../../consts';
 import NightBackground from '../../components/NightBackground.astro';
 
 const posts = (await getCollection('recipe')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  (a, b) => a.data.title.localeCompare(b.data.title)
 );
 ---
 
