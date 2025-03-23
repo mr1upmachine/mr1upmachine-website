@@ -5,7 +5,7 @@ pubDate: 'Mar 16 2025'
 heroImage: '/blog-placeholder-3.jpg'
 ---
 
-## Tools
+## Equipment
 
 - Small pot (1.5qt)
 
