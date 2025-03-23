@@ -5,9 +5,7 @@ pubDate: Mar 22 2025
 author: Zee
 ---
 
-# Beef Stew
-
-## Tools
+## Equipment
 
 - Large pot
 
