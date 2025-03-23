@@ -5,7 +5,7 @@ pubDate: 'Mar 16 2025'
 heroImage: '/blog-placeholder-3.jpg'
 ---
 
-## Tools
+## Equipment
 
 - Large bowl
 - 9x13" baking dish
