@@ -1,10 +1,22 @@
 ---
+import seedrandom from 'seedrandom';
+import { v4 } from 'uuid';
+
+let seed = Astro.cookies.get('sky_random_seed')?.value;
+if (!seed) {
+  // Generate a random seed for the star positions
+  seed = v4();
+  Astro.cookies.set('sky_random_seed', seed);
+}
+
+const random = seedrandom('seed');
+
 const stars = Array.from({ length: 500 }).map((v, i) => ({
   id: i,
-  top: `${Math.pow(Math.random(), 5) * 100}vh`, // Random vertical position
-  left: `${Math.random() * 100}vw`, // Random horizontal position
-  size: `${Math.random() * 3 + 0.1}px`, // Random star size
-  twinkleDelay: `${Math.random() * -15}s`, // Random delay for twinkling effect
+  top: `${Math.pow(random(), 5) * 100}vh`, // Random vertical position
+  left: `${random() * 100}vw`, // Random horizontal position
+  size: `${random() * 3 + 0.1}px`, // Random star size
+  twinkleDelay: `${random() * -15}s`, // Random delay for twinkling effect
 }));
 ---
 
