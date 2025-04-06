@@ -2,7 +2,6 @@
 title: 'Tres Leches Cake'
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Mar 16 2025'
-heroImage: '/blog-placeholder-2.jpg'
 ---
 
 ## Equipment

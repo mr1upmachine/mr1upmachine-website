@@ -2,7 +2,6 @@
 title: 'Buffalo Chicken Dip'
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Mar 16 2025'
-heroImage: '/blog-placeholder-3.jpg'
 ---
 
 ## Equipment

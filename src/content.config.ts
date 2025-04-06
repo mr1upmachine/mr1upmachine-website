@@ -11,7 +11,21 @@ const recipe = defineCollection({
     // Transform string to Date object
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    heroImage: z.string().optional(),
+    suitableForDiet: z
+      .union([
+        z.literal('DiabeticDiet'),
+        z.literal('GlutenFreeDiet'),
+        z.literal('HalalDiet'),
+        z.literal('HinduDiet'),
+        z.literal('KosherDiet'),
+        z.literal('LowCalorieDiet'),
+        z.literal('LowFatDiet'),
+        z.literal('LowLactoseDiet'),
+        z.literal('LowSaltDiet'),
+        z.literal('VeganDiet'),
+        z.literal('VegetarianDiet'),
+      ])
+      .optional(),
   }),
 });
 

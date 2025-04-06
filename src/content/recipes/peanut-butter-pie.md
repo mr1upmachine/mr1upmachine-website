@@ -2,7 +2,6 @@
 title: 'Peanut Butter Pie'
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Mar 16 2025'
-heroImage: '/blog-placeholder-4.jpg'
 ---
 
 ## Ingredients

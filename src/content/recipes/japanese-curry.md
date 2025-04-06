@@ -2,7 +2,6 @@
 title: 'Japanese Curry'
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Mar 16 2025'
-heroImage: '/blog-placeholder-5.jpg'
 ---
 
 ## Equipment

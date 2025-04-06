@@ -2,7 +2,7 @@
 title: 'Miso Soup'
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Mar 16 2025'
-heroImage: '/blog-placeholder-3.jpg'
+updatedDate: 'Apr 6 2025'
 ---
 
 ## Equipment
@@ -12,8 +12,8 @@ heroImage: '/blog-placeholder-3.jpg'
 ## Ingredients
 
 - 4 cups water
-- 3 tsp [bonito soup stock](https://a.co/d/fnFTv68)
-- 3 tbsp [miso paste](https://proshop.prontohomedelivery.com/product/miso-soybean-paste-2?srsltid=AfmBOore-E0IlBe4zYCt6HULX3R-ntc-bc0-ROk9FXbYP2waNYfJKKj3eSI&gQT=1)
+- 2 tsp [bonito soup stock](https://a.co/d/fnFTv68)
+- 2 tbsp [miso paste](https://proshop.prontohomedelivery.com/product/miso-soybean-paste-2?srsltid=AfmBOore-E0IlBe4zYCt6HULX3R-ntc-bc0-ROk9FXbYP2waNYfJKKj3eSI&gQT=1)
 
 ## Steps
 
