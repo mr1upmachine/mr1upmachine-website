@@ -54,3 +54,20 @@ export const SOCIALS = [
     url: 'mailto:sean@mr1upmachine.com',
   },
 ];
+
+export const TTS_VOICES = [
+  {
+    label: 'david',
+    alias: 'default',
+    src: 'tts-demo-david.wav',
+  },
+  {
+    label: 'brian',
+    alias: '1',
+    src: 'tts-demo-brian.wav',
+  },
+  {
+    label: 'spongebob',
+    src: 'tts-demo-spongebob.wav',
+  },
+];

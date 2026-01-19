@@ -7,8 +7,8 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import { SITE_TITLE } from '../../consts';
 import NightBackground from '../../components/NightBackground.astro';
 
-const posts = (await getCollection('recipe')).sort(
-  (a, b) => a.data.title.localeCompare(b.data.title)
+const posts = (await getCollection('recipe')).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title)
 );
 ---
 

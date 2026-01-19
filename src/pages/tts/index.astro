@@ -1,0 +1,65 @@
+---
+import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import NightBackground from '../../components/NightBackground.astro';
+import { TTS_VOICES } from '../../consts';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import InlineCode from '../../components/InlineCode.astro';
+
+const voices = TTS_VOICES.map((value, i) => ({
+  ...value,
+  id: 'voice-audio-button-' + i,
+}));
+---
+
+<!doctype html>
+<html class="h-full" lang="en">
+  <head>
+    <BaseHead />
+  </head>
+  <body class="h-full">
+    <NightBackground />
+    <Header />
+    <main class="px-2 sm:px-8 py-6 flex justify-center">
+      <section class="flex flex-col gap-6 text-[#364153] basis-[70ch] max-w-[70ch]">
+        <section class="flex flex-col gap-2 p-2 text-lg bg-white shadow-md rounded-lg">
+          <p>
+            <InlineCode>!s &lt;message&gt;</InlineCode>
+            to play a text to speech message
+          </p>
+          <p>
+            <InlineCode>!s [name] &lt;message&gt;</InlineCode>
+            for a specific voice
+          </p>
+          <p>
+            <InlineCode>!s# &lt;message&gt;</InlineCode> for a voice with a shortcut number (ex. <InlineCode
+              >!s1 hi</InlineCode
+            > for brian)
+          </p>
+        </section>
+        <ul class="grid grid-cols-2 gap-6">
+          {
+            voices.map((voice) => (
+              <li class="flex items-center bg-white hover:opacity-85 shadow-md rounded-lg">
+                <audio id={voice.id} src={voice.src} />
+                <button
+                  class="grow flex items-center gap-2 p-2 cursor-pointer"
+                  onclick={'document.getElementById("' + voice.id + '").play()'}
+                >
+                  <FontAwesomeIcon height="30px" icon={faPlayCircle} width="30px" />
+                  <div>
+                    <span class="text-3xl">{voice.label}</span>
+                    {voice.alias && <sup class="ml-1 mb-1 text-xl opacity-70">{voice.alias}</sup>}
+                  </div>
+                </button>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </main>
+    <Footer className="fixed bottom-0 left-0 right-0" />
+  </body>
+</html>
