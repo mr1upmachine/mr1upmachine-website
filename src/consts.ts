@@ -55,6 +55,21 @@ export const SOCIALS = [
   },
 ];
 
+export const HEADER_LINKS = [
+  {
+    href: '/',
+    label: 'Home',
+  },
+  {
+    href: '/recipes',
+    label: 'Recipes',
+  },
+  {
+    href: '/tts',
+    label: 'TTS',
+  },
+];
+
 export const TTS_VOICES = [
   {
     label: 'david',

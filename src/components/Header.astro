@@ -1,6 +1,6 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import { HEADER_LINKS, SITE_TITLE } from '../consts';
 ---
 
 <header class="sticky top-0 z-10 px-4 bg-gray-800/30 backdrop-blur-md text-gray-200 shadow-md">
@@ -16,8 +16,7 @@ import { SITE_TITLE } from '../consts';
       </a>
     </h2>
     <div class="flex gap-4">
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/recipes">Recipes</HeaderLink>
+      {HEADER_LINKS.map((item) => <HeaderLink href={item.href}>{item.label}</HeaderLink>)}
     </div>
   </nav>
 </header>
