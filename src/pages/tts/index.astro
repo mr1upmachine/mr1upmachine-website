@@ -23,7 +23,7 @@ const voices = TTS_VOICES.map((params, i) => {
     id: 'voice-audio-button-' + i,
     src: TTS_VOICE_SRC_PATTERN.replace('{voice}', voice),
   };
-}).toSorted((a, b) => a.label.localeCompare(b.label));
+}).sort((a, b) => a.label.localeCompare(b.label));
 ---
 
 <!doctype html>
