@@ -70,19 +70,20 @@ export const HEADER_LINKS = [
   },
 ];
 
-export const TTS_VOICES = [
-  {
-    label: 'david',
-    alias: 'default',
-    src: '/tts-demo-david.wav',
-  },
-  {
-    label: 'brian',
-    alias: '1',
-    src: '/tts-demo-brian.wav',
-  },
-  {
-    label: 'spongebob',
-    src: '/tts-demo-spongebob.wav',
-  },
+export const TTS_VOICE_SRC_PATTERN = '/tts-demo-{voice}.wav';
+type TtsVoice = string | string[];
+export const TTS_VOICES: TtsVoice[] = [
+  'amy',
+  'announcer',
+  'brian',
+  ['david', 'default'],
+  'emma',
+  'glados',
+  'narrator',
+  'parable',
+  'russell',
+  'salli',
+  'shadow',
+  'spongebob',
+  'witch',
 ];

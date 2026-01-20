@@ -1,17 +1,29 @@
 ---
+/* eslint-disable astro/jsx-a11y/media-has-caption */
 import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import NightBackground from '../../components/NightBackground.astro';
-import { TTS_VOICES } from '../../consts';
+import { TTS_VOICE_SRC_PATTERN, TTS_VOICES } from '../../consts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import InlineCode from '../../components/InlineCode.astro';
 
-const voices = TTS_VOICES.map((value, i) => ({
-  ...value,
-  id: 'voice-audio-button-' + i,
-}));
+const voices = TTS_VOICES.map((params, i) => {
+  let voice, alias;
+  if (typeof params === 'string') {
+    voice = params;
+  } else {
+    voice = params[0];
+    alias = params[1];
+  }
+  return {
+    label: voice,
+    alias,
+    id: 'voice-audio-button-' + i,
+    src: TTS_VOICE_SRC_PATTERN.replace('{voice}', voice),
+  };
+}).toSorted((a, b) => a.label.localeCompare(b.label));
 ---
 
 <!doctype html>
@@ -36,11 +48,11 @@ const voices = TTS_VOICES.map((value, i) => ({
             <InlineCode>!s [name] &lt;message&gt;</InlineCode>
             for a specific voice
           </p>
-          <p>
+          <!-- <p>
             <InlineCode>!s# &lt;message&gt;</InlineCode> for a voice with a shortcut number (ex. <InlineCode
               >!s1 hi</InlineCode
             > for brian)
-          </p>
+          </p> -->
         </section>
         <ul class="grid grid-cols-2 gap-6">
           {
