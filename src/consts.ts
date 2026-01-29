@@ -71,7 +71,7 @@ export const HEADER_LINKS = [
 ];
 
 export const TTS_VOICE_SRC_PATTERN = '/tts-demo-{voice}.wav';
-type TtsVoice = string | string[];
+type TtsVoice = string | [string, string];
 export const TTS_VOICES: TtsVoice[] = [
   'amy',
   'announcer',
