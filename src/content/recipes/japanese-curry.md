@@ -17,7 +17,6 @@ pubDate: 'Mar 16 2025'
 - 2 red apples, cubed (Honeycrisp ideally)
 - 2-3 carrots, peeled & cubed
 - 2 bell peppers, sliced into strips
-- 1 jalapeno, diced (seeds optional)
 - 1 tbsp minced ginger (I use [paste](https://www.kroger.com/p/spice-world-squeeze-ginger/0007096900440) because I'm lazy)
 - 1½ tbsp honey
 - 1 quart vegetable broth
