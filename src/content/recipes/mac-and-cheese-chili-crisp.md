@@ -1,5 +1,6 @@
 ---
 title: 'Mac & Cheese (Chili Crisp)'
+description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Jun 08 2026'
 ---
 
