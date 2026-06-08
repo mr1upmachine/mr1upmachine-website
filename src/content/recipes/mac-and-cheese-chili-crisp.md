@@ -13,8 +13,8 @@ pubDate: 'Jun 08 2026'
 - 150g dry noodles
 - 1 egg
 - 1 cup milk
-- 2 tbsp Lao Gan Ma Spicy Chili Crisp ((link)[https://www.kroger.com/p/lao-gan-ma-spicy-chili-crisp/0088941700004])
-- 2 tbsp gochujang ((link)[https://www.hmart.com/gochujang-hot-pepper-paste-1-1lb-500g--1/p])
+- 2 tbsp Lao Gan Ma Spicy Chili Crisp \((link)[https://www.kroger.com/p/lao-gan-ma-spicy-chili-crisp/0088941700004]\)
+- 2 tbsp gochujang \((link)[https://www.hmart.com/gochujang-hot-pepper-paste-1-1lb-500g--1/p]\)
 - 4 oz sharp cheddar shredded cheese
 - 2 oz parmesan cheese
 - 2 slices american cheese
