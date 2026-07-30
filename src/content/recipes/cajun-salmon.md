@@ -11,6 +11,8 @@ pubDate: 'Jul 30 2026'
 
 ## Ingredients
 
+The spice ratios is what matters, the exact amount does not. This was a copy / paste from another recipe and I just use vibes.
+
 - 3 tbsp
  paprika (I prefer smoked paprika)
 - 2 tbsp fine kosher salt
