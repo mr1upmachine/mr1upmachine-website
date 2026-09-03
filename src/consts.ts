@@ -65,8 +65,40 @@ export const HEADER_LINKS = [
     label: 'Recipes',
   },
   {
+    href: '/chat-commands',
+    label: 'Chat Commands',
+  },
+  {
     href: '/tts',
     label: 'TTS',
+  },
+];
+
+export const MOD_COMMANDS = [
+  {
+    command: 'adsnooze',
+    description: 'snoozes the ads for 3 minutes',
+  },
+  {
+    command: 'cggauto',
+    description: 'toggle auto play for Chat Guess Games',
+  },
+  {
+    command: 'focus',
+    description: 'Turn on "Focus mode", which disables all sound effects and tts messages',
+  },
+  {
+    command: 'unfocus',
+    description: 'Turn off "Focus mode", which re-enables all sound effects and tts messages',
+  },
+  {
+    command: 'raid',
+    description:
+      "Posts the raid messages. Shouldn't be necessary since they automatically post when raid is started",
+  },
+  {
+    command: 'so',
+    description: 'Shout someone out!',
   },
 ];
 
