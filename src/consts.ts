@@ -36,12 +36,6 @@ export const SOCIALS = [
     url: 'https://github.com/Mr1upMachine',
   },
   {
-    icon: faLinkedin,
-    brandColor: '#0a66c2',
-    srText: 'Check out my professional profile on LinkedIn',
-    url: 'https://www.linkedin.com/in/sean--hale/',
-  },
-  {
     icon: faDiscord,
     brandColor: '#5865F2',
     srText: 'Shoot me a message on Discord',
