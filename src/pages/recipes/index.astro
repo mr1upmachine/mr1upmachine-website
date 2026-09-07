@@ -21,11 +21,11 @@ const posts = (await getCollection('recipe')).sort((a, b) =>
     <NightBackground />
     <Header />
     <main class="px-2 sm:px-8 py-6 flex justify-center">
-      <section class="text-[#364153] basis-[65ch] max-w-[65ch]">
+      <section class="space-y-6 text-[#364153] basis-[65ch] max-w-[65ch]">
         <ul>
           {
             posts.map((post) => (
-              <li class="not-first:mt-6 bg-white hover:opacity-85 shadow-md rounded-lg">
+              <li class="bg-white hover:opacity-85 shadow-md rounded-lg">
                 <a class="block p-2 text-center" href={`/recipes/${post.id}`}>
                   {/* <img width={720} height={360} src={post.data.heroImage} alt="" /> */}
                   <h4 class="text-2xl font-semibold">{post.data.title}</h4>

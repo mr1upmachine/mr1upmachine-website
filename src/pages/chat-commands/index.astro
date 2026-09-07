@@ -3,8 +3,8 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import NightBackground from '../../components/NightBackground.astro';
-import { MOD_COMMANDS } from '../../consts';
-import InlineCode from '../../components/InlineCode.astro';
+import { ALL_COMMANDS, MOD_COMMANDS, SUB_COMMANDS, VIP_COMMANDS } from '../../consts';
+import ChatCommandSection from '../../components/ChatCommandSection.astro';
 ---
 
 <!doctype html>
@@ -16,21 +16,30 @@ import InlineCode from '../../components/InlineCode.astro';
     <NightBackground />
     <Header />
     <main class="px-2 sm:px-8 py-6 flex justify-center">
-      <section class="flex flex-col gap-6 text-[#364153] basis-[70ch] max-w-[70ch]">
-        <section class="p-2 text-lg bg-white shadow-md rounded-lg">
-          <h2 class="font-bold text-2xl mb-3">Moderator only</h2>
-          <ul class="my-3">
-            {
-              MOD_COMMANDS.map(({ command, description }) => (
-                <li class="my-2">
-                  <InlineCode>!{command}</InlineCode>
-                  <span class="select-none"> - </span>
-                  <span>{description}</span>
-                </li>
-              ))
-            }
-          </ul>
-        </section>
+      <section class="space-y-6 text-[#364153] basis-[70ch] max-w-[70ch]">
+        <ChatCommandSection
+          title="Moderator Only"
+          badgeSrc={[
+            'https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/1',
+            'https://assets.help.twitch.tv/article/img/000002212-07.png',
+          ]}
+          commands={MOD_COMMANDS}
+          footnote="mods can use all commands"
+        />
+        <ChatCommandSection
+          title="VIP Only"
+          badgeSrc="https://static-cdn.jtvnw.net/badges/v1/b817aba4-fad8-49e2-b88a-7cc744dfa6ec/3"
+          commands={VIP_COMMANDS}
+        />
+        <ChatCommandSection
+          title="Subs & VIP Only"
+          badgeSrc={[
+            'sub-badge.png',
+            'https://static-cdn.jtvnw.net/badges/v1/b817aba4-fad8-49e2-b88a-7cc744dfa6ec/3',
+          ]}
+          commands={SUB_COMMANDS}
+        />
+        <ChatCommandSection title="Everyone" commands={ALL_COMMANDS} />
       </section>
     </main>
     <Footer className="fixed bottom-0 left-0 right-0" />
