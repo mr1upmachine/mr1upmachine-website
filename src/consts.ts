@@ -3,7 +3,6 @@ import {
   faYoutube,
   faBluesky,
   faGithub,
-  faLinkedin,
   faDiscord,
 } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
@@ -119,6 +118,10 @@ export const MOD_COMMANDS = [
       "Posts the raid messages. Shouldn't be necessary since they automatically post when raid is started",
   },
   {
+    command: 'resetpalette',
+    description: 'Resets the palette back to the one set for the category',
+  },
+  {
     command: 'setgamepalette',
     description: 'Takes the current palette and makes it the default for this category on twitch',
   },
@@ -166,8 +169,17 @@ export const VIP_COMMANDS = [
 
 export const SUB_COMMANDS = [
   {
-    command: 'quoteadd',
+    command: 'addpolymorph',
+    description:
+      'Add a new polymorph to the list. Must complete the sentence "You\'ve been polymorphed into ___". Example: "!polymorphadd a lesser wizard"',
+  },
+  {
+    command: 'addquote',
     description: 'Create a new quote',
+  },
+  {
+    command: 'addtreat',
+    description: 'Add a new treat for the bakery to serve!',
   },
   {
     command: 'timer',
@@ -238,6 +250,10 @@ export const ALL_COMMANDS = [
     description: 'oh no, a plot',
   },
   {
+    command: 'polymorph',
+    description: 'A wizard casts a spell! What will you be turned into..? 🧙‍♂️ (once per day)',
+  },
+  {
     command: 'quote',
     description:
       'Fetch a quote! If empty, then gets a random quote. If text is provided, it will get the first quote that matches. If a number is provided, it gets the quote by id.',
@@ -252,7 +268,11 @@ export const ALL_COMMANDS = [
   },
   {
     command: 'smut',
-    description: 'Only can be used by saramickle19',
+    description: 'Only can be used by saramickle19 (once per day)',
+  },
+  {
+    command: 'treat',
+    description: 'Get a daily treat from the bakery! 🧁 (once per day)',
   },
   {
     command: 'videogames',
