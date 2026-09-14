@@ -169,9 +169,14 @@ export const VIP_COMMANDS = [
 
 export const SUB_COMMANDS = [
   {
+    command: 'addcurrency',
+    description:
+      'Add a new currency to the list. Must be be a full sentence with the user and amount referenced. Example: "!addcurrency %user% has %currency_count% rings. Don\'t get hit."',
+  },
+  {
     command: 'addpolymorph',
     description:
-      'Add a new polymorph to the list. Must complete the sentence "You\'ve been polymorphed into ___". Example: "!polymorphadd a lesser wizard"',
+      'Add a new polymorph to the list. Must complete the sentence "You\'ve been polymorphed into ___". Example: "!addpolymorph a lesser wizard"',
   },
   {
     command: 'addquote',
