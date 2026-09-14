@@ -154,14 +154,6 @@ export const VIP_COMMANDS = [
     description: "Set your user's default text to speech voice",
   },
   {
-    command: 'quoteadd',
-    description: 'Create a new quote',
-  },
-  {
-    command: 'smutadd',
-    description: 'Add to the library of smut',
-  },
-  {
     command: 'zoom',
     description: 'Add one to the "zoom" counter, when the streamer zooms in the camera',
   },
@@ -181,6 +173,10 @@ export const SUB_COMMANDS = [
   {
     command: 'addquote',
     description: 'Create a new quote',
+  },
+  {
+    command: 'addsmut',
+    description: 'Add to the library of smut',
   },
   {
     command: 'addtreat',
@@ -288,6 +284,8 @@ export const ALL_COMMANDS = [
     description: 'See how much daily currency you have!',
   },
 ];
+
+export const CHANNEL_POINT_REDEEMS = [];
 
 export const TTS_VOICE_SRC_PATTERN = '/tts-demo-{voice}.wav';
 type TtsVoice = string | [string, string];
