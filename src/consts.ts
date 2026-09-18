@@ -122,6 +122,10 @@ export const MOD_COMMANDS = [
     description: 'Resets the palette back to the one set for the category',
   },
   {
+    command: 'setgame',
+    description: 'Sets the stream category',
+  },
+  {
     command: 'setgamepalette',
     description: 'Takes the current palette and makes it the default for this category on twitch',
   },
@@ -129,6 +133,10 @@ export const MOD_COMMANDS = [
     command: 'setpalette',
     description:
       'Free version of the Palette Swap redeem. Input a list of hex color codes and it will change the background colors.',
+  },
+  {
+    command: 'settitle',
+    description: 'Sets the stream title',
   },
   {
     command: 'so',
@@ -234,6 +242,10 @@ export const ALL_COMMANDS = [
     description: 'Tell the streamer something hot is on screen',
   },
   {
+    command: ['hug', 'unhug'],
+    description: 'Give someone a hug! 💕',
+  },
+  {
     command: ['livemas', 'livemenos'],
     description: 'Taco Bell dong',
   },
@@ -274,6 +286,10 @@ export const ALL_COMMANDS = [
   {
     command: 'treat',
     description: 'Get a daily treat from the bakery! 🧁 (once per day)',
+  },
+  {
+    command: ['tuck', 'untuck'],
+    description: 'Tuck someone into bed! 🛏️',
   },
   {
     command: 'videogames',
