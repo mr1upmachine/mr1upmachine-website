@@ -89,7 +89,7 @@ export const MOD_COMMANDS = [
     description: 'Toggle "Focus mode", which disables all sound effects and tts messages',
   },
   {
-    command: 'homework',
+    command: ['homework', 'hw'],
     description: 'Assign the streamer some homework for later.',
   },
   {
@@ -271,8 +271,12 @@ export const ALL_COMMANDS = [
     description: 'A wizard casts a spell! What will you be turned into..? 🧙‍♂️ (once per day)',
   },
   {
-    command: 'polymorph',
+    command: 'polymorphcount',
     description: "Tells you the total number of polymorph options in the wizard's spellbook",
+  },
+  {
+    command: 'pushups',
+    description: "Tells you how many total pushups I owe from killing pikmin",
   },
   {
     command: 'quote',
