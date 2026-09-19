@@ -222,6 +222,10 @@ export const ALL_COMMANDS = [
     description: 'Gets a link to the discord',
   },
   {
+    command: 'currencycount',
+    description: 'Tells you the total number of currencies in the arcade',
+  },
+  {
     command: 'duck',
     description: '🦆',
   },
@@ -267,6 +271,10 @@ export const ALL_COMMANDS = [
     description: 'A wizard casts a spell! What will you be turned into..? 🧙‍♂️ (once per day)',
   },
   {
+    command: 'polymorph',
+    description: "Tells you the total number of polymorph options in the wizard's spellbook",
+  },
+  {
     command: 'quote',
     description:
       'Fetch a quote! If empty, then gets a random quote. If text is provided, it will get the first quote that matches. If a number is provided, it gets the quote by id.',
@@ -284,8 +292,16 @@ export const ALL_COMMANDS = [
     description: 'Only can be used by saramickle19 (once per day)',
   },
   {
+    command: 'smutcount',
+    description: 'Tells you the total number of books in the library of smut',
+  },
+  {
     command: 'treat',
     description: 'Get a daily treat from the bakery! 🧁 (once per day)',
+  },
+  {
+    command: 'treatcount',
+    description: 'Tells you the total number of treats the bakery has on the menu',
   },
   {
     command: ['tuck', 'untuck'],
