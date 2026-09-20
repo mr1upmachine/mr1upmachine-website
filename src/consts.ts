@@ -198,6 +198,10 @@ export const SUB_COMMANDS = [
     command: 'timers',
     description: 'List all currently running timers',
   },
+  {
+    command: 'wtf',
+    description: 'Add to the count of times Sean has lost his mind',
+  },
 ];
 
 export const ALL_COMMANDS = [
@@ -212,6 +216,10 @@ export const ALL_COMMANDS = [
   {
     command: 'bee',
     description: '🐝',
+  },
+  {
+    command: 'commands',
+    description: 'Gives a link to this very page.',
   },
   {
     command: ['bomb', 'unbomb'],
@@ -276,7 +284,7 @@ export const ALL_COMMANDS = [
   },
   {
     command: 'pushups',
-    description: "Tells you how many total pushups I owe from killing pikmin",
+    description: 'Tells you how many total pushups I owe from killing pikmin',
   },
   {
     command: 'quote',
