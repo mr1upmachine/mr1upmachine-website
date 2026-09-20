@@ -89,10 +89,6 @@ export const MOD_COMMANDS = [
     description: 'Toggle "Focus mode", which disables all sound effects and tts messages',
   },
   {
-    command: ['homework', 'hw'],
-    description: 'Assign the streamer some homework for later.',
-  },
-  {
     command: 'musicprev',
     description: 'Plays the previous song. Music must already be playing.',
   },
@@ -149,6 +145,10 @@ export const MOD_COMMANDS = [
 ];
 
 export const VIP_COMMANDS = [
+  {
+    command: ['homework', 'hw'],
+    description: 'Assign the streamer some homework for later.',
+  },
   {
     command: 's',
     description: 'Have your message be read as text to speech',
