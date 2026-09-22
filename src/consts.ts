@@ -85,6 +85,10 @@ export const ALL_COMMANDS = [
     description: '💣💥',
   },
   {
+    command: ['bonk', 'unbonk'],
+    description: 'BONK',
+  },
+  {
     command: 'discord',
     description: 'Gets a link to the discord',
   },
