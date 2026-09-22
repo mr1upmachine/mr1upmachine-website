@@ -58,8 +58,8 @@ export const HEADER_LINKS = [
     label: 'Recipes',
   },
   {
-    href: '/stream-commands',
-    label: 'Stream Commands',
+    href: '/commands',
+    label: 'Commands',
   },
 ];
 
