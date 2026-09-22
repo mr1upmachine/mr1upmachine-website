@@ -58,149 +58,8 @@ export const HEADER_LINKS = [
     label: 'Recipes',
   },
   {
-    href: '/chat-commands',
-    label: 'Chat Commands',
-  },
-  {
-    href: '/tts',
-    label: 'TTS',
-  },
-];
-
-export const MOD_COMMANDS = [
-  {
-    command: 'adsnooze',
-    description: 'snoozes the ads for 3 minutes',
-  },
-  {
-    command: 'canceltimer',
-    description: 'Cancels an in progress timer by id',
-  },
-  {
-    command: 'canceltimers',
-    description: 'Cancels all in progress timers',
-  },
-  {
-    command: 'cggauto',
-    description: 'toggle auto play for Chat Guess Games',
-  },
-  {
-    command: ['focus', 'unfocus'],
-    description: 'Toggle "Focus mode", which disables all sound effects and tts messages',
-  },
-  {
-    command: 'musicprev',
-    description: 'Plays the previous song. Music must already be playing.',
-  },
-  {
-    command: 'musicskip',
-    description: 'Skips the current song. Music must already be playing.',
-  },
-  {
-    command: 'musicstart',
-    description: 'Starts the music and shows the overlay',
-  },
-  {
-    command: 'musicstop',
-    description: 'Stops the music and hides the overlay',
-  },
-  {
-    command: 'musictoggle',
-    description: 'Shows / hides the music overlay',
-  },
-  {
-    command: 'raid',
-    description:
-      "Posts the raid messages. Shouldn't be necessary since they automatically post when raid is started",
-  },
-  {
-    command: 'resetpalette',
-    description: 'Resets the palette back to the one set for the category',
-  },
-  {
-    command: 'setgame',
-    description: 'Sets the stream category',
-  },
-  {
-    command: 'setgamepalette',
-    description: 'Takes the current palette and makes it the default for this category on twitch',
-  },
-  {
-    command: 'setpalette',
-    description:
-      'Free version of the Palette Swap redeem. Input a list of hex color codes and it will change the background colors.',
-  },
-  {
-    command: 'settitle',
-    description: 'Sets the stream title',
-  },
-  {
-    command: 'so',
-    description: 'Shout someone out!',
-  },
-  {
-    command: 'quotedel',
-    description: "Delete a quote by it's id",
-  },
-];
-
-export const VIP_COMMANDS = [
-  {
-    command: ['homework', 'hw'],
-    description: 'Assign the streamer some homework for later.',
-  },
-  {
-    command: 's',
-    description: 'Have your message be read as text to speech',
-  },
-  {
-    command: 'seanstopraging',
-    description: "I'm sure telling them to calm down will help",
-  },
-  {
-    command: 'setvoice',
-    description: "Set your user's default text to speech voice",
-  },
-  {
-    command: 'zoom',
-    description: 'Add one to the "zoom" counter, when the streamer zooms in the camera',
-  },
-];
-
-export const SUB_COMMANDS = [
-  {
-    command: 'addcurrency',
-    description:
-      'Add a new currency to the list. Must be be a full sentence with the user and amount referenced. Example: "!addcurrency %user% has %currency_count% rings. Don\'t get hit."',
-  },
-  {
-    command: 'addpolymorph',
-    description:
-      'Add a new polymorph to the list. Must complete the sentence "You\'ve been polymorphed into ___". Example: "!addpolymorph a lesser wizard"',
-  },
-  {
-    command: 'addquote',
-    description: 'Create a new quote',
-  },
-  {
-    command: 'addsmut',
-    description: 'Add to the library of smut',
-  },
-  {
-    command: 'addtreat',
-    description: 'Add a new treat for the bakery to serve!',
-  },
-  {
-    command: 'timer',
-    description: 'Create a new timer. Usage: "!timer 3m14s Pie timeee"',
-  },
-  {
-    command: 'timers',
-    description: 'List all currently running timers',
-  },
-  {
-    command: 'wtf',
-    description: 'Add to the count of times Sean has lost his mind',
+    href: '/stream-commands',
+    label: 'Stream Commands',
   },
 ];
 
@@ -326,6 +185,145 @@ export const ALL_COMMANDS = [
   {
     command: 'wallet',
     description: 'See how much daily currency you have!',
+  },
+];
+
+export const SUB_COMMANDS = [
+  {
+    command: 'addcurrency',
+    description:
+      'Add a new currency to the list. Must be be a full sentence with the user and amount referenced. Example: "!addcurrency %user% has %currency_count% rings. Don\'t get hit."',
+  },
+  {
+    command: 'addpolymorph',
+    description:
+      'Add a new polymorph to the list. Must complete the sentence "You\'ve been polymorphed into ___". Example: "!addpolymorph a lesser wizard"',
+  },
+  {
+    command: 'addquote',
+    description: 'Create a new quote',
+  },
+  {
+    command: 'addsmut',
+    description: 'Add to the library of smut',
+  },
+  {
+    command: 'addtreat',
+    description: 'Add a new treat for the bakery to serve!',
+  },
+  {
+    command: 'timer',
+    description: 'Create a new timer. Usage: "!timer 3m14s Pie timeee"',
+  },
+  {
+    command: 'timers',
+    description: 'List all currently running timers',
+  },
+  {
+    command: 'wtf',
+    description: 'Add to the count of times Sean has lost his mind',
+  },
+];
+
+export const VIP_COMMANDS = [
+  {
+    command: ['homework', 'hw'],
+    description: 'Assign the streamer some homework for later.',
+  },
+  {
+    command: 's',
+    description: 'Have your message be read as text to speech',
+    url: './tts',
+  },
+  {
+    command: 'seanstopraging',
+    description: "I'm sure telling them to calm down will help",
+  },
+  {
+    command: 'setvoice',
+    description: "Set your user's default text to speech voice",
+    url: './tts',
+  },
+  {
+    command: 'zoom',
+    description: 'Add one to the "zoom" counter, when the streamer zooms in the camera',
+  },
+];
+
+export const MOD_COMMANDS = [
+  {
+    command: 'adsnooze',
+    description: 'snoozes the ads for 3 minutes',
+  },
+  {
+    command: 'canceltimer',
+    description: 'Cancels an in progress timer by id',
+  },
+  {
+    command: 'canceltimers',
+    description: 'Cancels all in progress timers',
+  },
+  {
+    command: 'cggauto',
+    description: 'toggle auto play for Chat Guess Games',
+  },
+  {
+    command: ['focus', 'unfocus'],
+    description: 'Toggle "Focus mode", which disables all sound effects and tts messages',
+  },
+  {
+    command: 'musicprev',
+    description: 'Plays the previous song. Music must already be playing.',
+  },
+  {
+    command: 'musicskip',
+    description: 'Skips the current song. Music must already be playing.',
+  },
+  {
+    command: 'musicstart',
+    description: 'Starts the music and shows the overlay',
+  },
+  {
+    command: 'musicstop',
+    description: 'Stops the music and hides the overlay',
+  },
+  {
+    command: 'musictoggle',
+    description: 'Shows / hides the music overlay',
+  },
+  {
+    command: 'raid',
+    description:
+      "Posts the raid messages. Shouldn't be necessary since they automatically post when raid is started",
+  },
+  {
+    command: 'resetpalette',
+    description: 'Resets the palette back to the one set for the category',
+  },
+  {
+    command: 'setgame',
+    description: 'Sets the stream category',
+  },
+  {
+    command: 'setgamepalette',
+    description: 'Takes the current palette and makes it the default for this category on twitch',
+  },
+  {
+    command: 'setpalette',
+    description:
+      'Free version of the Palette Swap redeem. Input a list of hex color codes and it will change the background colors.',
+  },
+  {
+    command: 'settitle',
+    description: 'Sets the stream title',
+  },
+  {
+    command: 'so',
+    description: 'Shout someone out!',
+  },
+  {
+    command: 'quotedel',
+    description: "Delete a quote by it's id",
   },
 ];
 
