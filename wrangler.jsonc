@@ -8,9 +8,7 @@
     "directory": "./dist",
     "binding": "ASSETS",
   },
-  "kv_namespaces": [
-    { "binding": "LISTS", "id": "7c2040b839404515817c0df246906d16", "remote": true },
-  ],
+  "kv_namespaces": [{ "binding": "LISTS", "id": "7c2040b839404515817c0df246906d16" }],
   "observability": {
     "enabled": true,
   },
