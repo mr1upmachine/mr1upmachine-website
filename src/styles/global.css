@@ -6,23 +6,24 @@
   html {
     @apply text-gray-300;
     background-color: #052f4a;
+    color: #364153;
   }
 }
 
-.sr-only {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-  clip: rect(1px 1px 1px 1px);
-  /* maybe deprecated but we need to support legacy browsers */
-  clip: rect(1px, 1px, 1px, 1px);
-  /* modern browsers, clip-path works inwards from each corner */
-  clip-path: inset(50%);
-  /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-  white-space: nowrap;
+@layer components {
+  .card {
+    @apply p-2 text-lg  bg-white shadow-md rounded-lg;
+  }
+
+  .link {
+    @apply text-sky-600 underline decoration-sky-500/40 underline-offset-2 transition-colors;
+    @apply hover:text-sky-800 hover:decoration-sky-800;
+    @apply focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600;
+  }
+
+  .link-subtitle {
+    @apply text-inherit no-underline underline-offset-2 transition-colors;
+    @apply hover:text-sky-800 hover:underline;
+    @apply focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-800;
+  }
 }

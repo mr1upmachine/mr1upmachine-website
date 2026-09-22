@@ -1,0 +1,19 @@
+---
+import { parseText, twitchUrl } from '../lib/twitch';
+
+interface Props {
+  text: string;
+}
+
+const parts = parseText(Astro.props.text);
+---
+
+{parts.map((part) =>
+  part.type === 'mention' ? (
+    <a class="link" href={twitchUrl(part.value)} target="_blank" rel="noopener noreferrer">
+      @{part.value}
+    </a>
+  ) : (
+    part.value
+  )
+)}

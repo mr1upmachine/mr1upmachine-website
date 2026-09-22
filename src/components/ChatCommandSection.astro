@@ -22,7 +22,7 @@ const formattedCommands = commands.map(({ command, ...rest }) => ({
 const badgeSrcList = typeof badgeSrc === 'string' ? [badgeSrc] : badgeSrc;
 ---
 
-<section class="p-2 text-lg bg-white shadow-md rounded-lg">
+<section class="card">
   <div class="mb-3 flex items-center gap-2">
     {badgeSrcList?.map(
       (src) => src && <img aria-hidden="true" alt="" height="28px" width="28px" src={src} />
@@ -37,9 +37,9 @@ const badgeSrcList = typeof badgeSrc === 'string' ? [badgeSrc] : badgeSrc;
           <span class="mr-1 select-none">-</span>,
           <span>{description}</span>,
           url && (
-            <span class="ml-1 text-sm text-blue-600 underline hover:text-blue-800">
-              <a href={url}>(more info)</a>
-            </span>
+            <a class="ml-1 text-sm link" href={url}>
+              (see more)
+            </a>
           ),
         ]}
       </li>

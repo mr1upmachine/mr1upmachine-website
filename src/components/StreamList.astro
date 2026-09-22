@@ -1,0 +1,197 @@
+---
+export const prerender = false;
+import { env } from 'cloudflare:workers';
+import TwitchMentionText from './TwitchMentionText.astro';
+import { twitchUrl } from '../lib/twitch';
+import LocalTime from './LocalTime.astro';
+
+type Entry = { id?: number; timestamp: string; username: string; text: string };
+type SortKey = 'newest' | 'oldest' | 'text' | 'user';
+
+interface Props {
+  kvKey: string;
+  headerText: string;
+  subheaderText?: string;
+  emptyMessage?: string;
+  defaultSort?: SortKey;
+}
+
+const {
+  kvKey,
+  headerText,
+  subheaderText,
+  emptyMessage = 'Nothing here yet.',
+  defaultSort = 'newest',
+} = Astro.props;
+
+const collator = new Intl.Collator(undefined, {
+  sensitivity: 'base',
+  ignorePunctuation: true,
+  numeric: true,
+});
+
+const time = (e: Entry) => new Date(e.timestamp).getTime();
+
+const serverCompare: Record<SortKey, (a: Entry, b: Entry) => number> = {
+  newest: (a, b) => time(b) - time(a),
+  oldest: (a, b) => time(a) - time(b),
+  text: (a, b) => collator.compare(a.text, b.text) || time(b) - time(a),
+  user: (a, b) => collator.compare(a.username, b.username) || time(b) - time(a),
+};
+
+const raw = (await env.LISTS.get<Entry[]>(kvKey, 'json')) ?? [];
+const entries = raw.toSorted(serverCompare[defaultSort]);
+
+const sortOptions: { value: SortKey; label: string }[] = [
+  { value: 'newest', label: 'Newest' },
+  { value: 'oldest', label: 'Oldest' },
+  { value: 'text', label: 'A-Z' },
+  { value: 'user', label: 'User A-Z' },
+];
+
+const searchId = `${kvKey}-search`;
+const sortId = `${kvKey}-sort`;
+---
+
+<section class="space-y-6">
+  <header class="card py-4">
+    <h3 class="text-2xl font-bold">{headerText}</h3>
+    {subheaderText && <p class="mt-2 text-sm">{subheaderText}</p>}
+  </header>
+  <div class="basis-[70ch] max-w-[70ch]" data-stream-list>
+    {entries.length === 0 ? (
+      <p class="card stream-list-empty">{emptyMessage}</p>
+    ) : (
+      <>
+        <div class="mb-4 flex flex-wrap gap-2">
+          <label for={searchId} class="sr-only">
+            Search
+          </label>
+          <input
+            id={searchId}
+            type="search"
+            placeholder="Search…"
+            autocomplete="off"
+            class="min-w-0 flex-1 rounded-md border border-neutral-300 bg-white px-3 py-2"
+            data-search
+          />
+          <label for={sortId} class="sr-only">
+            Sort
+          </label>
+          <select
+            id={sortId}
+            class="rounded-md border border-neutral-300 bg-white px-3 py-2"
+            data-sort
+          >
+            {sortOptions.map((o) => (
+              <option value={o.value} selected={o.value === defaultSort}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <p class="mb-2 text-sm text-neutral-400" aria-live="polite" data-count>
+          {entries.length} entries
+        </p>
+
+        <ul class="stream-list flex flex-col gap-2" data-items>
+          {entries.map((e) => (
+            <li
+              class="card flex justify-between gap-3"
+              data-timestamp={new Date(e.timestamp).getTime()}
+              data-username={e.username.toLowerCase()}
+              data-text={e.text}
+              data-search-text={`${e.id ?? ''} ${e.text} ${e.username}`.toLowerCase()}
+            >
+              <span class="flex items-center">
+                <span>
+                  <TwitchMentionText text={e.text} />
+                </span>
+              </span>
+              <span class="shrink-0 flex flex-col justify-end items-end text-end text-neutral-500 select-none">
+                <span class="text-sm">
+                  <a
+                    class="ml-1 link-subtitle"
+                    href={twitchUrl(e.username)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    @{e.username}
+                  </a>
+                </span>
+                <span class="ml-1 text-xs">
+                  <LocalTime iso={e.timestamp} />
+                  {e.id !== undefined && <span class="ml-2">#{e.id} </span>}
+                </span>
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <p class="card hidden" data-no-results>
+          No matches.
+        </p>
+      </>
+    )}
+  </div>
+</section>
+
+<script>
+  type Compare = (a: HTMLElement, b: HTMLElement) => number;
+
+  const ts = (el: HTMLElement) => Number(el.dataset.timestamp);
+
+  // Case-insensitive, ignores leading punctuation like quote marks, sorts "2" before "10"
+  const collator = new Intl.Collator(undefined, {
+    sensitivity: 'base',
+    ignorePunctuation: true,
+    numeric: true,
+  });
+
+  const byField =
+    (field: 'text' | 'username'): Compare =>
+    (a, b) =>
+      collator.compare(a.dataset[field] ?? '', b.dataset[field] ?? '') || ts(b) - ts(a);
+
+  const compare: Record<string, Compare> = {
+    newest: (a, b) => ts(b) - ts(a),
+    oldest: (a, b) => ts(a) - ts(b),
+    text: byField('text'),
+    user: byField('username'),
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-stream-list]').forEach((root) => {
+    const search = root.querySelector<HTMLInputElement>('[data-search]');
+    const sort = root.querySelector('[data-sort]') as HTMLSelectElement | null;
+    const list = root.querySelector<HTMLUListElement>('[data-items]');
+    const count = root.querySelector<HTMLElement>('[data-count]');
+    const noResults = root.querySelector<HTMLElement>('[data-no-results]');
+    if (!search || !sort || !list || !count || !noResults) return;
+
+    const items = Array.from(list.querySelectorAll<HTMLLIElement>(':scope > li'));
+    const total = items.length;
+
+    const update = () => {
+      const query = search.value.trim().toLowerCase();
+      let visible = 0;
+
+      for (const item of items) {
+        const match = !query || (item.dataset.searchText ?? '').includes(query);
+        item.classList.toggle('hidden', !match);
+        if (match) visible++;
+      }
+
+      for (const item of items.toSorted(compare[sort.value] ?? compare.newest)) {
+        list.appendChild(item);
+      }
+
+      count.textContent = query ? `${visible} of ${total} entries` : `${total} entries`;
+      noResults.classList.toggle('hidden', visible > 0);
+    };
+
+    search.addEventListener('input', update);
+    sort.addEventListener('change', update);
+    update();
+  });
+</script>

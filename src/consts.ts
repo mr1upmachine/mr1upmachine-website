@@ -89,10 +89,6 @@ export const ALL_COMMANDS = [
     description: 'Gets a link to the discord',
   },
   {
-    command: 'currencycount',
-    description: 'Tells you the total number of currencies in the arcade',
-  },
-  {
     command: 'duck',
     description: '🦆',
   },
@@ -138,10 +134,6 @@ export const ALL_COMMANDS = [
     description: 'A wizard casts a spell! What will you be turned into..? 🧙‍♂️ (once per day)',
   },
   {
-    command: 'polymorphcount',
-    description: "Tells you the total number of polymorph options in the wizard's spellbook",
-  },
-  {
     command: 'pushups',
     description: 'Tells you how many total pushups I owe from killing pikmin',
   },
@@ -149,6 +141,7 @@ export const ALL_COMMANDS = [
     command: 'quote',
     description:
       'Fetch a quote! If empty, then gets a random quote. If text is provided, it will get the first quote that matches. If a number is provided, it gets the quote by id.',
+    url: '/quotes',
   },
   {
     command: 'rat',
@@ -161,18 +154,12 @@ export const ALL_COMMANDS = [
   {
     command: 'smut',
     description: 'Only can be used by saramickle19 (once per day)',
-  },
-  {
-    command: 'smutcount',
-    description: 'Tells you the total number of books in the library of smut',
+    url: '/smut',
   },
   {
     command: 'treat',
     description: 'Get a daily treat from the bakery! 🧁 (once per day)',
-  },
-  {
-    command: 'treatcount',
-    description: 'Tells you the total number of treats the bakery has on the menu',
+    url: '/treats',
   },
   {
     command: ['tuck', 'untuck'],
@@ -193,6 +180,7 @@ export const SUB_COMMANDS = [
     command: 'addcurrency',
     description:
       'Add a new currency to the list. Must be be a full sentence with the user and amount referenced. Example: "!addcurrency %user% has %currency_count% rings. Don\'t get hit."',
+    url: '/daily-currency',
   },
   {
     command: 'addpolymorph',
@@ -202,14 +190,17 @@ export const SUB_COMMANDS = [
   {
     command: 'addquote',
     description: 'Create a new quote',
+    url: '/quotes',
   },
   {
     command: 'addsmut',
     description: 'Add to the library of smut',
+    url: '/smut',
   },
   {
     command: 'addtreat',
     description: 'Add a new treat for the bakery to serve!',
+    url: '/treats',
   },
   {
     command: 'timer',
@@ -233,7 +224,7 @@ export const VIP_COMMANDS = [
   {
     command: 's',
     description: 'Have your message be read as text to speech',
-    url: './tts',
+    url: '/tts',
   },
   {
     command: 'seanstopraging',
@@ -242,7 +233,7 @@ export const VIP_COMMANDS = [
   {
     command: 'setvoice',
     description: "Set your user's default text to speech voice",
-    url: './tts',
+    url: '/tts',
   },
   {
     command: 'zoom',
@@ -324,6 +315,7 @@ export const MOD_COMMANDS = [
   {
     command: 'quotedel',
     description: "Delete a quote by it's id",
+    url: '/quotes',
   },
 ];
 

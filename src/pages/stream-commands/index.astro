@@ -1,47 +1,27 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import NightBackground from '../../components/NightBackground.astro';
 import { ALL_COMMANDS, MOD_COMMANDS, SUB_COMMANDS, VIP_COMMANDS } from '../../consts';
 import ChatCommandSection from '../../components/ChatCommandSection.astro';
+import SiteBase from '../../components/SiteBase.astro';
 ---
 
-<!doctype html>
-<html class="h-full" lang="en">
-  <head>
-    <BaseHead />
-  </head>
-  <body class="h-full">
-    <NightBackground />
-    <Header />
-    <main class="px-2 sm:px-8 py-6 flex justify-center">
-      <section class="space-y-6 text-[#364153] basis-[70ch] max-w-[70ch]">
-        <ChatCommandSection title="Commands" commands={ALL_COMMANDS} />
-        <ChatCommandSection
-          title="Subs & VIP Commands"
-          badgeSrc={[
-            '/sub-badge.png',
-            'https://static-cdn.jtvnw.net/badges/v1/b817aba4-fad8-49e2-b88a-7cc744dfa6ec/3',
-          ]}
-          commands={SUB_COMMANDS}
-        />
-        <ChatCommandSection
-          title="VIP Commands"
-          badgeSrc="https://static-cdn.jtvnw.net/badges/v1/b817aba4-fad8-49e2-b88a-7cc744dfa6ec/3"
-          commands={VIP_COMMANDS}
-        />
-        <ChatCommandSection
-          title="Moderator Commands"
-          badgeSrc={[
-            'https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/1',
-            'https://assets.help.twitch.tv/article/img/000002212-07.png',
-          ]}
-          commands={MOD_COMMANDS}
-          footnote="mods can also use all vip / sub commands"
-        />
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+<SiteBase>
+  <section class="space-y-6 basis-[70ch] max-w-[70ch]">
+    <ChatCommandSection title="Commands" commands={ALL_COMMANDS} />
+    <ChatCommandSection title="Sub Commands" badgeSrc="/sub-badge.png" commands={SUB_COMMANDS} />
+    <ChatCommandSection
+      title="VIP Commands"
+      badgeSrc="https://static-cdn.jtvnw.net/badges/v1/b817aba4-fad8-49e2-b88a-7cc744dfa6ec/3"
+      commands={VIP_COMMANDS}
+      footnote="VIPs can use all sub commands without a sub"
+    />
+    <ChatCommandSection
+      title="Moderator Commands"
+      badgeSrc={[
+        'https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/1',
+        'https://assets.help.twitch.tv/article/img/000002212-07.png',
+      ]}
+      commands={MOD_COMMANDS}
+      footnote="mods can use all VIP & sub commands"
+    />
+  </section>
+</SiteBase>

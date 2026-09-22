@@ -1,0 +1,21 @@
+---
+import { formatDateTime } from '../lib/twitch';
+
+interface Props {
+  iso: string;
+}
+
+const { iso } = Astro.props;
+---
+
+<time datetime={iso} data-local-time>
+  {formatDateTime(iso, 'UTC')} UTC
+</time>
+
+<script>
+  import { formatDateTime } from '../lib/twitch';
+
+  document.querySelectorAll<HTMLTimeElement>('time[data-local-time]').forEach((el) => {
+    el.textContent = formatDateTime(el.dateTime);
+  });
+</script>
