@@ -191,6 +191,7 @@ export const SUB_COMMANDS = [
     command: 'addpolymorph',
     description:
       'Add a new polymorph to the list. Must complete the sentence "You\'ve been polymorphed into ___". Example: "!addpolymorph a lesser wizard"',
+    url: '/polymorph',
   },
   {
     command: 'addquote',
