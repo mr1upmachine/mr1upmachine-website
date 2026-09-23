@@ -136,6 +136,7 @@ export const ALL_COMMANDS = [
   {
     command: 'polymorph',
     description: 'A wizard casts a spell! What will you be turned into..? 🧙‍♂️ (once per day)',
+    url: '/polymorph',
   },
   {
     command: 'pushups',
