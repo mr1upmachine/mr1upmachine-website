@@ -162,8 +162,12 @@ export const ALL_COMMANDS = [
     url: '/smut',
   },
   {
+    command: ['tempc', 'tempf'],
+    description: 'Convert temperature. !tempc for C -> F, !tempf for F -> C',
+  },
+  {
     command: 'treat',
-    description: 'Get a daily treat from the bakery! 🧁 (once per day)',
+    description: 'Get a daily treat from the bakery! 🧁',
     url: '/treats',
   },
   {
