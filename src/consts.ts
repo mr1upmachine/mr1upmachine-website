@@ -323,6 +323,10 @@ export const MOD_COMMANDS = [
     description: 'Shout someone out!',
   },
   {
+    command: 'spoilers',
+    description: 'Posts & pins the spoiler warning message',
+  },
+  {
     command: 'quotedel',
     description: "Delete a quote by it's id",
     url: '/quotes',
