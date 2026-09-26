@@ -291,7 +291,7 @@ export const MOD_COMMANDS = [
   {
     command: 'deltreat',
     description: "Delete a treat by it's id",
-    url: '/treat',
+    url: '/treats',
   },
   {
     command: ['focus', 'unfocus'],
