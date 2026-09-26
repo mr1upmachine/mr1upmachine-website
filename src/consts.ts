@@ -269,6 +269,31 @@ export const MOD_COMMANDS = [
     description: 'toggle auto play for Chat Guess Games',
   },
   {
+    command: 'delcurrency',
+    description: "Delete a daily currency by it's id",
+    url: '/daily-currency',
+  },
+  {
+    command: 'delpolymorph',
+    description: "Delete a polymorph by it's id",
+    url: '/polymorph',
+  },
+  {
+    command: 'delquote',
+    description: "Delete a quote by it's id",
+    url: '/quotes',
+  },
+  {
+    command: 'delsmut',
+    description: "Delete a smut entry by it's id",
+    url: '/smut',
+  },
+  {
+    command: 'deltreat',
+    description: "Delete a treat by it's id",
+    url: '/treat',
+  },
+  {
     command: ['focus', 'unfocus'],
     description: 'Toggle "Focus mode", which disables all sound effects and tts messages',
   },
@@ -325,11 +350,6 @@ export const MOD_COMMANDS = [
   {
     command: 'spoilers',
     description: 'Posts & pins the spoiler warning message',
-  },
-  {
-    command: 'quotedel',
-    description: "Delete a quote by it's id",
-    url: '/quotes',
   },
 ];
 
