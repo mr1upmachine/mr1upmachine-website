@@ -228,7 +228,7 @@ export const SUB_COMMANDS = [
 
 export const VIP_COMMANDS = [
   {
-    command: ['homework', 'hw'],
+    command: 'hw',
     description: 'Assign the streamer some homework for later.',
   },
   {
