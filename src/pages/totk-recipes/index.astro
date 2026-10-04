@@ -1,0 +1,13 @@
+---
+export const prerender = false;
+import SiteBase from '../../components/SiteBase.astro';
+import StreamList from '../../components/StreamList.astro';
+---
+
+<SiteBase>
+  <StreamList
+    kvKey="stream_totk_recipes"
+    headerText="All remaining TotK recipes to cook"
+    defaultSort="oldest"
+  />
+</SiteBase>
