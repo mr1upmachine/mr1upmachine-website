@@ -57,7 +57,7 @@ const sortId = `${kvKey}-sort`;
     <h3 class="text-2xl font-bold">{headerText}</h3>
     {subheaderText && <p class="mt-2 text-sm">{subheaderText}</p>}
   </header>
-  <div class="basis-[70ch] max-w-[70ch]" data-stream-list>
+  <div class="w-full max-w-[70ch]" data-stream-list>
     {entries.length === 0 ? (
       <p class="card stream-list-empty">{emptyMessage}</p>
     ) : (
