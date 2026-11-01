@@ -15,7 +15,7 @@ const linkClass =
 ---
 
 <span class="flex shrink-0 items-center">
-  {map && (
+  {map ? (
     <a
       class={linkClass}
       href={map}
@@ -26,6 +26,8 @@ const linkClass =
       <span class="sr-only">Find {text} on the object map</span>
       <FontAwesomeIcon icon={faMapLocationDot} height="16px" width="16px" aria-hidden="true" />
     </a>
+  ) : (
+    <span class="h-7 w-7" aria-hidden="true" />
   )}
   <a
     class={linkClass}
