@@ -1,10 +1,10 @@
 ---
 export const prerender = false;
 import { env } from 'cloudflare:workers';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SiteBase from '../../components/SiteBase.astro';
 import LocalTime from '../../components/LocalTime.astro';
 import InlineCode from '../../components/InlineCode.astro';
+import TotkIcon from '../../components/TotkIcon.astro';
 import { twitchUrl } from '../../lib/twitch';
 import { type BountySnapshot, typeStyle } from '../../lib/totkBounties';
 
@@ -58,9 +58,7 @@ const remaining = items.length - totalDone;
             {progress.map((p) => (
               <li class="space-y-1">
                 <div class="flex items-center gap-2 text-base">
-                  <span class="w-5 flex justify-center" style={{ color: p.color }}>
-                    <FontAwesomeIcon icon={p.icon} height="16px" width="16px" aria-hidden="true" />
-                  </span>
+                  <TotkIcon type={p.type} size={24} />
                   <span class="font-bold">{p.plural}</span>
                   <span class="ml-auto text-sm tabular-nums text-neutral-500">
                     {p.done}/{p.total}
@@ -103,14 +101,7 @@ const remaining = items.length - totalDone;
                     ]}
                     style={{ borderLeft: `4px solid ${s.color}` }}
                   >
-                    <span class="w-6 flex justify-center" style={{ color: s.color }}>
-                      <FontAwesomeIcon
-                        icon={s.icon}
-                        height="20px"
-                        width="20px"
-                        aria-hidden="true"
-                      />
-                    </span>
+                    <TotkIcon type={t.type} size={36} />
                     <span class="min-w-0 flex-1">
                       <span
                         class="block text-xs font-bold uppercase tracking-wider"
@@ -191,7 +182,6 @@ const remaining = items.length - totalDone;
 
           <ul class="flex flex-col gap-1" data-items>
             {items.map((i) => {
-              const s = typeStyle(i.type);
               return (
                 <li
                   class:list={['card flex items-center gap-3 py-1.5 text-base', i.done && 'hidden']}
@@ -199,9 +189,7 @@ const remaining = items.length - totalDone;
                   data-done={i.done ? 'true' : 'false'}
                   data-search-text={`#${i.id} ${i.text} ${labelOf(i.type)}`.toLowerCase()}
                 >
-                  <span class="w-5 flex justify-center" style={{ color: s.color }}>
-                    <FontAwesomeIcon icon={s.icon} height="16px" width="16px" aria-hidden="true" />
-                  </span>
+                  <TotkIcon type={i.type} size={24} />
                   <span class:list={['flex-1 min-w-0', i.done && 'line-through text-neutral-400']}>
                     {i.text}
                   </span>
