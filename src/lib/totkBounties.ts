@@ -50,3 +50,27 @@ export const DEFAULT_STYLE: TypeStyle = {
 };
 
 export const typeStyle = (type: string) => TYPE_STYLES[type] ?? DEFAULT_STYLE;
+
+// Object map layer to search for each type. Types left out have nothing placed on the map
+// (armor sits in chests, recipes are cooked), so they only get a wiki link.
+const MAP_LAYERS: Record<string, 'Surface' | 'Depths'> = {
+  photo: 'Surface',
+  shrine: 'Surface',
+  lightroot: 'Depths',
+  cave: 'Surface',
+  well: 'Surface',
+};
+
+// "Traveler's Sword (Pristine)" -> "Traveler's Sword"
+const baseName = (text: string) => text.replace(/\s*\(Pristine\)$/i, '');
+
+export const wikiUrl = (text: string) =>
+  `https://www.zeldadungeon.net/wiki/Special:Search?search=${encodeURIComponent(baseName(text))}&go=Go`;
+
+export const mapUrl = (type: string, text: string) => {
+  const layer = MAP_LAYERS[type];
+  if (!layer) return undefined;
+  // Lightroots are found by their name alone ("Gadohsi"), everything else by the full name
+  const query = type === 'lightroot' ? text.replace(/\s+Lightroot$/i, '') : baseName(text);
+  return `https://objmap-totk.zeldamods.org/#/map/z3,0,0,${layer}?q=${encodeURIComponent(query)}`;
+};

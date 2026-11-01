@@ -5,6 +5,7 @@ import SiteBase from '../../components/SiteBase.astro';
 import LocalTime from '../../components/LocalTime.astro';
 import InlineCode from '../../components/InlineCode.astro';
 import TotkIcon from '../../components/TotkIcon.astro';
+import TotkLinks from '../../components/TotkLinks.astro';
 import { twitchUrl } from '../../lib/twitch';
 import { type BountySnapshot, typeStyle } from '../../lib/totkBounties';
 
@@ -127,6 +128,7 @@ const remaining = items.length - totalDone;
                       )}
                       <span class="block text-xs">#{t.id}</span>
                     </span>
+                    <TotkLinks type={t.type} text={t.text} />
                   </li>
                 );
               })}
@@ -194,6 +196,7 @@ const remaining = items.length - totalDone;
                     {i.text}
                   </span>
                   <span class="shrink-0 text-xs text-neutral-500 tabular-nums">#{i.id}</span>
+                  <TotkLinks type={i.type} text={i.text} />
                 </li>
               );
             })}
