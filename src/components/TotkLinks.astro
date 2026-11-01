@@ -1,0 +1,40 @@
+---
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookOpen, faMapLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { mapUrl, wikiUrl } from '../lib/totkBounties';
+
+interface Props {
+  type: string;
+  text: string;
+}
+
+const { type, text } = Astro.props;
+const map = mapUrl(type, text);
+const linkClass =
+  'inline-flex h-7 w-7 items-center justify-center rounded-md text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-sky-700 focus-visible:outline-2 focus-visible:outline-sky-600';
+---
+
+<span class="flex shrink-0 items-center">
+  {map && (
+    <a
+      class={linkClass}
+      href={map}
+      target="_blank"
+      rel="noopener noreferrer"
+      title={`Find ${text} on the object map`}
+    >
+      <span class="sr-only">Find {text} on the object map</span>
+      <FontAwesomeIcon icon={faMapLocationDot} height="16px" width="16px" aria-hidden="true" />
+    </a>
+  )}
+  <a
+    class={linkClass}
+    href={wikiUrl(text)}
+    target="_blank"
+    rel="noopener noreferrer"
+    title={`${text} on Zelda Dungeon wiki`}
+  >
+    <span class="sr-only">{text} on Zelda Dungeon wiki</span>
+    <FontAwesomeIcon icon={faBookOpen} height="16px" width="16px" aria-hidden="true" />
+  </a>
+</span>
