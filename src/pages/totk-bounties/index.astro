@@ -128,7 +128,7 @@ const remaining = items.length - totalDone;
                       )}
                       <span class="block text-xs">#{t.id}</span>
                     </span>
-                    <TotkLinks id={t.id} type={t.type} text={t.text} />
+                    <TotkLinks type={t.type} text={t.text} />
                   </li>
                 );
               })}
@@ -196,7 +196,7 @@ const remaining = items.length - totalDone;
                     {i.text}
                   </span>
                   <span class="shrink-0 text-xs text-neutral-500 tabular-nums">#{i.id}</span>
-                  <TotkLinks id={i.id} type={i.type} text={i.text} />
+                  <TotkLinks type={i.type} text={i.text} />
                 </li>
               );
             })}

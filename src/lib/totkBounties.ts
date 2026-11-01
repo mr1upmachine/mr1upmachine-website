@@ -1,4 +1,3 @@
-import mapIds from '../data/totk-map-ids.json';
 import {
   faCamera,
   faVihara,
@@ -68,24 +67,10 @@ const baseName = (text: string) => text.replace(/\s*\(Pristine\)$/i, '');
 export const wikiUrl = (text: string) =>
   `https://www.zeldadungeon.net/wiki/Special:Search?search=${encodeURIComponent(baseName(text))}&go=Go`;
 
-type MapId = { hashId: string; mapType: string; mapName: string; x: number; z: number };
-// Location markers found by scripts/totk-map-ids.mjs, keyed by bounty id
-const MAP_IDS = mapIds as Record<string, MapId>;
-
-const MAP_BASE = 'https://objmap-totk.zeldamods.org/#/map';
-
-// Links to the item's own marker when we know it (opens it selected), otherwise a name search
-export const mapUrl = (type: string, text: string, id?: number) => {
+export const mapUrl = (type: string, text: string) => {
   const layer = MAP_LAYERS[type];
   if (!layer) return undefined;
-
-  const known = id !== undefined ? MAP_IDS[id] : undefined;
-  if (known) {
-    const objId = [known.mapType, known.mapName, known.hashId].join(',');
-    return `${MAP_BASE}/z6,${known.x},${known.z},${layer}?id=${encodeURIComponent(objId)}`;
-  }
-
   // Lightroots are found by their name alone ("Gadohsi"), everything else by the full name
   const query = type === 'lightroot' ? text.replace(/\s+Lightroot$/i, '') : baseName(text);
-  return `${MAP_BASE}/z3,0,0,${layer}?q=${encodeURIComponent(query)}`;
+  return `https://objmap-totk.zeldamods.org/#/map/z3,0,0,${layer}?q=${encodeURIComponent(query)}`;
 };
