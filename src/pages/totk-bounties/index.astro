@@ -1,0 +1,264 @@
+---
+export const prerender = false;
+import { env } from 'cloudflare:workers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SiteBase from '../../components/SiteBase.astro';
+import LocalTime from '../../components/LocalTime.astro';
+import InlineCode from '../../components/InlineCode.astro';
+import { twitchUrl } from '../../lib/twitch';
+import { type BountySnapshot, typeStyle } from '../../lib/totkBounties';
+
+const snapshot = await env.LISTS.get<BountySnapshot>('stream_totk_bounties', 'json');
+
+const types = snapshot?.types ?? [];
+const items = snapshot?.items ?? [];
+const board = snapshot?.board ?? [];
+const queue = snapshot?.queue ?? [];
+
+const progress = types.map((t) => {
+  const ofType = items.filter((i) => i.type === t.type);
+  const done = ofType.filter((i) => i.done).length;
+  return { ...t, ...typeStyle(t.type), done, total: ofType.length };
+});
+const totalDone = items.filter((i) => i.done).length;
+const pct = (done: number, total: number) => (total === 0 ? 0 : Math.round((done / total) * 100));
+
+const labelOf = (type: string) => types.find((t) => t.type === type)?.label ?? type;
+const remaining = items.length - totalDone;
+---
+
+<SiteBase>
+  <section class="w-full max-w-[70ch] space-y-6">
+    <header class="card py-4">
+      <h1 class="text-2xl font-bold">Tears of the Kingdom Bounties</h1>
+      <p class="mt-2 text-sm">
+        Everything left for TotK 100%, plus the bounties chat has posted. Post one with the{' '}
+        <InlineCode>Post a bounty</InlineCode> channel point redeem by naming a shrine, Compendium
+        entry, cave, and more.
+      </p>
+      {snapshot && (
+        <p class="mt-2 text-xs text-neutral-500">
+          Updated <LocalTime iso={snapshot.updatedAt} />
+        </p>
+      )}
+    </header>
+
+    {!snapshot ? (
+      <p class="card">No bounty data yet. Check back after the next stream!</p>
+    ) : (
+      <>
+        <section class="card">
+          <div class="mb-3 flex items-baseline justify-between gap-2">
+            <h2 class="text-xl font-bold">Progress</h2>
+            <span class="text-sm text-neutral-500 tabular-nums">
+              {totalDone}/{items.length} ({pct(totalDone, items.length)}%)
+            </span>
+          </div>
+          <ul class="grid gap-3 sm:grid-cols-2">
+            {progress.map((p) => (
+              <li class="space-y-1">
+                <div class="flex items-center gap-2 text-base">
+                  <span class="w-5 flex justify-center" style={{ color: p.color }}>
+                    <FontAwesomeIcon icon={p.icon} height="16px" width="16px" aria-hidden="true" />
+                  </span>
+                  <span class="font-bold">{p.plural}</span>
+                  <span class="ml-auto text-sm tabular-nums text-neutral-500">
+                    {p.done}/{p.total}
+                  </span>
+                </div>
+                <div
+                  class="h-2 rounded-full bg-neutral-200 overflow-hidden"
+                  role="progressbar"
+                  aria-label={`${p.plural} completed`}
+                  aria-valuemin={0}
+                  aria-valuemax={p.total}
+                  aria-valuenow={p.done}
+                >
+                  <div
+                    class="h-full rounded-full"
+                    style={{ width: `${pct(p.done, p.total)}%`, backgroundColor: p.color }}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2 class="mb-3 text-xl font-bold">On the board</h2>
+          {board.length === 0 ? (
+            <p class="text-base text-neutral-500">No bounties posted right now.</p>
+          ) : (
+            <ul class="flex flex-col gap-2">
+              {[
+                ...board.map((t) => ({ t, queued: false })),
+                ...queue.map((t) => ({ t, queued: true })),
+              ].map(({ t, queued }) => {
+                const s = typeStyle(t.type);
+                return (
+                  <li
+                    class:list={[
+                      'flex items-center gap-3 rounded-md border px-3 py-2',
+                      queued ? 'border-dashed border-neutral-300' : 'border-neutral-200',
+                    ]}
+                    style={{ borderLeft: `4px solid ${s.color}` }}
+                  >
+                    <span class="w-6 flex justify-center" style={{ color: s.color }}>
+                      <FontAwesomeIcon
+                        icon={s.icon}
+                        height="20px"
+                        width="20px"
+                        aria-hidden="true"
+                      />
+                    </span>
+                    <span class="min-w-0 flex-1">
+                      <span
+                        class="block text-xs font-bold uppercase tracking-wider"
+                        style={{ color: s.color }}
+                      >
+                        {labelOf(t.type)}
+                        {queued && <span class="ml-1 text-neutral-500">· queued</span>}
+                      </span>
+                      <span class="block font-bold">{t.text}</span>
+                    </span>
+                    <span class="shrink-0 text-end text-sm text-neutral-500">
+                      {t.source === 'chat' ? (
+                        <a
+                          class="link-subtitle"
+                          href={twitchUrl(t.user)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          @{t.user}
+                        </a>
+                      ) : (
+                        <span>Random</span>
+                      )}
+                      <span class="block text-xs">#{t.id}</span>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </section>
+
+        <section data-bounty-list>
+          <div class="mb-4 flex flex-wrap gap-2">
+            <label for="bounty-search" class="sr-only">
+              Search
+            </label>
+            <input
+              id="bounty-search"
+              type="search"
+              placeholder="Search…"
+              autocomplete="off"
+              class="min-w-0 flex-1 basis-full sm:basis-0 rounded-md border border-neutral-300 bg-white px-3 py-2"
+              data-search
+            />
+            <label for="bounty-type" class="sr-only">
+              Type
+            </label>
+            <select
+              id="bounty-type"
+              class="rounded-md border border-neutral-300 bg-white px-3 py-2"
+              data-type-filter
+            >
+              <option value="">All types</option>
+              {types.map((t) => (
+                <option value={t.type}>{t.plural}</option>
+              ))}
+            </select>
+            <label for="bounty-status" class="sr-only">
+              Status
+            </label>
+            <select
+              id="bounty-status"
+              class="rounded-md border border-neutral-300 bg-white px-3 py-2"
+              data-status-filter
+            >
+              <option value="open" selected>
+                Remaining
+              </option>
+              <option value="done">Completed</option>
+              <option value="">All</option>
+            </select>
+          </div>
+
+          <p class="mb-2 text-sm text-neutral-400" aria-live="polite" data-count>
+            {remaining} remaining
+          </p>
+
+          <ul class="flex flex-col gap-1" data-items>
+            {items.map((i) => {
+              const s = typeStyle(i.type);
+              return (
+                <li
+                  class:list={['card flex items-center gap-3 py-1.5 text-base', i.done && 'hidden']}
+                  data-type={i.type}
+                  data-done={i.done ? 'true' : 'false'}
+                  data-search-text={`#${i.id} ${i.text} ${labelOf(i.type)}`.toLowerCase()}
+                >
+                  <span class="w-5 flex justify-center" style={{ color: s.color }}>
+                    <FontAwesomeIcon icon={s.icon} height="16px" width="16px" aria-hidden="true" />
+                  </span>
+                  <span class:list={['flex-1 min-w-0', i.done && 'line-through text-neutral-400']}>
+                    {i.text}
+                  </span>
+                  <span class="shrink-0 text-xs text-neutral-500 tabular-nums">#{i.id}</span>
+                </li>
+              );
+            })}
+          </ul>
+
+          <p class="card hidden" data-no-results>
+            No matches.
+          </p>
+        </section>
+      </>
+    )}
+  </section>
+</SiteBase>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-bounty-list]').forEach((root) => {
+    const search = root.querySelector<HTMLInputElement>('[data-search]');
+    const typeFilter = root.querySelector('[data-type-filter]') as HTMLSelectElement | null;
+    const statusFilter = root.querySelector('[data-status-filter]') as HTMLSelectElement | null;
+    const list = root.querySelector<HTMLUListElement>('[data-items]');
+    const count = root.querySelector<HTMLElement>('[data-count]');
+    const noResults = root.querySelector<HTMLElement>('[data-no-results]');
+    if (!search || !typeFilter || !statusFilter || !list || !count || !noResults) return;
+
+    const items = Array.from(list.querySelectorAll<HTMLLIElement>(':scope > li'));
+    const statusWord: Record<string, string> = {
+      open: 'remaining',
+      done: 'completed',
+      '': 'total',
+    };
+
+    const update = () => {
+      const query = search.value.trim().toLowerCase();
+      const type = typeFilter.value;
+      const status = statusFilter.value;
+      let visible = 0;
+
+      for (const item of items) {
+        const match =
+          (!type || item.dataset.type === type) &&
+          (!status || (status === 'done') === (item.dataset.done === 'true')) &&
+          (!query || (item.dataset.searchText ?? '').includes(query));
+        item.classList.toggle('hidden', !match);
+        if (match) visible++;
+      }
+
+      count.textContent = `${visible} ${statusWord[status] ?? 'total'}`;
+      noResults.classList.toggle('hidden', visible > 0);
+    };
+
+    search.addEventListener('input', update);
+    typeFilter.addEventListener('change', update);
+    statusFilter.addEventListener('change', update);
+    update();
+  });
+</script>

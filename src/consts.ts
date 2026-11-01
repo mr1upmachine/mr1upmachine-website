@@ -257,6 +257,12 @@ export const MOD_COMMANDS = [
     description: 'snoozes the ads for 3 minutes',
   },
   {
+    command: 'bounty',
+    description:
+      'Post a random TotK bounty to the board. Optionally pick a type: photo, shrine, lightroot, cave, well, armor',
+    url: '/totk-bounties',
+  },
+  {
     command: 'canceltimer',
     description: 'Cancels an in progress timer by id',
   },
@@ -267,6 +273,12 @@ export const MOD_COMMANDS = [
   {
     command: 'cggauto',
     description: 'toggle auto play for Chat Guess Games',
+  },
+  {
+    command: ['claim', 'unclaim'],
+    description:
+      'Mark TotK bounties done, or undo it. Takes names or ids, comma separated, with ranges like "#1-40"',
+    url: '/totk-bounties',
   },
   {
     command: 'delcurrency',
@@ -323,6 +335,11 @@ export const MOD_COMMANDS = [
       "Posts the raid messages. Shouldn't be necessary since they automatically post when raid is started",
   },
   {
+    command: 'removebounty',
+    description: 'Take a TotK bounty off the board without claiming it. Refunds chat redeems',
+    url: '/totk-bounties',
+  },
+  {
     command: 'resetpalette',
     description: 'Resets the palette back to the one set for the category',
   },
@@ -342,6 +359,11 @@ export const MOD_COMMANDS = [
   {
     command: 'settitle',
     description: 'Sets the stream title',
+  },
+  {
+    command: 'skipbounty',
+    description: 'Skip a TotK bounty on the board by slot (1-3). Chat redeems go back in the queue',
+    url: '/totk-bounties',
   },
   {
     command: 'so',
