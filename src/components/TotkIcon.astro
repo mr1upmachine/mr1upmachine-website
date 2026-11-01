@@ -8,23 +8,25 @@ interface Props {
 }
 
 const { type, size = 20 } = Astro.props;
-const { icon, image } = typeStyle(type);
-const inner = Math.round(size * 0.8);
+const { icon, color, image, invert } = typeStyle(type);
 ---
 
 <span
-  class="inline-flex shrink-0 items-center justify-center rounded-md bg-slate-800"
-  style={{ width: `${size}px`, height: `${size}px` }}
+  class="inline-flex shrink-0 items-center justify-center"
+  style={{ width: `${size}px`, height: `${size}px`, color }}
   aria-hidden="true"
 >
   {image ? (
-    <img src={image} alt="" width={inner} height={inner} loading="lazy" decoding="async" />
-  ) : (
-    <FontAwesomeIcon
-      icon={icon}
-      height={`${inner}px`}
-      width={`${inner}px`}
-      className="text-white"
+    <img
+      src={image}
+      alt=""
+      width={size}
+      height={size}
+      loading="lazy"
+      decoding="async"
+      class:list={[invert && 'invert']}
     />
+  ) : (
+    <FontAwesomeIcon icon={icon} height={`${size}px`} width={`${size}px`} />
   )}
 </span>
