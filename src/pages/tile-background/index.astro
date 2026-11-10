@@ -1,0 +1,241 @@
+---
+import SiteBase from '../../components/SiteBase.astro';
+---
+
+<SiteBase>
+  <section class="flex flex-col gap-6 text-[#364153] basis-[70ch] max-w-[70ch] w-full">
+    <div class="card flex flex-col gap-3">
+      <h1 class="text-2xl font-bold">Tile Background</h1>
+      <p class="text-base">
+        Pick 3 to 10 colors. The URL updates as you edit, so you can share the palette by copying
+        the link.
+      </p>
+      <ul id="color-list" class="flex flex-col gap-2"></ul>
+      <div class="flex flex-wrap items-center gap-2 text-base">
+        <button
+          id="add-color"
+          type="button"
+          class="px-3 py-1 rounded-md bg-sky-600 text-white cursor-pointer hover:bg-sky-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-sky-600"
+        >
+          Add color
+        </button>
+        <button
+          id="copy-colors"
+          type="button"
+          class="px-3 py-1 rounded-md bg-gray-200 text-gray-800 cursor-pointer hover:bg-gray-300"
+        >
+          Copy list
+        </button>
+        <span id="copy-status" class="text-sm text-gray-600" role="status"></span>
+        <span id="count-hint" class="ml-auto text-sm text-gray-600"></span>
+      </div>
+    </div>
+    <div
+      id="preview"
+      aria-label="Palette preview"
+      class="grid aspect-3/1 w-full overflow-hidden rounded-lg shadow-md"
+      role="img"
+    ></div>
+    <style id="palette-keyframes" is:inline></style>
+  </section>
+</SiteBase>
+
+<script>
+  const MIN_COLORS = 3;
+  const MAX_COLORS = 10;
+  const DEFAULT_COLORS = ['ef4444', 'f97316', 'eab308', '22c55e', '06b6d4', '3b82f6', 'a855f7'];
+
+  // Preview grid. Animation is sped up vs. the real 90s so changes are easy to judge.
+  const PREVIEW_COLUMNS = 24;
+  const PREVIEW_ROWS = 8;
+  const PREVIEW_DURATION_SECONDS = 20;
+
+  const listEl = document.getElementById('color-list') as HTMLUListElement;
+  const addBtn = document.getElementById('add-color') as HTMLButtonElement;
+  const copyBtn = document.getElementById('copy-colors') as HTMLButtonElement;
+  const copyStatusEl = document.getElementById('copy-status') as HTMLSpanElement;
+  const countHintEl = document.getElementById('count-hint') as HTMLSpanElement;
+  const previewEl = document.getElementById('preview') as HTMLDivElement;
+  const keyframesEl = document.getElementById('palette-keyframes') as HTMLStyleElement;
+
+  /** Returns a lowercase 6-digit hex string (no "#"), or null if invalid. Accepts 3-digit shorthand. */
+  function normalizeHex(input: string): string | null {
+    let value = input.trim().replace(/^#/, '').toLowerCase();
+    if (/^[0-9a-f]{3}$/.test(value)) {
+      value = value
+        .split('')
+        .map((c) => c + c)
+        .join('');
+    }
+    return /^[0-9a-f]{6}$/.test(value) ? value : null;
+  }
+
+  function readColorsFromUrl(): string[] {
+    const raw = new URLSearchParams(window.location.search).get('colors');
+    const parsed = (raw ? raw.split(',') : [])
+      .map(normalizeHex)
+      .filter((c): c is string => c !== null)
+      .slice(0, MAX_COLORS);
+    return parsed.length >= MIN_COLORS ? parsed : [...DEFAULT_COLORS];
+  }
+
+  const colors = readColorsFromUrl();
+
+  // --- Preview ---
+  const diagonalMax = PREVIEW_COLUMNS + PREVIEW_ROWS - 2;
+  for (let row = 0; row < PREVIEW_ROWS; row++) {
+    for (let col = 0; col < PREVIEW_COLUMNS; col++) {
+      const cell = document.createElement('div');
+      const diagonalPercent = ((row + (PREVIEW_COLUMNS - 1 - col)) / diagonalMax) * 100;
+      cell.style.animation = `tile-palette ${PREVIEW_DURATION_SECONDS}s linear infinite`;
+      cell.style.animationDelay = `${(-diagonalPercent * PREVIEW_DURATION_SECONDS) / 100}s`;
+      previewEl.appendChild(cell);
+    }
+  }
+  previewEl.style.gridTemplateColumns = `repeat(${PREVIEW_COLUMNS}, 1fr)`;
+  previewEl.style.gridTemplateRows = `repeat(${PREVIEW_ROWS}, 1fr)`;
+
+  function updatePreview() {
+    const steps = colors.map((color, i) => {
+      const percent = parseFloat(((100 / colors.length) * i).toFixed(2));
+      return `${percent}%{background:#${color}}`;
+    });
+    steps.push(`100%{background:#${colors[0]}}`);
+    keyframesEl.textContent = `@keyframes tile-palette{${steps.join('')}}`;
+  }
+
+  // --- URL sync (debounced: Safari throws if replaceState is called too often) ---
+  let urlTimer: number | undefined;
+  function updateUrl() {
+    window.clearTimeout(urlTimer);
+    urlTimer = window.setTimeout(() => {
+      const params = new URLSearchParams(window.location.search);
+      params.delete('colors');
+      const rest = params.toString();
+      const query = `colors=${colors.join(',')}${rest ? `&${rest}` : ''}`;
+      try {
+        window.history.replaceState(
+          null,
+          '',
+          `${window.location.pathname}?${query}${window.location.hash}`
+        );
+      } catch {
+        // Ignore; sharing via URL just won't update.
+      }
+    }, 150);
+  }
+
+  function updateControls() {
+    addBtn.disabled = colors.length >= MAX_COLORS;
+    countHintEl.textContent = `${colors.length} of ${MAX_COLORS} colors (min ${MIN_COLORS})`;
+    listEl.querySelectorAll<HTMLButtonElement>('button[data-remove]').forEach((btn) => {
+      btn.disabled = colors.length <= MIN_COLORS;
+    });
+  }
+
+  function commit() {
+    updatePreview();
+    updateUrl();
+    updateControls();
+  }
+
+  // --- Color rows ---
+  function renderList() {
+    listEl.replaceChildren();
+    colors.forEach((color, index) => {
+      const li = document.createElement('li');
+      li.className = 'flex items-center gap-2';
+
+      const picker = document.createElement('input');
+      picker.type = 'color';
+      picker.value = `#${color}`;
+      picker.className =
+        'h-10 w-12 shrink-0 cursor-pointer rounded-md border border-gray-300 p-0.5';
+      picker.setAttribute('aria-label', `Color ${index + 1} picker`);
+
+      const hashWrap = document.createElement('label');
+      hashWrap.className =
+        'flex grow items-center gap-1 rounded-md border border-gray-300 px-2 font-mono focus-within:outline-2 focus-within:outline-sky-600 has-aria-invalid:border-red-500 has-aria-invalid:outline-red-500';
+      const hash = document.createElement('span');
+      hash.textContent = '#';
+      hash.className = 'text-gray-500';
+      const text = document.createElement('input');
+      text.type = 'text';
+      text.value = color;
+      text.maxLength = 7;
+      text.spellcheck = false;
+      text.autocomplete = 'off';
+      text.className = 'h-10 w-full bg-transparent outline-none';
+      text.setAttribute('aria-label', `Color ${index + 1} hex code`);
+      hashWrap.append(hash, text);
+
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.dataset.remove = '';
+      remove.textContent = '✕';
+      remove.className =
+        'h-10 w-10 shrink-0 cursor-pointer rounded-md bg-gray-200 text-gray-800 hover:bg-red-100 hover:text-red-700 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-800';
+      remove.setAttribute('aria-label', `Remove color ${index + 1}`);
+
+      picker.addEventListener('input', () => {
+        colors[index] = picker.value.slice(1).toLowerCase();
+        text.value = colors[index];
+        hashWrap.removeAttribute('aria-invalid');
+        commit();
+      });
+
+      text.addEventListener('input', () => {
+        const normalized = normalizeHex(text.value);
+        if (normalized) {
+          colors[index] = normalized;
+          picker.value = `#${normalized}`;
+          hashWrap.removeAttribute('aria-invalid');
+          commit();
+        } else {
+          hashWrap.setAttribute('aria-invalid', 'true');
+        }
+      });
+
+      text.addEventListener('blur', () => {
+        text.value = colors[index];
+        hashWrap.removeAttribute('aria-invalid');
+      });
+
+      remove.addEventListener('click', () => {
+        if (colors.length <= MIN_COLORS) return;
+        colors.splice(index, 1);
+        renderList();
+        commit();
+      });
+
+      li.append(picker, hashWrap, remove);
+      listEl.appendChild(li);
+    });
+  }
+
+  addBtn.addEventListener('click', () => {
+    if (colors.length >= MAX_COLORS) return;
+    // Seed the new color from the last one so it's visible immediately
+    colors.push(colors[colors.length - 1]);
+    renderList();
+    commit();
+    listEl.querySelector<HTMLInputElement>('li:last-child input[type="text"]')?.select();
+  });
+
+  let copyStatusTimer: number | undefined;
+  copyBtn.addEventListener('click', async () => {
+    let message: string;
+    try {
+      await navigator.clipboard.writeText(colors.join(','));
+      message = 'Copied!';
+    } catch {
+      message = 'Copy failed';
+    }
+    copyStatusEl.textContent = message;
+    window.clearTimeout(copyStatusTimer);
+    copyStatusTimer = window.setTimeout(() => (copyStatusEl.textContent = ''), 2000);
+  });
+
+  renderList();
+  commit();
+</script>
