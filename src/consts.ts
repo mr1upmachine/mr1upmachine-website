@@ -355,6 +355,7 @@ export const MOD_COMMANDS = [
     command: 'setpalette',
     description:
       'Free version of the Palette Swap redeem. Input a list of hex color codes and it will change the background colors.',
+    url: '/palette',
   },
   {
     command: 'settitle',
