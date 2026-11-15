@@ -4,8 +4,12 @@ import SiteBase from '../../components/SiteBase.astro';
 
 <SiteBase>
   <div class="palette-page">
-    <h1>Palette editor</h1>
-    <p class="intro">Pick colors, size and speed, then copy the text and paste it into chat.</p>
+    <header class="card py-4">
+      <h3 class="text-2xl font-bold">Palette editor</h3>
+      <p class="mt-2 text-sm">
+        Pick colors, size and speed, then copy the text and paste it into chat.
+      </p>
+    </header>
 
     <div class="preview">
       <canvas id="tiles" width="2560" height="1440" aria-label="Palette preview"></canvas>
@@ -36,11 +40,6 @@ import SiteBase from '../../components/SiteBase.astro';
       </div>
       <p id="status" aria-live="polite"></p>
     </section>
-
-    <p class="help">
-      Speed: higher is faster, negative runs backwards, 0 is static. Drag the grip beside a color to
-      reorder.
-    </p>
   </div>
 
   <script is:inline>
