@@ -3,42 +3,78 @@ import SiteBase from '../../components/SiteBase.astro';
 ---
 
 <SiteBase>
-  <div class="palette-page">
+  <div class="flex w-full max-w-[1100px] flex-col gap-3">
     <header class="card py-4">
       <h3 class="text-2xl font-bold">Palette editor</h3>
-      <p class="mt-2 text-sm">
-        Pick colors, size and speed, then copy the text and paste it into chat.
-      </p>
     </header>
 
-    <div class="preview">
-      <canvas id="tiles" width="2560" height="1440" aria-label="Palette preview"></canvas>
+    <div class="aspect-video overflow-hidden rounded-lg border border-neutral-700 bg-black">
+      <canvas
+        id="tiles"
+        width="2560"
+        height="1440"
+        aria-label="Palette preview"
+        class="block h-full w-full"
+      ></canvas>
     </div>
 
-    <section class="panel" aria-label="Palette settings">
-      <div class="controls">
-        <label class="field">
+    <section
+      id="panel"
+      class="flex flex-col gap-3 rounded-lg border border-neutral-700 bg-neutral-900 p-3 text-neutral-100"
+      aria-label="Palette settings"
+    >
+      <div class="flex flex-wrap items-end gap-3">
+        <label class="flex flex-col gap-1 text-xs leading-4 text-neutral-400">
           Tile size
-          <input id="size" type="number" step="1" inputmode="numeric" />
+          <input
+            id="size"
+            type="number"
+            step="1"
+            inputmode="numeric"
+            class="h-[34px] w-[90px] rounded border border-neutral-600 bg-neutral-800 px-2 font-mono text-[13px] text-white"
+          />
         </label>
-        <label class="field">
+        <label class="flex flex-col gap-1 text-xs leading-4 text-neutral-400">
           Speed
-          <input id="speed" type="number" step="any" inputmode="decimal" />
+          <input
+            id="speed"
+            type="number"
+            step="any"
+            inputmode="decimal"
+            class="h-[34px] w-[90px] rounded border border-neutral-600 bg-neutral-800 px-2 font-mono text-[13px] text-white"
+          />
         </label>
-        <div class="copy-group">
-          <button id="copy-command" type="button">
+        <div class="ml-auto flex flex-wrap gap-3">
+          <button
+            id="copy-command"
+            type="button"
+            class="h-[34px] cursor-pointer rounded border border-neutral-600 bg-neutral-700 px-3 text-[13px] text-white enabled:hover:bg-neutral-600"
+          >
             Copy !setpalette
           </button>
-          <button id="copy-redeem" type="button">
+          <button
+            id="copy-redeem"
+            type="button"
+            class="h-[34px] cursor-pointer rounded border border-neutral-600 bg-neutral-700 px-3 text-[13px] text-white enabled:hover:bg-neutral-600"
+          >
             Copy for redeem
           </button>
         </div>
-        <div class="field colors-field">
+        <div class="flex w-full min-w-0 flex-col gap-1 text-xs leading-4 text-neutral-400">
           <span id="colors-label">Colors</span>
-          <div id="colors" role="group" aria-labelledby="colors-label"></div>
+          <div
+            id="colors"
+            role="group"
+            aria-labelledby="colors-label"
+            class="relative flex flex-wrap gap-3"
+          ></div>
         </div>
       </div>
-      <p id="status" aria-live="polite"></p>
+      <p
+        id="status"
+        aria-live="polite"
+        class="min-h-[16px] self-end font-mono text-xs leading-4 text-neutral-400"
+      ></p>
     </section>
   </div>
 
@@ -57,6 +93,22 @@ import SiteBase from '../../components/SiteBase.astro';
       const DEFAULT_SIZE = 52;
       const DEFAULT_SPEED = 1;
       const DEFAULT_COLORS = ['ff5e5b', 'ffb400', '3a0ca3'];
+
+      // Tailwind classes for the elements built in JS. Keep them as full class names
+      // in this file so Tailwind's scanner can see them.
+      const BTN_BASE =
+        'h-[34px] cursor-pointer rounded border border-neutral-600 bg-neutral-700 text-[13px] text-white enabled:hover:bg-neutral-600 disabled:cursor-default disabled:opacity-40';
+      const BTN = BTN_BASE + ' px-3';
+      const BTN_REMOVE = BTN_BASE + ' w-[34px] p-0';
+      const HEX_INPUT =
+        'h-[34px] w-20 rounded border bg-neutral-800 px-2 font-mono text-[13px] text-white';
+      const BORDER_OK = 'border-neutral-600';
+      const BORDER_BAD = 'border-red-500';
+      const COLOR_INPUT =
+        'h-[34px] w-[34px] cursor-pointer appearance-none overflow-hidden rounded border border-neutral-600 bg-neutral-800 p-0 [&::-moz-color-swatch]:border-0 [&::-webkit-color-swatch]:rounded-none [&::-webkit-color-swatch]:border-0 [&::-webkit-color-swatch-wrapper]:p-0';
+      const HANDLE =
+        'drag-handle flex h-[34px] w-4 touch-none select-none items-center justify-center text-base text-neutral-500 hover:text-neutral-300';
+      const DRAGGING_ITEM = ['relative', 'z-20', 'opacity-80', 'drop-shadow-lg'];
 
       const $ = (id) => document.getElementById(id);
 
@@ -238,12 +290,13 @@ import SiteBase from '../../components/SiteBase.astro';
         commit();
       });
       // Enter commits the same way blur does
-      document.querySelector('.panel').addEventListener('keydown', (e) => {
+      $('panel').addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && e.target.tagName === 'INPUT') e.target.blur();
       });
 
       const addBtn = document.createElement('button');
       addBtn.type = 'button';
+      addBtn.className = BTN;
       addBtn.textContent = '+ Color';
       addBtn.addEventListener('click', () => {
         state.colors.push(state.colors[state.colors.length - 1]);
@@ -258,7 +311,8 @@ import SiteBase from '../../components/SiteBase.astro';
           handle.setPointerCapture(e.pointerId);
           const startX = e.clientX;
           const startY = e.clientY;
-          item.classList.add('dragging');
+          item.classList.add(...DRAGGING_ITEM);
+          handle.classList.replace('cursor-grab', 'cursor-grabbing');
 
           const others = [...colorsWrap.querySelectorAll('.color-item')].filter(
             (el) => el !== item
@@ -267,7 +321,7 @@ import SiteBase from '../../components/SiteBase.astro';
           const wrapRect = colorsWrap.getBoundingClientRect();
           const gap = parseFloat(getComputedStyle(colorsWrap).columnGap) || 0;
           const line = document.createElement('div');
-          line.className = 'drop-line';
+          line.className = 'pointer-events-none absolute w-[3px] rounded-sm bg-sky-400';
           line.hidden = true;
           colorsWrap.appendChild(line);
           let toIdx = null;
@@ -310,7 +364,8 @@ import SiteBase from '../../components/SiteBase.astro';
             handle.removeEventListener('pointermove', onMove);
             handle.removeEventListener('pointerup', onUp);
             handle.removeEventListener('pointercancel', onCancel);
-            item.classList.remove('dragging');
+            item.classList.remove(...DRAGGING_ITEM);
+            handle.classList.replace('cursor-grabbing', 'cursor-grab');
             item.style.transform = '';
             line.remove();
             if (!cancelled && toIdx !== null) {
@@ -331,21 +386,23 @@ import SiteBase from '../../components/SiteBase.astro';
         colorsWrap.replaceChildren();
         state.colors.forEach((hex, i) => {
           const item = document.createElement('div');
-          item.className = 'color-item';
+          item.className = 'color-item flex items-center gap-1';
 
           const handle = document.createElement('span');
-          handle.className = 'drag-handle';
+          handle.className = HANDLE + ' cursor-grab';
           handle.textContent = '⠿';
           handle.title = 'Drag to reorder';
           attachDrag(handle, item, i);
 
           const picker = document.createElement('input');
           picker.type = 'color';
+          picker.className = COLOR_INPUT;
           picker.value = '#' + hex;
           picker.setAttribute('aria-label', 'Color ' + (i + 1));
 
           const text = document.createElement('input');
           text.type = 'text';
+          text.className = HEX_INPUT + ' ' + BORDER_OK;
           text.value = hex;
           text.maxLength = 7;
           text.spellcheck = false;
@@ -354,9 +411,9 @@ import SiteBase from '../../components/SiteBase.astro';
           const setColor = (raw) => {
             const c = normalizeHex(raw);
             if (!isHex(c)) {
-              text.classList.add('invalid');
+              text.classList.replace(BORDER_OK, BORDER_BAD);
               text.value = state.colors[i];
-              setTimeout(() => text.classList.remove('invalid'), 600);
+              setTimeout(() => text.classList.replace(BORDER_BAD, BORDER_OK), 600);
               return;
             }
             state.colors[i] = c;
@@ -370,7 +427,7 @@ import SiteBase from '../../components/SiteBase.astro';
 
           const remove = document.createElement('button');
           remove.type = 'button';
-          remove.className = 'remove';
+          remove.className = BTN_REMOVE;
           remove.textContent = '×';
           remove.setAttribute('aria-label', 'Remove color ' + (i + 1));
           remove.disabled = state.colors.length <= MIN_COLORS;
@@ -398,199 +455,3 @@ import SiteBase from '../../components/SiteBase.astro';
     })();
   </script>
 </SiteBase>
-
-<style is:global>
-  /* Sits inside the layout's flex-centered <main>, so it sets its own width.
-     Font and text color are inherited from the site. */
-  .palette-page {
-    --h: 34px; /* one height for every control */
-    --gap: 12px;
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 1100px;
-  }
-  .palette-page h1 {
-    margin: 0 0 4px;
-    font-size: 1.6rem;
-    font-weight: 700;
-    line-height: 1.3;
-  }
-  .palette-page .intro,
-  .palette-page .help {
-    margin: 0 0 16px;
-    opacity: 0.7;
-  }
-  .palette-page .help {
-    margin: 16px 0 0;
-    font-size: 13px;
-  }
-
-  .palette-page .preview {
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border: 1px solid #444;
-    border-radius: 8px;
-    background: #000;
-  }
-  .palette-page .preview canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .palette-page .panel {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap);
-    margin-top: var(--gap);
-    padding: var(--gap);
-    border: 1px solid #444;
-    border-radius: 8px;
-    background: #1d1d26;
-    color: #eee;
-  }
-  .palette-page .controls {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end; /* every control shares the same bottom edge */
-    gap: var(--gap);
-  }
-  .palette-page .field {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    color: #aaa;
-    font-size: 12px;
-    line-height: 16px;
-  }
-  .palette-page .colors-field {
-    flex: 1 1 100%; /* colors get their own full-width row */
-    min-width: 0;
-  }
-
-  .palette-page input[type='number'],
-  .palette-page input[type='text'],
-  .palette-page input[type='color'],
-  .palette-page button {
-    box-sizing: border-box;
-    height: var(--h);
-    margin: 0;
-    border: 1px solid #555;
-    border-radius: 4px;
-    background: #222;
-    color: #fff;
-    font: 13px monospace;
-  }
-  .palette-page input[type='number'],
-  .palette-page input[type='text'] {
-    padding: 0 8px;
-  }
-  .palette-page input[type='number'] {
-    width: 90px;
-  }
-  .palette-page input.invalid {
-    border-color: #f55;
-  }
-  .palette-page button {
-    padding: 0 12px;
-    background: #333;
-    font-family:
-      system-ui,
-      -apple-system,
-      'Segoe UI',
-      sans-serif;
-    cursor: pointer;
-  }
-  .palette-page button:hover:not(:disabled) {
-    background: #3d3d3d;
-  }
-  .palette-page button:disabled {
-    opacity: 0.4;
-    cursor: default;
-  }
-
-  .palette-page #colors {
-    position: relative; /* anchors the drop indicator */
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap);
-  }
-  .palette-page .color-item {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .palette-page input[type='color'] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: var(--h);
-    padding: 0;
-    overflow: hidden; /* clips the swatch to the rounded corners */
-    cursor: pointer;
-  }
-  .palette-page input[type='color']::-webkit-color-swatch-wrapper {
-    padding: 0;
-  }
-  .palette-page input[type='color']::-webkit-color-swatch {
-    border: none;
-    border-radius: 0;
-  }
-  .palette-page input[type='color']::-moz-color-swatch {
-    border: none;
-    border-radius: 0;
-  }
-  .palette-page .color-item input[type='text'] {
-    width: 80px;
-  }
-  .palette-page .color-item .remove {
-    width: var(--h);
-    padding: 0;
-  }
-
-  .palette-page .drag-handle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: var(--h);
-    color: #888;
-    font-size: 16px;
-    cursor: grab;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: none; /* a touch drag moves the item instead of scrolling */
-  }
-  .palette-page .drag-handle:hover {
-    color: #ccc;
-  }
-  .palette-page .color-item.dragging {
-    position: relative;
-    z-index: 20;
-    opacity: 0.85;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
-  }
-  .palette-page .color-item.dragging .drag-handle {
-    cursor: grabbing;
-  }
-  .palette-page .drop-line {
-    position: absolute;
-    width: 3px;
-    border-radius: 2px;
-    background: #4af;
-    pointer-events: none;
-  }
-
-  .palette-page .copy-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap);
-    margin-left: auto;
-  }
-  .palette-page #status {
-    align-self: flex-end;
-    min-height: 16px;
-    margin: 0;
-    color: #aaa;
-    font: 12px/16px monospace;
-  }
-</style>
